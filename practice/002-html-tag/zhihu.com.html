@@ -1,154 +1,124 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ZhiHu</title>
-</head>
-
-<body>
-    <header>
-        <div class="container">
-            <div class="列 LOGO">
-                <a href="/">LOGO</a>
-            </div>
-            <nav class="列 导航">
-                <a href="#">Item</a>
-                <a href="#">Item</a>
-                <a href="#">Item</a>
-            </nav>
-            <div class="列 搜索">
-                <input type="text">
-                <button>Search</button>
-            </div>
-            <div class="列 右">
-                <div>
-                    <a href="#">
-                        <i class="icon"></i>
-                    </a>
-                    <a href="#">
-                        <i class="icon"></i>
-                    </a>
-                    <a href="#">
-                        <div class="头像"></div>
-                    </a>
-                </div>
-            </div>
+<header>
+    <div class="container">
+        <div class="col LOGO">
+            <a href="/">LOGO</a>
         </div>
-    </header>
-    <div class="主体">
-        <div class="列 左">
-            <div class="快速通道">
-                <div class="列 左">
-                    <a href="#">
-                        <i class="icon icon-x"></i>Item</a>
-                    <a href="#">
-                        <i class="icon icon-x"></i>Item</a>
-                    <a href="#">
-                        <i class="icon icon-x"></i>Item</a>
-                    <a href="#">
-                        <i class="icon icon-x"></i>Item</a>
-                </div>
-                <div class="列 右">
-                    <a href="#">草稿</a>
-                </div>
-            </div>
-            <div class="大事件">
-                <div class="相关信息">
-                    <a href="列 #">相关话题</a>
-                    <p class="列 时间节点"></p>
-                </div>
-                <div class="事件图">
-                    <img src="" alt="">
-                </div>
-                <h2 class="标题">
-                    <a href="#">Title</a>
-                </h2>
-                <div class="概要">
-                    <p>some article</p>
-                </div>
-                <div class="事件管理">
-                    <button class="列">浏览文章</button>
-                    <p id="viwe-counter" class="列">浏览人数</p>
-                </div>
-            </div>
-            <div class="时间线">
-                <div class="相关信息">
-                    <span>
-                        <a href="列 #">用户链接</a>
-                        <p class="行为简介">{{content}}</p>
-                    </span>
-                    <p class="列 时间节点"></p>
-                </div>
-                <h2 class="标题">
-                    <a href="#">Title</a>
-                </h2>
-                <div class="概要">
-                    <p>some article</p>
-                </div>
-                <div class="事件管理">
-                    <div class="列 按钮组">
-                        <button class="列">
-                            <i class="赞"></i>
-                            <span id="counter">{{counter}}</span>
-                        </button>
-                        <button class="列">
-                            <i class="反对"></i>
-                        </button>
-                    </div>
-                    <div class="列 链接组">
-                        <div class="列">
-                            <i class="icon"></i>
-                            <a href="#"></a>
-                        </div>
-                        <div class="列">
-                            <i class="icon"></i>
-                            <a href="#"></a>
-                        </div>
-                        <div class="列">
-                            <i class="icon"></i>
-                            <a href="#"></a>
-                        </div>
-                        <div class="列">
-                            <i class="icon"></i>
-                            <a href="#"></a>
-                        </div>
-                        <div class="列">
-                            <i class="icon"></i>
-                            <a href="#"></a>
-                        </div>
-                        <div class="列">
-                            <button class="下拉按钮">
-                                <a href="#"></a>
-                                <a href="#"></a>
-                                <a href="#"></a>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <nav class="col nav">
+            <a href="#">Item</a>
+            <a href="#">Item</a>
+            <a href="#">Item</a>
+        </nav>
+        <div class="col search">
+            <input type="text">
+            <button>Search</button>
         </div>
-        <div class="列 右">
-            <div class="功能分类"></div>
-            <div class="私人导航"></div>
-            <footer>
-                <div class="知乎漫游">
-                    <div class="列">
-                        <a href="#">Item</a>
-                    </div>
-                    <div class="列">
-                        <a href="#">Item</a>
-                    </div>
-                    <div class="列">
-                        <a href="#">Item</a>
-                    </div>
-                </div>
-            </footer>
+        <div class="col right">
+            <div>
+                <a href="#">
+                    <i class="icon"></i>
+                </a>
+                <a href="#">
+                    <i class="icon"></i>
+                </a>
+                <a href="#">
+                    <div class="头像"></div>
+                </a>
+            </div>
         </div>
     </div>
-    <div class="反馈"></div>
-</body>
-
-</html>
+</header>
+<div class="main">
+    <div class="col left">
+        <div class="toolbar">
+            <div class="col left">
+                <a href="#">
+                    <i class="icon icon-x"></i>Item</a>
+                <a href="#">
+                    <i class="icon icon-x"></i>Item</a>
+                <a href="#">
+                    <i class="icon icon-x"></i>Item</a>
+                <a href="#">
+                    <i class="icon icon-x"></i>Item</a>
+            </div>
+            <div class="col right">
+                <a href="#">草稿</a>
+            </div>
+        </div>
+        <div class="event">
+            <div class="relevent-info">
+                <a href="col #">相关话题</a>
+                <p class="col 时间节点"></p>
+            </div>
+            <div class="event-pic">
+                <img src="" alt="">
+            </div>
+            <h2 class="title">
+                <a href="#">Title</a>
+            </h2>
+            <div class="abastract">
+                <p>some article</p>
+            </div>
+            <div class="event-tool">
+                <button class="col">浏览文章</button>
+                <p id="viwe-counter" class="col">浏览人数</p>
+            </div>
+        </div>
+        <div class="timeline">
+            <div class="relevent-info">
+                <span>
+                    <a href="col #">用户链接</a>
+                    <p class="info">{{content}}</p>
+                </span>
+                <p class="col 时间节点"></p>
+            </div>
+            <h2 class="title">
+                <a href="#">Title</a>
+            </h2>
+            <div class="abstract">
+                <p>some article</p>
+            </div>
+            <div class="event-tool">
+                <div class="col button-group">
+                    <button class="col">
+                        <i class="like"></i>
+                        <span id="counter">{{counter}}</span>
+                    </button>
+                    <button class="col">
+                        <i class="unlike"></i>
+                    </button>
+                </div>
+                <div class="col link-group">
+                    <div class="col">
+                        <i class="icon"></i>
+                        <a href="#"></a>
+                    </div>
+                    <!-- 4 more  -->
+                    <div class="col">
+                        <button class="dropdown">
+                            <a href="#"></a>
+                            <a href="#"></a>
+                            <a href="#"></a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col right">
+        <div class="sidebar"></div>
+        <div class="personal-nav"></div>
+        <footer>
+            <div class="overview">
+                <div class="col">
+                    <a href="#">Item</a>
+                </div>
+                <div class="col">
+                    <a href="#">Item</a>
+                </div>
+                <div class="col">
+                    <a href="#">Item</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
