@@ -1,0 +1,8 @@
+a{
+    border: inherit;
+    transform: inherit 123;
+    -webkit-transform: inherit 123;
+    -moz-transform: inherit 123;
+    -ms-transform: inherit 123;
+    -o-transform: inherit 123;
+}
