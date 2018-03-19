@@ -1,0 +1,34 @@
+.left {
+  width: 20%;
+}
+.right {
+  width: 80%;
+}
+
+main .cat {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+main .cat a {
+  display: block;
+  font-size: 80%;
+  padding: 10px 10px;
+  color: powderblue;
+}
+main .cat a:hover {
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.main-promote {
+  background-image: url("https://i1.mifile.cn/a4/xmad_1519902239445_xwPTs.jpg");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: rebeccapurple;
+}
+
+.main-promote .cat {
+  width: 20%;
+  background-color: rgba(0, 0, 0, .4)
+}
