@@ -8,6 +8,7 @@
 
 body{
     margin: 0;
+    background-color: #eeeeee;
     font-family: sans-serif,'Microsoft Yahei';
 }
 
@@ -27,6 +28,10 @@ img{
     display: inline-block;
     font-size: 16px;
     vertical-align: top;
+}
+
+.col.right{
+    text-align: right;
 }
 
 .container{
