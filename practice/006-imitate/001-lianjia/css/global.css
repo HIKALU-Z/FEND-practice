@@ -1,0 +1,23 @@
+body {
+	margin: 0;
+	font-family: sans-serif, 'Microsoft Yahei';
+	font-size: 16px;
+}
+
+footer {
+	background: #000000;
+}
+
+hr {
+	margin: 16px auto;
+}
+
+.inline-block {
+	display: inline-block;
+}
+
+
+.container {
+	max-width: 1080px;
+	margin: 0 auto;
+}

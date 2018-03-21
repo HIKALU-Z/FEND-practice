@@ -1,16 +1,23 @@
-<link rel="stylesheet" type="text/css" href="css/main.css">
-<link rel="stylesheet" href="./css/fontawesome-all.css">
-<script src="./js/fontawesome-all.min.js"></script>
-
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>链家网</title>
+    <link type="text/css" href="css/global.css" rel="stylesheet">
+    <link type="text/css" href="css/grid.css" rel="stylesheet">
+    <link type="text/css" href="css/main.css" rel="stylesheet">
+    <link type="text/css" href="./css/fontawesome-all.css" rel="stylesheet">
+    <script src="./js/fontawesome-all.min.js"></script>
+</head>
+<body>
 <header class="jumbotron">
     <div class="container">
         <nav class="row">
             <div class="col left">
-                <a href="#" class="logo-link">
-                    <img src="imgs/logo-lianjia.png" alt="">
+                <a class="logo-link" href="#">
+                    <img src="imgs/logo-lianjia.png" alt>
                 </a>
-                <a href="#" class="location">
+                <a class="location" href="#">
                     <i class="fas fa-map-marker"></i>成都</a>
             </div>
             <div class="col right">
@@ -41,12 +48,13 @@
         </div>
         <div class="search-area">
             <div class="row search-cat">
-                <a class="col" href="#">找二手房</a>
+                <a class="col" href="#">找二手房
+                </a>
                 <a class="col" href="#">找新房</a>
                 <a class="col" href="#">找租房</a>
                 <a class="col" href="#">找小区</a>
                 <a class="col" href="#">搜问答</a>
-                <i></i>
+                <span class="triangle"></span>
             </div>
             <div class="row">
                 <input class="col col-10" id="search-box" type="text">
@@ -60,28 +68,32 @@
 <main class="main">
     <div class="row service container">
         <div class="col col-3 text-center">
-            <img src="imgs/materials/php4TtmtO.png" alt="">
+            <img src="imgs/materials/php4TtmtO.png" alt>
             <div class="title">找二手房</div>
             <div class="summary">真实二手房源，链家承诺真实在售
-                <br>所见即真</div>
+                <br>所见即真
+            </div>
         </div>
         <div class="col col-3 text-center">
-            <img src="imgs/materials/php4TtmtO.png" alt="">
+            <img src="imgs/materials/php4TtmtO.png" alt>
             <div class="title">找二手房</div>
             <div class="summary">真实二手房源，链家承诺真实在售
-                <br>所见即真</div>
+                <br>所见即真
+            </div>
         </div>
         <div class="col col-3 text-center">
-            <img src="imgs/materials/php4TtmtO.png" alt="">
+            <img src="imgs/materials/php4TtmtO.png" alt>
             <div class="title">找二手房</div>
             <div class="summary">真实二手房源，链家承诺真实在售
-                <br>所见即真</div>
+                <br>所见即真
+            </div>
         </div>
         <div class="col col-3 text-center">
-            <img src="imgs/materials/php4TtmtO.png" alt="">
+            <img src="imgs/materials/php4TtmtO.png" alt>
             <div class="title">找二手房</div>
             <div class="summary">真实二手房源，链家承诺真实在售
-                <br>所见即真</div>
+                <br>所见即真
+            </div>
         </div>
 
     </div>
@@ -104,56 +116,64 @@
                     </div>
                     <div class="col col-6">
                         <div>
-                            <img src="imgs/qr-code.png" width="128px" alt="二维码">
+                            <img src="imgs/qr-code.png" alt="二维码" width="128px">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row 2nd-hand-house container">
+    <div class="second-hand-house container">
         <div class="row">
             <div class="col col-6">
-                <div class="title">二手好房 为你而选</div>
-                <div>好房源那么多，我们为你精选，链家网会越来越懂你</div>
+                <div class="title">二手好房 <span class="subtitle">为你而选</span></div>
+                <div class="desc">好房源那么多，我们为你精选，链家网会越来越懂你</div>
             </div>
-            <a class="col col-6">
+            <a class="col col-6 right">
                 更多北京二手房
             </a>
         </div>
         <div class="row card-group">
-            <div class="col col-3">
-                <div class="thumbnails">
-                    <img src="" alt="缩略图">
-                    <div>南湖国际，二期，标准三双</div>
-                    <div>南湖国际 5室二厅 443㎡</div>
+            <a class="col col-3">
+                <div class="card">
+                    <img src="imgs/second-house.jpg" alt="缩略图">
+                    <div class="content">
+                        <div class="title">南湖国际，二期，标准三双</div>
+                        <div class="desc">南湖国际 5室二厅 443㎡</div>
+                    </div>
                 </div>
                 <div>链家网推荐在售房源</div>
-            </div>
-            <div class="col col-3">
-                <div class="thumbnails">
-                    <img src="" alt="缩略图">
-                    <div>南湖国际，二期，标准三双</div>
-                    <div>南湖国际 5室二厅 443㎡</div>
+            </a>
+            <a class="col col-3">
+                <div class="card">
+                    <img src="imgs/second-house.jpg" alt="缩略图">
+                    <div class="content">
+                        <div class="title">南湖国际，二期，标准三双</div>
+                        <div class="desc">南湖国际 5室二厅 443㎡</div>
+                    </div>
                 </div>
                 <div>链家网推荐在售房源</div>
-            </div>
-            <div class="col col-3">
-                <div class="thumbnails">
-                    <img src="" alt="缩略图">
-                    <div>南湖国际，二期，标准三双</div>
-                    <div>南湖国际 5室二厅 443㎡</div>
+            </a>
+            <a class="col col-3">
+                <div class="card">
+                    <img src="imgs/second-house.jpg" alt="缩略图">
+                    <div class="content">
+                        <div class="title">南湖国际，二期，标准三双</div>
+                        <div class="desc">南湖国际 5室二厅 443㎡</div>
+                    </div>
                 </div>
                 <div>链家网推荐在售房源</div>
-            </div>
-            <div class="col col-3">
-                <div class="thumbnails">
-                    <img src="" alt="缩略图">
-                    <div>南湖国际，二期，标准三双</div>
-                    <div>南湖国际 5室二厅 443㎡</div>
+            </a>
+            <a class="col col-3">
+                <div class="card">
+                    <img src="imgs/second-house.jpg" alt="缩略图">
+                    <div class="content">
+                        <div class="title">南湖国际，二期，标准三双</div>
+                        <div class="desc">南湖国际 5室二厅 443㎡</div>
+                    </div>
                 </div>
                 <div>链家网推荐在售房源</div>
-            </div>
+            </a>
         </div>
     </div>
 
@@ -216,8 +236,11 @@
         </div>
         <div class="row info">
             <div class="col">
-                链家网（北京）科技有限公司 | 网络经营许可证 京ICP备16057509号-2 | © Copyright©2010-2018 链家网Lianjia.com版权所有 京公网安备 11010802024019号
+                链家网（北京）科技有限公司 | 网络经营许可证 京ICP备16057509号-2 | © Copyright©2010-2018 链家网Lianjia.com版权所有 京公网安备
+                11010802024019号
             </div>
         </div>
     </div>
 </footer>
+</body>
+</html>

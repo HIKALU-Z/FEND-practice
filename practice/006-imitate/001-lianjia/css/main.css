@@ -1,228 +1,158 @@
-body {
-	margin: 0;
-	font-family: sans-serif, 'Microsoft Yahei';
-}
-
-footer {
-	background: #000000;
-}
-
-hr {
-	margin: 16px auto;
-}
-
-.inline-block {
-	display: inline-block;
-}
-
-.jumbotron {
-	padding: 30px 30px;
-	height: 580px;
-	background-image: url('../imgs/bannerV2.jpg');
-	background-repeat: no-repeat;
-	background-position: center;
-	/* background: #9e9e9e; */
-}
-
-.container {
-	max-width: 1080px;
-	margin: 0 auto;
-}
-
-.row {
-	font-size: 0;
-}
-
-.col {
-	font-size: 15px;
-	display: inline-block;
-	vertical-align: top
-}
-
-.col-1 {
-	width: 8.333333%
-}
-
-.col-2 {
-	width: 16.666667%;
-}
-
-.col-3 {
-	width: 25%;
-}
-
-.col-4 {
-	width: 33.333333%;
-}
-
-.col-5 {
-	width: 41.666667%;
-}
-
-.col-6 {
-	width: 50%;
-}
-
-.col-7 {
-	width: 58.333333%;
-}
-
-.col-8 {
-	width: 66.666667%;
-}
-
-.col-9 {
-	width: 75%;
-}
-
-.col-10 {
-	width: 83.333333%;
-}
-
-.col-11 {
-	width: 91.666667%;
-}
-
-.col-12 {
-	width: 100%;
-}
-
 /* --------------------------------
 			header start
 ---------------------------------- */
+.jumbotron {
+  padding: 30px 30px;
+  height: 580px;
+  background-image: url("../imgs/bannerV2.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  /* background: #9e9e9e; */
+}
 
 nav a {
-	display: inline-block;
-	text-decoration: none;
-	color: #eee;
+  display: inline-block;
+  text-decoration: none;
+  color: #eee;
 }
 
 nav svg {
-	margin-right: 8px;
+  margin-right: 8px;
 }
 
 nav .left {
-	width: 30%;
+  width: 30%;
 }
 
 nav .right {
-	width: 70%;
-	text-align: right;
+  width: 70%;
+  text-align: right;
 }
 
 nav .left .logo-link img {
-	width: 80%;
+  width: 80%;
 }
 
 nav .left .location {
-	background-color: rgba(0, 0, 0, .3);
-	border-radius: 15px;
-	padding: 5px 20px;
-	position: relative;
-	bottom: 15px;
-	right: 15px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  padding: 5px 20px;
+  position: relative;
+  bottom: 15px;
+  right: 15px;
 }
 
 nav .left .location:hover {
-	background-color: rgba(0, 0, 0, .7);
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 nav .right .sign-container {
-	margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 nav .right .sign-container a {
-	padding: 0px 10px;
+  padding: 0px 10px;
 }
 
 nav .right .link-group a {
-	padding: 10px;
-	font-weight: bold;
-	font-size: 1.05rem;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 1.05rem;
 }
 
 nav .right .link-group a:hover {
-	color: #fff;
-	background-color: rgba(0, 0, 0, .3);
-	border-radius: 30px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 30px;
 }
 
 .jumbotron .slogan {
-	margin-top: 100px;
-	color: #fff;
+  margin-top: 100px;
+  color: #fff;
 }
 
 .jumbotron .slogan h1 {
-	font-size: 64px;
-	-webkit-margin-before: 0;
-	-webkit-margin-after: 0;
+  font-size: 64px;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
 }
 
 .jumbotron .slogan .subheading {
-	margin-top: 5px;
-	font-size: 20px;
+  margin-top: 5px;
+  font-size: 20px;
 }
 
 .jumbotron .slogan .text-center {
-	text-align: center;
+  text-align: center;
 }
 
 .jumbotron .search-area {
-	margin-top: 20px;
-	padding: 20px 200px;
+  margin-top: 20px;
+  padding: 20px 200px;
 }
 
 .jumbotron .search-area .search-cat {
-	position: relative;
-	color: #fff;
+  position: relative;
+  color: #fff;
 }
 
-.jumbotron .search-area .search-cat::after {
-	content: '';
-	display: inline-block;
-	position: absolute;
-	left: calc(50% - 5px);
-	bottom: -16px;
-	border: 9px solid transparent;
-	border-bottom: 10px solid #fff;
+.jumbotron .search-area .search-cat .triangle {
+	border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    width: 0;
+    height: 0;
+    -webkit-transition: all ease-in-out .3s;
+    -o-transition: all ease-in-out .3s;
+    -moz-transition: all ease-in-out .3s;
+    -ms-transition: all ease-in-out .3s;
+    transition: all ease-in-out .3s;
+    position: absolute;
+    top: 55px;
+    left: 40px;
+    border-bottom: 10px solid #fff;
+    z-index: 9;
 }
 
 .jumbotron .search-area a {
-	display: inline-block;
-	text-decoration: none;
-	color: #ccc;
-	padding: 10px;
-	font-weight: 700;
-	font-size: 0.9rem;
+  display: inline-block;
+  text-decoration: none;
+  color: #ccc;
+  padding: 10px;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.jumbotron .search-area a:hover {
+  color: #fff;
 }
 
 .jumbotron .search-area a:first-child {
-	padding-left: 0;
+  padding-left: 0;
 }
 
 .jumbotron .search-area #search-box {
-	padding-left: 20px;
-	border: 0;
-	height: 55px;
-	line-height: 55px;
-	border-radius: 2px;
-	font-size: 14px;
+  padding-left: 20px;
+  border: 0;
+  height: 55px;
+  line-height: 55px;
+  border-radius: 2px;
+  font-size: 14px;
 }
 
 .jumbotron .search-area .btn-search {
-	background: #00ae66;
-	height: 55px;
-	border: 0;
-	border-radius: 0 2px 2px 0;
-	cursor: pointer;
-	text-align: center;
-	font-size: 18px;
-	color: #fff;
-	-webkit-transition: all .3s ease-in-out;
-	-moz-transition: all .3s ease-in-out;
-	-o-transition: all .3s ease-in-out;
-	-ms-transition: all .3s ease-in-out;
-	transition: all .3s ease-in-out;
+  background: #00ae66;
+  height: 55px;
+  border: 0;
+  border-radius: 0 2px 2px 0;
+  cursor: pointer;
+  text-align: center;
+  font-size: 18px;
+  color: #fff;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 /* --------------------------------
@@ -234,36 +164,36 @@ nav .right .link-group a:hover {
 ---------------------------------- */
 
 .main {
-	width: 100%;
-	background: #fff;
+  width: 100%;
+  background: #fff;
 }
 
 .main .service {
-	padding: 30px 0px;
-	color: #000000;
+  padding: 30px 0px;
+  color: #000000;
 }
 
 .main .service .text-center {
-	text-align: center;
+  text-align: center;
 }
 
 .main .service img {
-	width: 25%;
-	cursor: pointer;
+  width: 25%;
+  cursor: pointer;
 }
 
 .main .service img:hover {
-	width: 30%;
+  width: 30%;
 }
 
 .main .service .title {
-	font-size: 130%;
+  font-size: 130%;
 }
 
 .main .service .summary {
-	font-size: 80%;
-	margin-top: 5px;
-	color: #b0b3b4;
+  font-size: 80%;
+  margin-top: 5px;
+  color: #b0b3b4;
 }
 
 /* --------------------------------
@@ -275,50 +205,99 @@ nav .right .link-group a:hover {
 ---------------------------------- */
 
 .download-area {
-	background-image: url(../imgs/bg-app.jpg);
-	background-position: center;
-	background-repeat: no-repeat;
-	height: 480px;
+  background-image: url(../imgs/bg-app.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 480px;
 }
 
 .download-area .content {
-	width: 40%;
-	margin-top: 60px;
+  width: 40%;
+  margin-top: 60px;
 }
 
 .download-area .title {
-	font-size: 4.5rem;
-	font-weight: bold;
+  font-size: 4.5rem;
+  font-weight: bold;
 }
 
 .download-area .subtitle {
-	font-size: 2.5rem;
-	font-weight: 100;
+  font-size: 2.5rem;
+  font-weight: 100;
 }
 
 .download-area .text {
-	line-height: 22px;
-	margin-top: 22px;
-	color: #555555;
+  line-height: 22px;
+  margin-top: 10px;
+  color: #555555;
 }
 
 .download-area .btn-download {
-	display: block;
-	font-size: 130%;
-	cursor: pointer;
-	padding: 15px;
-	width: 150px;
-	margin-bottom: 10px;
-	background-color: #00ae66;
-	border-radius: 5px;
-	color: #fff;
+  display: block;
+  font-size: 130%;
+  cursor: pointer;
+  padding: 15px;
+  width: 150px;
+  margin-bottom: 10px;
+  background-color: #00ae66;
+  border-radius: 15px;
+  color: #fff;
+}
+
+/* --------------------------------
+		  download end
+---------------------------------- */
+
+/* --------------------------------
+		  second-hand-house start
+---------------------------------- */
+.second-hand-house {
+  padding-top: 50px;
+}
+.second-hand-house .title {
+  font-size: 1.4rem;
+}
+.second-hand-house .desc {
+  font-size: 0.8rem;
+  font-weight: 200;
+}
+.second-hand-house span {
+  font-weight: 300;
+}
+
+.second-hand-house .card-group {
+  margin-top: 20px;
+}
+
+.second-hand-house .card-group a {
+  cursor: pointer;
+}
+
+.second-hand-house .card-group .card {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: 90%;
+}
+
+.second-hand-house .card-group .card img {
+  width: 100%;
+}
+
+.second-hand-house .card-group .card .content {
+	padding: 10px;
+  }
+.second-hand-house .card-group .card .content .title {
+  font-size: 1.1rem;
+}
+
+.second-hand-house .card-group .card .content .desc {
+  font-size: 0.8rem;
 }
 
 .promise {
-	background: #00d;
+  background: #00d;
 }
 
 .hot-link span:hover {
-	background: #fff;
-	color: red;
+  background: #fff;
+  color: red;
 }
