@@ -1,84 +1,84 @@
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <link rel="stylesheet" href="./css/fontawesome-all.css">
 <script src="./js/fontawesome-all.min.js"></script>
-<style type="text/css">
-    .first-screen .col,
-    .main .text {
-        display: block;
-    }
-</style>
-<div class="jumbotron">
+
+
+<header class="jumbotron">
     <div class="container">
-        <div class="row navigator">
-            <div class="col col-3">
-                <img alt="LOGO">
-                <a href="#">北京</a>
+        <nav class="row">
+            <div class="col left">
+                <a href="#" class="logo-link">
+                    <img src="imgs/logo-lianjia.png" alt="">
+                </a>
+                <a href="#" class="location">
+                    <i class="fas fa-map-marker"></i>成都</a>
             </div>
-            <div class="col col-9">
-                <div class="row">
-                    <a class="col col-2">登录</a>
-                    <a class="col col-2">注册</a>
+            <div class="col right">
+                <div class="row sign-container">
+                    <a class="col" href="#">
+                        <i class="fas fa-user"></i>登录</a>
+                    <a class="col" href="#">注册</a>
                 </div>
-                <div class="row">
-                    <div class="link-group">
-                        <a class="col col-1" href="#">二手房</a>
-                        <a class="col col-1" href="#">新房</a>
-                        <a class="col col-1" href="#">旅居</a>
-                        <a class="col col-1" href="#">海外</a>
-                        <a class="col col-1" href="#">小区</a>
-                        <a class="col col-1" href="#">经纪人</a>
-                        <a class="col col-1" href="#">指南</a>
-                        <a class="col col-1" href="#">房价</a>
-                        <a class="col col-1" href="#">工具</a>
-                        <a class="col col-1" href="#">发布房源</a>
-                    </div>
+                <div class="row link-group">
+                    <a class="col" href="#">二手房</a>
+                    <a class="col" href="#">新房</a>
+                    <a class="col" href="#">
+                        <i class="fas fa-tree"></i>旅居</a>
+                    <a class="col" href="#">海外</a>
+                    <a class="col" href="#">小区</a>
+                    <a class="col" href="#">经纪人</a>
+                    <a class="col" href="#">指南</a>
+                    <a class="col" href="#">房价</a>
+                    <a class="col" href="#">工具</a>
+                    <a class="col" href="#">发布房源</a>
                 </div>
+            </div>
+        </nav>
+        <div class="row slogan">
+            <h1 class="text-center">连接每个家的故事</h1>
+            <div class="text-center subheading">北京链家真实在售二手房 32286 套
             </div>
         </div>
-        <div class="row">
-
-            <h1 class="text-center">连接每个家的故事</h1>
-            <h3 class="text-center">北京链家真实在售二手房 32286 套</div>
-
         <div class="search-area">
-            <div class="row">
-                <a class="col">找二手房</a>
-                <a class="col">找新房</a>
-                <a class="col">找租房</a>
-                <a class="col">找小区</a>
-                <a class="col">搜问答</a>
+            <div class="row search-cat">
+                <a class="col" href="#">找二手房</a>
+                <a class="col" href="#">找新房</a>
+                <a class="col" href="#">找租房</a>
+                <a class="col" href="#">找小区</a>
+                <a class="col" href="#">搜问答</a>
+                <i></i>
             </div>
             <div class="row">
                 <input class="col col-10" id="search-box" type="text">
-                <a class="col col-2">开始找房</a>
+                <button class="col col-2 btn-search">开始找房</button>
             </div>
         </div>
     </div>
-</div>
+</header>
 
 
 <main class="main">
     <div class="row service container">
         <div class="col col-3 text-center">
-            <i class="fas fa-home"></i>
+            <img src="imgs/materials/php4TtmtO.png" alt="">
             <div class="title">找二手房</div>
             <div class="summary">真实二手房源，链家承诺真实在售
                 <br>所见即真</div>
         </div>
         <div class="col col-3 text-center">
-            <i class="fas fa-home"></i>
+            <img src="imgs/materials/php4TtmtO.png" alt="">
             <div class="title">找二手房</div>
             <div class="summary">真实二手房源，链家承诺真实在售
                 <br>所见即真</div>
         </div>
         <div class="col col-3 text-center">
-            <i class="fas fa-home"></i>
+            <img src="imgs/materials/php4TtmtO.png" alt="">
             <div class="title">找二手房</div>
             <div class="summary">真实二手房源，链家承诺真实在售
                 <br>所见即真</div>
         </div>
         <div class="col col-3 text-center">
-            <i class="fas fa-home"></i>
+            <img src="imgs/materials/php4TtmtO.png" alt="">
             <div class="title">找二手房</div>
             <div class="summary">真实二手房源，链家承诺真实在售
                 <br>所见即真</div>
@@ -87,27 +87,24 @@
     </div>
     <div class="row download-area">
         <div class="container">
-            <div class="col col-5">
-                <span>一链倾城</span>
+            <div class="col content">
+                <span class="subtitle">一链倾城</span>
                 <div class="title">为你为家</div>
                 <p class="col text">
                     集二手、新房、租房功能于一体，随时随地任性找房。IM匿名咨询让您放心，消息动态推送让您省心，服务承诺让您安心，数据百科锦囊让您感受贴心漫漫找房路，我们努力为您想更多
                 </p>
                 <div class="row">
                     <div class="col col-6">
-                        <div>
-                            <span>
-                                <i class="fab fa-apple"></i>iPhone</span>
-                        </div>
-                        <div>
-                            <span>
-                                <i class="fab fa-android"></i>Android</span>
-
-                        </div>
+                        <button class="btn-download">
+                            <i class="fab fa-apple"></i>iPhone
+                        </button>
+                        <button class="btn-download">
+                            <i class="fab fa-android"></i>Android
+                        </button>
                     </div>
                     <div class="col col-6">
                         <div>
-                            <img alt="二维码">
+                            <img src="imgs/qr-code.png" width="128px" alt="二维码">
                         </div>
                     </div>
                 </div>
