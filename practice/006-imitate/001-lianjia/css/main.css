@@ -87,30 +87,23 @@ nav .right .link-group a:hover {
 }
 
 .jumbotron .search-area {
+  margin: 0 auto;
   margin-top: 20px;
-  padding: 20px 200px;
+  max-width: 800px;
 }
 
 .jumbotron .search-area .search-cat {
-  position: relative;
   color: #fff;
 }
 
-.jumbotron .search-area .search-cat .triangle {
-	border-left: 9px solid transparent;
-    border-right: 9px solid transparent;
-    width: 0;
-    height: 0;
-    -webkit-transition: all ease-in-out .3s;
-    -o-transition: all ease-in-out .3s;
-    -moz-transition: all ease-in-out .3s;
-    -ms-transition: all ease-in-out .3s;
-    transition: all ease-in-out .3s;
-    position: absolute;
-    top: 55px;
-    left: 40px;
-    border-bottom: 10px solid #fff;
-    z-index: 9;
+.jumbotron .search-area .search-cat :first-child::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: 22px;
+  bottom: 0px;
+  border: 9px solid transparent;
+  border-bottom: 10px solid #fff;
 }
 
 .jumbotron .search-area a {
@@ -118,16 +111,17 @@ nav .right .link-group a:hover {
   text-decoration: none;
   color: #ccc;
   padding: 10px;
+  padding-left: 0;
   font-weight: 700;
   font-size: 0.9rem;
 }
 
-.jumbotron .search-area a:hover {
-  color: #fff;
+.jumbotron .search-area a:first-child {
+  position: relative;
 }
 
-.jumbotron .search-area a:first-child {
-  padding-left: 0;
+.jumbotron .search-area a:hover {
+  color: #fff;
 }
 
 .jumbotron .search-area #search-box {
@@ -283,8 +277,8 @@ nav .right .link-group a:hover {
 }
 
 .second-hand-house .card-group .card .content {
-	padding: 10px;
-  }
+  padding: 10px;
+}
 .second-hand-house .card-group .card .content .title {
   font-size: 1.1rem;
 }
