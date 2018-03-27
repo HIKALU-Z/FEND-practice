@@ -1,0 +1,65 @@
+/* =========== header start ============ */
+header nav {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 0 10px;
+}
+
+header nav a {
+  display: inline-block;
+  text-decoration: none;
+  color: #aaa;
+  padding: 10px;
+  font-size: 0.7rem;
+}
+header nav a:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+/* =========== header end ============ */
+/* =========== main start ============ */
+
+main nav {
+  padding: 30px 0;
+}
+
+main nav .logo {
+  background-color: red;
+}
+
+main nav a {
+  display: inline-block;
+  text-decoration: none;
+  color: #111;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+main nav .link-group {
+  margin-left: 120px;
+}
+
+main nav form input,
+main nav form button {
+  display: inline-block;vertical-align: top;
+  font-size: 1.1rem;
+  line-height: inherit;
+  height: 50px;
+  border: 1px solid #ccc;
+}
+main nav form button{
+  border-left: 0;
+  cursor: pointer;
+}
+
+main nav form{
+  font-size: 0;
+}
+
+main nav form:hover{
+  box-shadow: 0 0 2px orangered;
+}
+
+main .promote-cat{
+  height: 200px;
+  border: 1px solid #ccc
+}
