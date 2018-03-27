@@ -1,0 +1,64 @@
+<style>
+    * {
+        box-sizing: border-box
+    }
+
+    nav {
+        background: rgba(0, 0, 0, .3)
+    }
+
+    .row::after,
+    .row::before {
+        content: '';
+        clear: both;
+        display: block;
+    }
+
+    .col {
+        font-size: 1rem;
+        display: block;
+        float: left;
+    }
+
+    .col-4 {
+        width: 33.3333%;
+    }
+
+    .col-6 {
+        width: 50%;
+    }
+
+    .card {
+        border: 1px solid #111;
+    }
+
+    .pull-right{
+        float: right;
+    }
+</style>
+<nav>
+    <div class="row">
+        <div class="col col-4">
+            <div class="card">123</div>
+        </div>
+        <div class="col col-4">
+            <div class="card">123</div>
+        </div>
+        <div class="col col-4">
+            <div class="card">123</div>
+        </div>
+    </div>
+</nav>
+
+<div class="row">
+    <div class="col col-6">
+        <div class="card">
+            123
+        </div>
+    </div> 
+    <div class="col col-4 pull-right">
+        <div class="card ">
+            123
+        </div>
+    </div>
+</div>
