@@ -1,0 +1,91 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif, "Microsoft Yahei";
+  font-size: 16px;
+}
+
+footer {
+  background: #000000;
+}
+
+hr {
+  margin: 16px auto;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.container,
+.container-md {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.container-md{
+  max-width: 800px;
+}
+
+.col-1 {
+  width: 8.333333333%;
+}
+.col-2 {
+  width: 16.666666666%;
+}
+.col-3 {
+  width: 25%;
+}
+.col-4 {
+  width: 33.3333333333%;
+}
+.col-5 {
+  width: 41.6666666666%;
+}
+.col-6 {
+  width: 50%;
+}
+.col-7 {
+  width: 58.33333333%;
+}
+.col-8 {
+  width: 66.666666666%;
+}
+.col-9 {
+  width: 75%;
+}
+.col-10 {
+  width: 83.33333333333%;
+}
+.col-11 {
+  width: 91.66666666666%;
+}
+.col-12 {
+  width: 100%;
+}
+
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+
+[class*='col']{
+  float: left;
+}
+
+.row::before,
+.row::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+img{
+  display: block;
+  max-width: 100%;
+}
