@@ -14,14 +14,14 @@
     width: 80%;
 }
 
-.card-group .others .card{ 
+.card-group .others .card{
     background-color: #fff;
     width: 24%;
     margin-left: 1%;
     margin-bottom: 10px;
 }
 
-.card-group .others .title{ 
+.card-group .others .title{
     font-size: 130%;
 }
 
@@ -66,3 +66,4 @@
 
 .section-cat .others .row {
     margin-bottom: 5px;
+}
