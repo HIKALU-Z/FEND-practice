@@ -38,6 +38,15 @@ main nav .link-group {
   margin-left: 120px;
 }
 
+
+main nav form:hover *{
+  border-color: #ff6700;
+}
+
+main nav form{
+  font-size: 0;
+}
+
 main nav form input,
 main nav form button {
   display: inline-block;vertical-align: top;
@@ -45,19 +54,15 @@ main nav form button {
   line-height: inherit;
   height: 50px;
   border: 1px solid #ccc;
+  outline: 0;
 }
+
 main nav form button{
   border-left: 0;
   cursor: pointer;
 }
 
-main nav form{
-  font-size: 0;
-}
 
-main nav form:hover{
-  box-shadow: 0 0 2px orangered;
-}
 
 main .promote-cat{
   height: 200px;
