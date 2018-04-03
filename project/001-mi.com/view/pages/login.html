@@ -1,14 +1,74 @@
-<nav>
-  <div class="logo"></div>
-</nav>
-<div class="body">
-  <form action="">
-    <div class="row tab-head-froup">
-      <div class="tab-head"></div>
-      <div class="tab-head"></div>
+<!doctype html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="renderer" content="webkit" />
+  <title>登陆</title>
+  <link rel="stylesheet" href="../../../common/lib/normalize.css">
+  <link rel="stylesheet" href="../../../common/global.css">
+  <link rel="stylesheet" href="../../component/nav/nav-global.css">
+  <link rel="stylesheet" href="../../component/nav/nav-page.css">
+  <link rel="stylesheet" href="../../component/footer/footer.css">
+  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="login-sm.css">
+</head>
+
+<body>
+  <div class="nav">
+    <div class="container">
+      <div class="logo"></div>
     </div>
-    <div class="row"></div>
-    <div class="row"></div>
-    <div class="row"></div>
-  </form>
-</div>
+  </div>
+  <div class="content">
+    <div class="container clearfix">
+      <form id="login" class="fr">
+        <div class="tab-head-group tac">
+          <span class="tab-head active">
+            <a href="#">帐号登录</a>
+          </span>
+          <span class="tab-head">
+            <a href="#">扫码登录</a>
+          </span>
+        </div>
+        <div class="input-area">
+          <div class="input-group">
+            <input placeholder="邮箱/手机号码/小米ID" type="text">
+          </div>
+          <div class="input-group">
+            <input placeholder="密码" type="password">
+          </div>
+          <div class="input-group">
+            <button class="primary block" type="submit">登录</button>
+          </div>
+          <div class="row-gt others">
+            <div class="col-lg-6">
+              <a href="#">手机短信登陆/注册</a>
+            </div>
+            <div class="col-lg-6 muted tar">
+              <a href="#">立即注册</a> |
+              <a href="#">忘记密码?</a>
+            </div>
+          </div>
+        </div>
+        <div class="social-login tac muted">
+          <div>其他方式登录</div>
+          <div>
+            <span>QQ</span>
+            <span>微博</span>
+            <span>支付宝</span>
+            <span>微信</span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="footer tac">
+    <div>简体| 繁体| English| 常见问题| 隐私政策</div>
+    <div>小米公司版权所有-京ICP备10046444-京公网安备11010802020134号-京ICP证110507号</div>
+  </div>
+</body>
+
+</html>
