@@ -7,6 +7,7 @@ body {
   font-family: sans-serif, 'Microsoft Yahei';
   font-size: 16px;
   background-color: #ddd;
+  overflow: auto;
 }
 
 img {
@@ -38,11 +39,12 @@ img {
   float: right;
 }
 
-.resume-container{
-max-width: 800px;
-margin: 0 auto;
-margin-top: 15px;
-box-shadow: 2px 2px 8px;
+.resume-container {
+  max-width: 800px;
+  margin: 0 auto;
+  /* margin-top: 15px; */
+  margin: 15px auto;
+  box-shadow: 2px 2px 8px;
 }
 
 /* =======header start========== */
@@ -63,16 +65,18 @@ header .info > * {
 }
 
 /* =======header end========== */
-
-main section {
-  height: 200px;
-  background-color: orange;
-  padding: 10px;
+main {
+  background-color: #fff;
 }
 
-main section:nth-child(even) {
-  height: 200px;
-  background-color: #129DE7;
+main section {
+  min-height: 150px;
+  padding: 10px;
+  border-bottom: 1px dashed mediumvioletred;
+}
+
+main section:last-child {
+  border: #fff;
 }
 
 h2 {
