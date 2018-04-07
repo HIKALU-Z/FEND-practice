@@ -60,25 +60,111 @@ header .about {
   padding: 20px;
 }
 
-header .info > * {
-  padding-left: 20px;
+header .info {
+  margin-left: 20px;
+}
+
+header .info div {
+  margin-top: 5px;
+}
+
+header .info div:first-child {
+  margin-top: 0;
+}
+
+header .info span {
+  margin-left: 5px;
+}
+
+header .info a {
+  margin-left: 5px;
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+header .name {
+  font-size: 2.4rem;
+}
+
+header .occupation {
+  color: #ccc;
 }
 
 /* =======header end========== */
+/* ======= main start ========== */
 main {
   background-color: #fff;
+  padding: 20px;
 }
 
-main section {
+main .section {
   min-height: 150px;
-  padding: 10px;
-  border-bottom: 1px dashed mediumvioletred;
 }
 
-main section:last-child {
+main .section .title .icon {
+  display: inline-block;
+  background-color: #333;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+main .section .title [class*='fa'] {
+  padding: 10px;
+  background: #333333;
+  border-radius: 50%;
+  color: #fff;
+  position: relative;
+  top: 4px;
+}
+
+main .section .title .sec-title {
+  margin-left: 10px;
+}
+
+main .section .title .sec-zh {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+main .section .title .sec-en {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: teal;
+}
+
+main .section:last-child {
   border: #fff;
 }
+main .content-wrapper {
+  margin-top: -30px;
+  padding-left: 15px;
+}
 
-h2 {
-  font-size: 2rem;
+main .content-wrapper .content {
+  padding-left: 5px;
+  border-left: 5px solid teal;
+}
+
+main .time-line-wrapper {
+  margin-top: 5px;
+}
+
+main .time-line-wrapper .time-line {
+  background: #333;
+  color: #ddd;
+  border-radius: 5px;
+  padding: 0 20px;
+}
+
+main .time-line-wrapper [class*='fa'] {
+  position: relative;
+  top: -2px;
+  left: -20px;
+  background: teal;
+  color: #fff;
+  padding: 6px;
+  border-radius: 50%;
 }

@@ -1,0 +1,19 @@
+{
+  "name": "003-blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-sass": "^4.0.0",
+    "imagemin-pngquant": "^5.1.0"
+  }
+}
