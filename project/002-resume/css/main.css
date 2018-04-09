@@ -179,5 +179,37 @@ main .time-line-wrapper [class*='fa'] {
   color: #fff;
   padding: 6px;
   border-radius: 50%;
-  
 }
+
+
+@media (max-width:800px){
+  header figure{
+    display: none;
+  }
+  header .info{
+    margin-left: 0;
+  }
+}
+
+
+@media (max-width:480px){
+  header figure{
+    display: none;
+  }
+  header .info{
+    margin-left: 0;
+  }
+  header .title{
+    display: block;
+    float: none;
+  }
+  header .about .title .occupation{
+    float: none;
+  }
+
+  header .about .title{
+    text-align: center;
+  }
+
+}
+
