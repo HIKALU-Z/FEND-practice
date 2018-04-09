@@ -1,0 +1,129 @@
+.wrap {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  .header {
+    height: 80px;
+    flex-shrink: 0;
+    background-color: $primary-color;
+    border-bottom: 2px solid $accent-color;
+    display: flex;
+    color: white;
+    padding: 25px 10px;
+    svg {
+      fill: white;
+    }
+    .button {
+      background-color: rgba(0, 0, 0, 0.2);
+      border-radius: 3px;
+    }
+    .back {
+      display: flex;
+      padding: 8px;
+      height: 30px;
+      line-height: 16px;
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+      .text {
+        margin-left: 5px;
+      }
+    }
+    .title {
+      color: white;
+      line-height: 30px;
+      font-size: 19px;
+      text-align: center;
+      flex-grow: 1;
+    }
+    .settings {
+      padding: 5px;
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+  .content {
+    flex-grow: 1;
+    overflow: auto;
+    padding: 0;
+    position: relative;
+  }
+  .footer {
+    .title {
+      display: none;
+    }
+    height: 80px;
+    flex-shrink: 0;
+    display: flex;
+    background-color: $primary-color;
+    a {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding-top: 10px;
+      text-align: center;
+      color: rgba(0, 0, 0, 0.5);
+      flex-grow: 1;
+      border-left: 2px solid rgba(0, 0, 0, 0.1);
+      flex-grow: 1;
+      color: white;
+      &:first-child {
+        border-left: 0;
+      }
+      svg {
+        margin: 10px auto;
+        fill: #fff;
+        width: 20px;
+        height: 20px;
+        filter: drop-shadow(3px 3px 4px rgba(0, 0, 0, 0.9));
+      }
+    }
+    a.active {
+      border-bottom: 4px solid $accent-color;
+    }
+  }
+}
+
+@media (min-width: 700px) {
+  .wrap {
+    flex-direction: row;
+    .header {
+      display: none;
+    }
+    .footer {
+      .title {
+        display: block;
+        text-align: center;
+        font-size: 18px;
+        color: white;
+        border-bottom: 2px solid $accent-color;
+        line-height: 70px;
+      }
+      order: -1;
+      height: auto;
+      flex-direction: column;
+      flex-basis: 300px;
+      a {
+        padding: 20px;
+        flex-grow: 0;
+        font-size: 16px;
+        flex-direction: row;
+        line-height: 25px;
+        svg {
+          margin: 4px;
+          margin-right: 8px;
+          width: 17px;
+          height: 19px;
+          filter: none;
+        }
+      }
+      a.active {
+        border-bottom: 0;
+        background-color: $primary-color-dark;
+      }
+    }
+  }
+}
