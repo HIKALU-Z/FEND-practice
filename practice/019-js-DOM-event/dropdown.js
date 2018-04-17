@@ -7,6 +7,8 @@
   menuTrigger.addEventListener('click', function(e) {
     // 阻止默认事件
     e.preventDefault()
+    // 聚焦
+    menuTrigger.focus()
     // 切换显示
     menuSwtich = !menuSwtich
     if (menuSwtich) {
@@ -14,5 +16,14 @@
     } else {
       menuContent.style.display = 'none'
     }
+  })
+
+  menuTrigger.addEventListener('blur', function(e) {
+    // 阻止默认事件
+    e.preventDefault()
+    //
+    menuSwtich = false;
+    // 切换显示
+    menuContent.style.display = 'none'
   })
 })()
