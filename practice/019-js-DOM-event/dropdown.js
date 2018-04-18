@@ -26,4 +26,11 @@
     // 切换显示
     menuContent.style.display = 'none'
   })
+
+  document.addEventListener('click',function(e){
+    var in_menu = e.closest('#menu-content');
+    if(!in_menu || !e.target==menuTrigger){
+      hide()
+    }
+  })
 })()
