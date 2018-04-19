@@ -1,0 +1,132 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: sans-serif, 'Courier New', Courier, monospace;
+}
+a {
+  text-decoration: none;
+}
+button {
+  cursor: pointer;
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.clearfix::before,
+.clearfix::after {
+  content: '';
+  clear: both;
+  display: block;
+}
+.float-right {
+  float: right;
+}
+.float-left {
+  float: left;
+}
+[hidden] {
+  display: none !important;
+}
+/* ============================= */
+.nav {
+  background: rgba(0, 0, 0, 0.3);
+}
+.nav a {
+  color: #333;
+  display: inline-block;
+  padding: 5px 10px;
+}
+
+.nav a:hover{
+  background-color: rgba(255, 255,255,.5)
+}
+
+.nav .container {
+  position: relative;
+}
+
+.mask,
+.modal{
+  position: fixed;
+}
+/* ============================= */
+/* ============================= */
+.mask {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+/* ============================= */
+/* ============================= */
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 300px;
+  height: 100%;
+  z-index: 1;
+  background: #fff;
+  box-shadow: 2px 2px 4px rgba(0,0, 0,.5)
+}
+.sidebar a {
+  display: block;
+  color: #333;
+  padding: 10px 0 10px 20px;
+}
+
+.sidebar a:hover{
+  background-color: rgba(0, 0, 0, 0.3)
+}
+/* ============================= */
+/* ============================= */
+main .container {
+  padding-top: 20px;
+}
+.button {
+  padding: 10px;
+  font-size: 1.1rem;
+  border-radius: 5px;
+}
+
+.modal {
+  display: none;
+  top: 150px;
+  right: 200px;
+  bottom: 150px;
+  left: 200px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  padding: 20px 30px;
+  overflow: auto;
+  z-index: 1;
+}
+
+.modal .close {
+  padding: 10px;
+  border-radius: 3px;
+}
+
+.modal.show{
+  display: block;
+}
+/* ========================== */
+.nav,
+#menu-content {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+#menu-content {
+  display: none;
+  font-size: 15px;
+  width: 80px;
+  position: absolute;
+  right: 0;
+  text-align: center;
+}

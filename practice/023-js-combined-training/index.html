@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>JS-Combine</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <nav class="nav">
+    <div class="container">
+      <div class="clearfix">
+          <div class="float-left">
+              <a id="sidebar-trigger" href="">Click On Me</a>
+              <a href="">Item</a>
+              <a href="">Item</a>
+              <a href="">Item</a>
+            </div>
+            <div class="float-right">
+              <a href="">Item</a>
+              <a id="menu-trigger" href="">MENU</a>
+            </div>
+      </div>
+      <div id="menu-content">
+        <a href="#">Item</a>
+        <a href="#">Item</a>
+        <a href="#">Item</a>
+        <a href="#">Item</a>
+      </div>
+    </div>
+  </nav>
+  <div class="sidebar" hidden>
+    <a href="">Item</a>
+    <a href="">Item</a>
+    <a href="">Item</a>
+    <a href="">Item</a>
+  </div>
+  <main>
+    <div class="container">
+      <button id="modal-trigger" class="button" >Modal</button>
+    </div>
+    <div id="modal-content" class="modal">
+      <div class="float-right">
+        <button id="close-modal-btn" class="close">close</button>
+      </div>
+      <h2>Hello</h2>
+
+      <hr>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius impedit consectetur deserunt possimus temporibus exercitationem
+        maxime reprehenderit? Sint, quisquam aliquid voluptatem voluptatum aspernatur doloribus quidem commodi eaque nesciunt
+        eum iusto.</p>
+    </div>
+  </main>
+  <div class="mask" hidden></div>
+  <script src="main.js"></script>
+</body>
+
+</html>
