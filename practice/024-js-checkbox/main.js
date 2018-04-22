@@ -63,16 +63,24 @@
       return;
     }
     allCheckbox.forEach((checkbox, i) => {
-      // 自上而下
-      if (startIndex < endIndex) {
-        if (i >= startIndex && i <= endIndex) {
-          checkbox.checked = start.checked;
-        }
-      } else {
-        // 自下而上
-        if (i <= startIndex && i >= endIndex) {
-          checkbox.checked = start.checked;
-        }
+      // // 自上而下
+      // if (startIndex < endIndex) {
+      //   if (i >= startIndex && i <= endIndex) {
+      //     checkbox.checked = start.checked;
+      //   }
+      // } else {
+      //   // 自下而上
+      //   if (i <= startIndex && i >= endIndex) {
+      //     checkbox.checked = start.checked;
+      //   }
+      // }
+
+      // 第二种写法
+      let upToDownAndInRightRange = startIndex < endIndex && (i >= startIndex && i <= endIndex);
+      let bottomToUpAndInRightRange = !(startIndex < endIndex) && (i <= startIndex && i >= endIndex);
+
+      if (upToDownAndInRightRange || bottomToUpAndInRightRange) {
+        checkbox.checked = start.checked;
       }
     });
   }
@@ -100,3 +108,4 @@
     });
   });
 })();
+
