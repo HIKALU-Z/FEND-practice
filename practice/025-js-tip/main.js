@@ -24,6 +24,9 @@ function hide_tip() {
   tip = null; // 清空tip
 }
 
+/**
+ * 定位tooltip
+ */
 function position_tip() {
   var position = tip_trigger.getBoundingClientRect(); // 获取元素的位置信息
   tip.style.top = position.top - tip.offsetHeight - 2; // offsetHeight可见区域高度
