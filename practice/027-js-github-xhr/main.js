@@ -42,6 +42,9 @@
    * @param {Function} fn
    */
   function ajax(method, url, fn) {
+    // 设置默认值
+    method = method || 'GET'
+    // 实例化 XMLHttpRequest
     let xhr = new XMLHttpRequest();
     xhr.open(method, url);
     xhr.send();
@@ -64,6 +67,10 @@
     }
   }
 
+  /**
+   * 渲染回调数据
+   * @param {Object} data
+   */
   function render(data) {
     userName.innerText = 'id:'+data.id;
     let html = `用户名: ${data.login} <br>
