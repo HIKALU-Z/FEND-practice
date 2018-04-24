@@ -65,8 +65,8 @@
   }
 
   function render(data) {
-    userName.innerText = data.id;
-    let html = `id: ${data.login} <br>
+    userName.innerText = 'id:'+data.id;
+    let html = `用户名: ${data.login} <br>
          头像：<img src="${data.avatar_url}" width='150px'>`;
     let newDiv = document.createElement('div');
     newDiv.innerHTML = html
