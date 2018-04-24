@@ -9,7 +9,8 @@
   // 获取所需dom节点
   let form = document.querySelector('#githubForm');
   let input = document.querySelector('[type = search]');
-  let userName = document.querySelector('#userName')
+  let userInfo = document.getElementById('user-info');
+  let userName = document.querySelector('#userName');
 
   /**
    * 入口函数
@@ -59,8 +60,17 @@
       console.log('error');
     } else {
       console.log(data);
-      userName.innerText = data.id;
+      render(data);
     }
+  }
+
+  function render(data) {
+    userName.innerText = data.id;
+    let html = `id: ${data.login} <br>
+         头像：<img src="${data.avatar_url}" width='150px'>`;
+    let newDiv = document.createElement('div');
+    newDiv.innerHTML = html
+    userInfo.appendChild(newDiv);
   }
 
   // 运行初始化函数
