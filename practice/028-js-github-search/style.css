@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+main .container {
+  padding-top: 30px;
+}
+
+#user-info {
+  border: 1px solid purple;
+  padding: 20px;
+}
+
+#user-info .avatar img {
+  max-width: 100px;
+}
+
+.user > * {
+  display: inline-block;
+  vertical-align: top;
+  padding: 5px;
+  color: #555;
+  font-size: 80%;
+}
+
+.user:hover{
+  background: rgba(0,0,255,.2);
+}
+
+.user .user-name{
+  text-transform:capitalize;
+  width: 100px;
+}
