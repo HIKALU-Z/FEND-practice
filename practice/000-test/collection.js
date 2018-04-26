@@ -19,3 +19,4 @@ function collect_all_even(collection) {
 
 let b = [1, 2, 3, 4, 5, 6];
 let result = collect_all_even(b);
+let url = 'https://api.github.com/search/users?q=y&page=2&per_page=10'
