@@ -3,20 +3,22 @@ function isArray(arr) {
 }
 
 
-function collect_all_even(collection) {
-  //在这里写入代码
-  if (!isArray(collection)) {
-    return;
-  }
-  let result = [];
-  collection.forEach(item => {
-    if (item % 2 == 0) {
-      result.push(item);
-    }
-  });
-  return result;
-}
 
-let b = [1, 2, 3, 4, 5, 6];
-let result = collect_all_even(b);
-let url = 'https://api.github.com/search/users?q=y&page=2&per_page=10'
+function get_integer_interval(number_a, number_b) {
+    let result = [];
+    if (number_a < number_b) {
+        for (var i = number_a; i <= number_b; i++) {
+            result.push(i);
+        }
+    } else if (number_a > number_b) {
+        for (var i = number_a; i >= number_b; i--) {
+            result.push(i);
+        }
+    } else if (number_a == number_b) {
+        result.push(number_a);
+    }
+    return result;
+}
+let a=5,b=5;
+var r = get_integer_interval(a,b)
+console.log(r);

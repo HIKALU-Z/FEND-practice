@@ -44,6 +44,7 @@ function detect_submit() {
   el_form.addEventListener('submit', function(e) {
     e.preventDefault();
     keyword = el_input.value;
+    el_user_list.innerHTML = '<div></div>'
     if (!keyword) {
       alert('你闹呢');
       return;
