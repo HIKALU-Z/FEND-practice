@@ -1,1 +1,30 @@
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<link rel="stylesheet" href="css/main.css">
+
+<!-- HTML start -->
+<div class="container">
+  <h1>GayHub用户搜索</h1>
+  <form id="search-form">
+    <input id="search-input" type="search" autofocus autocomplete="off" placeholder="请输入用户名">
+    <button type="submit">搜索</button>
+    <div id="history-list" hidden></div>
+  </form>
+  <div id="amount"></div>
+  <div id="user-list"></div>
+  <div class="tac" id="placeholder" hidden>谋了 - . -</div>
+  <div id="pagination-container" hidden>
+    <div>
+      <button id="pagination-start" class="pager">首页</button>
+    </div>
+    <div id="pagination"></div>
+    <div>
+      <button id="pagination-end" class="pager">末页</button>
+    </div>
+  </div>
+</div>
+<div class="toolbar">
+  <button id="top" hidden>Top</button>
+</div>
+<!-- HTML end -->
+
 <script src="./dist/bundle.js"></script>

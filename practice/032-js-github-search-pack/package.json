@@ -2,13 +2,13 @@
   "name": "github-search",
   "version": "1.0.0",
   "description": "",
-  "main": "a.js",
+  "main": "index.js",
   "scripts": {
     "start":"./node_modules/.bin/webpack -wd",
     "build":"./node_modules/.bin/webpack -p",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": ["javascript","html"],
   "author": "",
-  "license": "ISC"
+  "license": "MIT"
 }

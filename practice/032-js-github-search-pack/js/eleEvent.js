@@ -1,17 +1,19 @@
 let ele = require('./element');
-let searchService = require('./searchService');
+let search = require('./search');
+
 let page = 2;
 let limit = 5;
-function detect_submit() {
+
+function detectSubmit() {
   ele.form.addEventListener('submit', function(e) {
     e.preventDefault();
     let keyword = ele.input.value || '';
     console.log(keyword);
-    searchService.searchUsers(keyword, ele.renderUserList);
+    search.search
   });
 }
 
-function detect_next() {
+/* function detectNext() {
   ele.next.addEventListener('click', function(e) {
     e.preventDefault();
     let keyword = ele.input.value || '';
@@ -20,18 +22,19 @@ function detect_next() {
       perPage: 5
     };
     console.log(keyword);
-    searchService.loadMoreUsers(keyword, ele.renderUserList,function(){
+    search.loadMoreUsers(keyword, ele.renderUserList,function(){
       console.log('123');
     }, config);
   });
-}
+} */
 
-function add_events() {
-  detect_submit();
-  detect_next();
+function addEvent() {
+  detectSubmit();
+  detectNext();
 }
 
 module.exports = {
-  detect_submit: detect_submit,
-  add_events: add_events
+  detectSubmit,
+  detectNext,
+  addEvent
 };
