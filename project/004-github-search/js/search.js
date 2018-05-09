@@ -30,8 +30,9 @@ function search() {
   http.send();
   http.addEventListener('load', function () {
     let res = JSON.parse(http.responseText);
+    share.setAmount(res.total_count)
     ui.renderUserList(res);
-    // render_pagination();
+    ui.renderPagination(search);
   });
 }
 

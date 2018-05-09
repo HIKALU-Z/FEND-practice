@@ -3,6 +3,7 @@ let search = require('./search');
 let store = require('./store')
 let history = require('./history')
 let share = require('./share')
+let pagination = require('./pagination')
 
 let page = 2;
 let limit = 25;
@@ -18,8 +19,9 @@ function detectSubmit() {
     if (!keyword) {
       return;
     }
-    search.search();
+    pagination.resetPage();
     history.append(share.getKeyword())
+    search.search();
   });
 }
 
@@ -52,19 +54,13 @@ function detectClickDocument() {
     })
 }
 
-function detectNext() {
-  $el.next.addEventListener('click', function (e) {
-    e.preventDefault();
-    let keyword = $el.input.value || '';
-    let config = {
-      page: page++,
-      perPage: 5
-    };
-    console.log(keyword);
-    search.loadMoreUsers(keyword, $el.renderUserList, function () {
-      console.log('123');
-    }, config);
-  });
+function detectclickPagination(){
+  $el.pageStart.addEventListener('click',function(){
+    pagination.gotoPage(1,search.search)
+  })
+  $el.pageEnd.addEventListener('click',function(){
+    pagination.gotoPage(pagination.getPageAmount,search.search)
+  })
 }
 
 /**
@@ -111,6 +107,7 @@ function addEvent() {
   detectWindowScrollY();
   detectClickHistory();
   detectClickDocument();
+  detectclickPagination();
   // detectNext();
 }
 
@@ -119,6 +116,9 @@ function addEvent() {
  */
 module.exports = {
   detectSubmit,
-  detectNext,
+  detectClickDocument,
+  detectclickPagination,
+  detectClickHistory,
+  detectScrollToTop,
   addEvent
 };
