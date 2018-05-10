@@ -1,8 +1,3 @@
-// import {
-//   on
-// } from "cluster";
-
-
 let list = [];
 let el;
 let onClick;
@@ -20,9 +15,8 @@ const init = (config) => {
   onClick = config.onClick;
   onDelete = config.onDelete;
   syncToList()
-  render()
-
-  // return output
+  render(5
+    
 }
 
 const addHistory = (keyword) => {
@@ -70,6 +64,7 @@ const getStorage = (keyword) => {
 }
 
 const render = () => {
+  el.innerHTML = '';
   list.forEach(keyword => {
     let elRow = document.createElement('div')
     elRow.classList.add('history');
@@ -80,13 +75,13 @@ const render = () => {
       </div>
     `
     elRow.addEventListener('click', function (e) {
-      onClick(keyword,e)
+      onClick(keyword, e)
     })
     el.appendChild(elRow)
     elRow
       .querySelector('.delete')
       .addEventListener('click', function (e) {
-        onDelete(keyword,e)
+        onDelete(keyword, e)
       })
   });
 }
@@ -97,4 +92,5 @@ let output = {
   deleteHistory,
   clear
 }
+
 module.exports = output
