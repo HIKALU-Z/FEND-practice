@@ -15,8 +15,8 @@ const init = (config) => {
   onClick = config.onClick;
   onDelete = config.onDelete;
   syncToList()
-  render(5
-    
+  render()
+
 }
 
 const addHistory = (keyword) => {

@@ -27,57 +27,53 @@ a {
   color: #777;
 }
 
-.container{
+.container {
   max-width: 800px;
-
   margin: 30px auto 0 auto;
 }
 
-#history-list {
-  max-height: 300px;
-  overflow: auto;
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, .2);
-  border-top: 0;
-  font-size: 14px;
-  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
-  -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
-  cursor: default;
+.pagination-pre,
+.pagination-list,
+.pagination-post {
+  display: inline-block;
 }
 
-.history {
+.pagination button {
+  display: inline-block;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+button.active {
+  background: #ccc;
+}
+
+.pagination-fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: block;
+}
+
+#pagination-container {
+  text-align: center;
+}
+
+#pagination-container>* {
+  display: inline-block;
+}
+
+.pager {
   padding: 5px 10px;
-  font-size: 0;
+  border: 1px solid rgba(0, 0, 0, .1);
+  border-left-width: 0;
 }
 
-.history:hover {
-  background: rgba(0, 0, 200, .1);
+.pager:first-child {
+  border-left-width: 1px;
 }
 
-.history .text,
-.history .tool {
-  vertical-align: middle;
-  display: inline-block;
-}
-
-.history .text {
-  width: 70%;
-  font-size: .9rem;
-}
-
-.history .tool {
-  display: none;
-  width: 30%;
-  font-size: .6rem;
-  text-align: right;
-  color: #aaa;
-}
-
-.history:hover .tool {
-  display: inline-block;
-}
-
-.history .tool>* {
-  cursor: pointer;
+.pager.active {
+  background: rgba(0, 0, 0, .2);
+  color: #000;
 }
