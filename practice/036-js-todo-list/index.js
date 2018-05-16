@@ -1,3 +1,4 @@
+let maxId = 1;
 let todoList = getData();
 
 function getData() {
@@ -22,7 +23,8 @@ function getData() {
   ];
 }
 
-function addTodo(row) {
+function createTodo(row) {
+  rowId = ++maxId;
   todoList.push(row)
 }
 
@@ -36,7 +38,17 @@ function removeTodo(id) {
   console.log(todoList);
 }
 
-removeTodo(14)
+function readTodo(id){
+  if(id){
+    return findById(todoList,id)
+  }
+  return todoList;
+}
+
+console.log(readTodo(14));
+// readTodo(14)
+
+// removeTodo(14)
 /**
  * 通过 id 在对应的数组中 找到对应的索引
  * @param {Array} arr 被查找的数组
@@ -44,12 +56,18 @@ removeTodo(14)
  * @returns {Number} index 找到的和 id 匹配的数组的索引值
  */
 function findIndexById(arr, id) {
+  let result
   /*   arr.forEach((element,index) => {
       if(element.id===id){
-        return index;
+        return result = index;
       }
     }); */
 
-  // 以下是 es6 内置的方法
-  return arr.findIndex(item => item.id == id)
+  // 以下是 Array 内置的方法
+  return result = arr.findIndex(item => item.id == id)
+}
+
+
+function findById(arr,id){
+  return arr.find(item=>item.id == id);
 }
