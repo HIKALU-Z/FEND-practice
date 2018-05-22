@@ -56,13 +56,6 @@ function detectSubmit() {
     _self_.input.value = '';
     _self_.clearFormData();
     _self_.render();
-
-    // _self_._api.add({
-    //   title: _self_.input.value,
-    //   completed: false
-    // })
-    // _self_.render()
-    // _self_.input.value = '';
   })
 }
 

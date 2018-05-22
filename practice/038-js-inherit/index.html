@@ -65,3 +65,19 @@
   var b = new B();
   console.log(b);
 </script>
+
+<script>
+  class Ui {
+    constructor(name) {
+      this.name = name;
+    }
+    add (){
+      console.log("add");
+    }
+  }
+  Ui.prototype.minus = function(){
+    console.log("minus");
+  }
+  let ui = new Ui()
+
+</script>
