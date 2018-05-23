@@ -18,6 +18,11 @@
     background: rgba(0, 0, 0, .06);
   }
 
+  form {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
   input,
   button {
     padding: 5px 10px;
@@ -91,7 +96,7 @@
     width: 30%;
   }
 
-  .sidebar-title{
+  .sidebar-title {
     padding-left: 5px;
   }
 
@@ -118,7 +123,7 @@
     vertical-align: middle;
   }
 
-  #add-cat{
+  #add-cat {
     cursor: pointer;
     margin-top: 5px
   }
@@ -162,6 +167,7 @@
       </div>
 
       <form id="cat-form" hidden>
+        <input type="hidden" name="id">
         <input type="text" class="block" name="title" autocomplete="off">
         <button type="submit">完成</button>
         <button type="button" data-action="cancel">取消</button>

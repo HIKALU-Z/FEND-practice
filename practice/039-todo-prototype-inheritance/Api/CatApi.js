@@ -48,6 +48,9 @@ function add(row) {
 }
 
 function remove(id) {
+  if(id == 1){
+    return;
+  }
   return this.$remove(id);
 }
 

@@ -1,0 +1,26 @@
+<script>
+  window.CatUi = CatUi;
+
+  function CatUi() {
+    this.api = 'name'
+  }
+  CatUi.prototype.render = render;
+  CatUi.prototype.test = test;
+  CatUi.prototype.init = init;
+
+  function init() {
+    this.render();
+    this.test();
+  }
+
+  function render() {
+    console.log("init");
+  }
+
+  function test() {
+    console.log(1)
+  }
+  
+  var catUi = new CatUi()
+  catUi.init()
+</script>
