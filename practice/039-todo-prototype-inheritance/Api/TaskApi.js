@@ -31,7 +31,7 @@ function update(id, new_row) {
   return this.$update(id, new_row);
 }
 
-function read(id) {
-  return this.$read(id);
+function read() {
+  return this.$read();
 }
 

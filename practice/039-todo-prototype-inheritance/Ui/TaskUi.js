@@ -30,6 +30,7 @@ function TaskUi(form_selector, list_selector, input_selector) {
 
 TaskUi.prototype.get_form_data = helper.get_form_data;
 TaskUi.prototype.set_form_data = helper.set_form_data;
+TaskUi.prototype.clear_form = helper.clear_form;
 TaskUi.prototype.render = render;
 TaskUi.prototype.init = init;
 TaskUi.prototype.detect_add = detect_add;
@@ -56,6 +57,7 @@ function detect_add() {
     if (row.id) {
       /*更新一条*/
       me._api.update(row.id, row);
+      me.clear_form(me.form);
     } else {
       /*新增一条*/
       me._api.add(row);
@@ -83,7 +85,7 @@ function detect_click_list() {
       me.remove(id);
     } else if (is_update_btn) {
       /*通过id得到相对应的那条数据对象 {id: xxx, title: '吃饭', ... }*/
-      var row = me._api.read(id);
+      var row = me._api.$find(id);
       /*填充表单*/
       me.set_form_data(me.form, row);
     }
@@ -91,7 +93,7 @@ function detect_click_list() {
 }
 
 function update(id, new_row) {
-
+  this._api.update(id,new_row);
 }
 
 function remove(id) {

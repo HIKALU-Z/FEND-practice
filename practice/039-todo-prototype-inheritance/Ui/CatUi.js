@@ -102,7 +102,7 @@ function detect_click_list() {
       me.hideAddItemBtn();
       // 显示需要更新的 form 表单
       me.show_cat_form();
-      var row = me._api.read(id)
+      var row = me._api.$find(id)
       me.set_form_data(me.cat_form, row)
 
       // form 表单插入在其 afterend 的位置
