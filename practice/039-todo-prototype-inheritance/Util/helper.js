@@ -1,7 +1,7 @@
 window.helper = {
-  get_form_data : get_form_data,
-  set_form_data : set_form_data,
-  clear_form    : clear_form,
+  get_form_data: get_form_data,
+  set_form_data: set_form_data,
+  clear_form: clear_form,
 }
 
 function get_form_data(form) {
@@ -36,6 +36,9 @@ function get_form_data(form) {
       case 'TEXTAREA':
         data[input.name] = input.value;
         break;
+      case 'SELECT':
+        data[input.name] = input.value; 
+        break;
     }
   });
 
@@ -66,7 +69,7 @@ function set_form_data(form, data) {
       case 'number':
         input.value = value;
         break;
-      /*如果是布尔值，就默认其为input[type=radio|checkbox]*/
+        /*如果是布尔值，就默认其为input[type=radio|checkbox]*/
       case 'boolean':
         input.checked = value;
         break;

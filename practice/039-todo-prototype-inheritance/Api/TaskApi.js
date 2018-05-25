@@ -16,11 +16,13 @@ TaskApi.prototype.remove = remove;
 TaskApi.prototype.update = update;
 TaskApi.prototype.read = read;
 TaskApi.prototype.readByCat = readByCat;
+TaskApi.prototype.removeByCat = removeByCat;
 
 
 function add(row) {
   if (!row.title)
     return;
+  row.cat_id = parseInt(row.cat_id);
   return this.$add(row);
 }
 
@@ -45,4 +47,10 @@ function readByCat(id) {
   })
   // console.log(result);
   return result
+}
+
+function removeByCat(cat_id) {
+  this.list = this.list.filter(function (row) {
+    return row.cat_id != cat_id;
+  });
 }

@@ -24,9 +24,16 @@
   }
 
   input,
-  button {
+  button ,
+  select{
     padding: 5px 10px;
     border: 1px solid rgba(0, 0, 0, .1);
+  }
+
+  select{
+    height: 40px;
+    width: 100%;
+    font-size: 15px;
   }
 
   [hidden] {
@@ -195,6 +202,7 @@
         <input type="hidden" name="id">
         <input id="todo-input" type="text" name="title" class="col" autocomplete="off">
         <button class="col">添加</button>
+        <select id="cat-select" name="cat_id"></select>
       </form>
       <div id="todo-list">
       </div>

@@ -5,7 +5,8 @@ function CatUi(config) {
     list_selector: '#cat-list',
     add_cat_selector: '#add-cat',
     cat_form_selector: '#cat-form',
-    onItemClick: null
+    onItemClick: null,
+    onItemDelete: null
   }
   var c = this.config = Object.assign({}, defaultConfig, config)
   this.list = document.querySelector(c.list_selector);
@@ -96,6 +97,10 @@ function detect_click_list() {
       var id = cat_item.dataset.id;
     }
     if (isDeleteBtn) {
+      if (!confirm('确定要删除此分组和其相对应的任务吗？'))
+        return;
+      if (me.config.onItemDelete)
+        me.config.onItemDelete(id);
       me._api.remove(id)
       me.render()
     } else if (isUpdateBtn) {
