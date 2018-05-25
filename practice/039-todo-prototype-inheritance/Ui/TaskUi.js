@@ -1,23 +1,28 @@
 window.TaskUi = TaskUi;
-test_list = [
-  { // 0
-    id        : 100,
-    title     : '买菜',
-    completed : false,
-    group_id  : 1,
+test_list = [{ // 0
+    id: 100,
+    title: '买菜',
+    completed: false,
+    cat_id: 1,
   },
   { // 1
-    id        : 101,
-    title     : '洗菜',
-    completed : false,
-    group_id  : 1,
+    id: 101,
+    title: '洗菜',
+    completed: false,
+    cat_id: 1,
   },
   {
-    id        : 102,
-    title     : '背单词',
-    completed : false,
-    group_id  : 2,
+    id: 102,
+    title: '背单词',
+    completed: false,
+    cat_id: 2,
   },
+  {
+    id: 103,
+    title: '刻意练习',
+    completed: false,
+    cat_id: 2,
+  }
 ]
 
 function TaskUi(form_selector, list_selector, input_selector) {
@@ -36,9 +41,13 @@ TaskUi.prototype.init = init;
 TaskUi.prototype.detect_add = detect_add;
 TaskUi.prototype.detect_click_list = detect_click_list;
 TaskUi.prototype.remove = remove;
+TaskUi.prototype.readByCat = readByCat;
 
+/**
+ * 初始化 task UI
+ */
 function init() {
-  this.render();
+  this.render(1);
   this.detect_add();
   this.detect_click_list();
 }
@@ -53,7 +62,7 @@ function detect_add() {
     var row = me.get_form_data(me.form);
 
     /*如果数据中有id，说明是更新旧数据，
-    * 否则为添加新数据*/
+     * 否则为添加新数据*/
     if (row.id) {
       /*更新一条*/
       me._api.update(row.id, row);
@@ -63,7 +72,7 @@ function detect_add() {
       me._api.add(row);
     }
     /*更新界面*/
-    me.render();
+    me.render(row.cat_id);
     /*清空输入框*/
     me.input.value = '';
   });
@@ -73,11 +82,15 @@ function detect_add() {
 function detect_click_list() {
   var me = this;
   this.list.addEventListener('click', function (e) {
-    var target        = e.target // 点击源
-      , todo_item     = target.closest('.todo-item') // 被点击的.todo-item，没有这个元素，就拿不到id
-      , id            = todo_item.dataset.id // 拿到id
-      , is_remove_btn = target.classList.contains('remove') // 点击的是否为删除按钮
-      , is_update_btn = target.classList.contains('update') // 点击的是否为更新按钮
+    var target = e.target // 点击源
+      ,
+      todo_item = target.closest('.todo-item') // 被点击的.todo-item，没有这个元素，就拿不到id
+      ,
+      id = parseInt(todo_item.dataset.id) // 拿到id
+      ,
+      is_remove_btn = target.classList.contains('remove') // 点击的是否为删除按钮
+      ,
+      is_update_btn = target.classList.contains('update') // 点击的是否为更新按钮
     ;
 
     if (is_remove_btn) {
@@ -93,7 +106,7 @@ function detect_click_list() {
 }
 
 function update(id, new_row) {
-  this._api.update(id,new_row);
+  this._api.update(id, new_row);
 }
 
 function remove(id) {
@@ -104,9 +117,13 @@ function remove(id) {
 }
 
 /*渲染任务列表*/
-function render() {
+function render(cat_id) {
   /*先通过api拿到所有数据*/
-  var todo_list = this._api.read();
+  /*先通过api拿到所有数据*/
+  var todo_list = cat_id ?
+    this._api.readByCat(cat_id) :
+    this._api.read();
+  // var todo_list = this._api.read();
   var me = this;
 
   /*清空上次渲染的数据*/

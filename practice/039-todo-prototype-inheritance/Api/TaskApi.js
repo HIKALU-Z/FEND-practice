@@ -15,6 +15,7 @@ TaskApi.prototype.add = add;
 TaskApi.prototype.remove = remove;
 TaskApi.prototype.update = update;
 TaskApi.prototype.read = read;
+TaskApi.prototype.readByCat = readByCat;
 
 
 function add(row) {
@@ -35,3 +36,13 @@ function read() {
   return this.$read();
 }
 
+function readByCat(id) {
+  id = parseInt(id)
+  // console.log(this.list);
+  var result = []
+  result = this.read().filter(function (item) {
+    return item.cat_id == id;
+  })
+  // console.log(result);
+  return result
+}
