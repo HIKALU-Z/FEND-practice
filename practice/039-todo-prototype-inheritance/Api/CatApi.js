@@ -1,6 +1,7 @@
 window.CatApi = CatApi;
 
-function CatApi(list, max_id) {
+function CatApi(list) {
+  this._model_name = 'cat';
   this.config = {
     title: {
       max_length: 10,
@@ -20,9 +21,10 @@ function CatApi(list, max_id) {
       title: '学习',
     },
   ];
-  max_id = max_id || 1;
+
   /*继承显性属性（也就是原型prototype）*/
-  BaseApi.call(this, list, max_id);
+  BaseApi.call(this, list);
+  this.reverse_direction = true;
 }
 
 /*继承隐性属性（也就是原型prototype）*/
@@ -48,7 +50,7 @@ function add(row) {
 }
 
 function remove(id) {
-  if(id == 1){
+  if (id == 1) {
     return;
   }
   return this.$remove(id);

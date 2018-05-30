@@ -1,8 +1,10 @@
 window.BaseApi = BaseApi;
 
 function BaseApi(list, max_id) {
-  this.max_id = max_id || 1;
-  this.list = list;
+  this.load_list(list);
+  this.max_id = max_id || list.length;
+  this.reverse_direction = false;
+  this.on_sync = null;
 }
 
 BaseApi.prototype.$add = add;
@@ -10,6 +12,20 @@ BaseApi.prototype.$remove = remove;
 BaseApi.prototype.$update = update;
 BaseApi.prototype.$read = read;
 BaseApi.prototype.$find = find;
+BaseApi.prototype.sync_to = sync_to;
+BaseApi.prototype.sync_from = sync_from;
+BaseApi.prototype.load_list = load_list;
+
+function load_list(list) {
+  var old = this.sync_from();
+
+  if (!old || !old.length) {
+    this.list = list || [];
+    this.sync_to();
+  } else {
+    this.list = old;
+  }
+}
 
 /**
  * 增加一行数据
@@ -18,9 +34,13 @@ BaseApi.prototype.$find = find;
  * @param {Object} row
  */
 function add(row) {
-  this.max_id = this.max_id + 1;
   row.id = this.max_id;
-  this.list.unshift(row);
+  if (this.reverse_direction)
+    this.list.push(row);
+  else
+    this.list.unshift(row);
+  this.sync_to();
+  store.set(this._model_name + '-max_id', this.max_id);
 }
 
 
@@ -35,6 +55,7 @@ function remove(id) {
 
   /*用splice()删除找到的元素*/
   this.list.splice(index, 1);
+  this.sync_to();
 }
 
 
@@ -52,6 +73,7 @@ function update(id, new_row) {
 
   var old_row = this.list[index];
   this.list[index] = Object.assign({}, old_row, new_row);
+  this.sync_to();
 }
 
 
@@ -98,4 +120,16 @@ function find_by_id(arr, id) {
   return arr.find(function (row) {
     return row.id == id;
   });
+}
+
+function sync_to () {
+  this.list = this.list || [];
+  store.set(this._model_name + '-list', this.list);
+  if (this.on_sync)
+    this.on_sync(this.list);
+}
+
+function sync_from () {
+  var result = store.get(this._model_name + '-list');
+  return result;
 }

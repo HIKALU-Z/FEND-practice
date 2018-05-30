@@ -10,30 +10,34 @@
     font-family: sans-serif;
   }
 
-  hr {
-    display: block;
-    height: 1px;
-    width: 100%;
-    border: 0;
-    background: rgba(0, 0, 0, .06);
+  form {
+    margin: 0;
   }
 
-  form {
-    margin-top: 5px;
+  form > * {
     margin-bottom: 5px;
   }
 
-  input,
-  button,
-  select {
+  hr {
+    display: block;
+    height: 3px;
+    width: 100%;
+    border: 0;
+    background: rgba(0, 0, 0, .2);
+  }
+
+  input, button, select {
+    display: inline-block;
     padding: 5px 10px;
     border: 1px solid rgba(0, 0, 0, .1);
+    line-height: 1.1;
   }
 
   select {
     height: 40px;
     width: 100%;
     font-size: 15px;
+    border-radius: 0;
   }
 
   [hidden] {
@@ -50,7 +54,6 @@
     border: 0;
     font-size: 1rem;
     padding: 0;
-    color: inherit;
   }
 
   .container {
@@ -76,7 +79,6 @@
     display: inline-block;
     padding: 10px;
     border: 1px solid rgba(0, 0, 0, .1);
-    line-height: 1.1;
   }
 
   #todo-form input {
@@ -104,16 +106,12 @@
     width: 30%;
   }
 
-  .sidebar-title {
-    padding-left: 5px;
-  }
-
   .main {
     width: 70%;
     padding-left: 10px;
   }
 
-  .todo-item .tool-set {
+  .tool-set {
     text-align: right;
   }
 
@@ -127,18 +125,14 @@
     margin-bottom: 10px;
   }
 
-  .todo-item>* {
+  .todo-item > * {
     vertical-align: middle;
-  }
-
-  #add-cat {
-    cursor: pointer;
-    margin-top: 5px
   }
 
   .cat-item {
     position: relative;
     padding: 5px;
+    cursor: default;
   }
 
   .cat-item .tool-set {
@@ -152,6 +146,15 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+  }
+
+  .cat-item .tool-set > * {
+    display: inline-block;
+    padding: 0 2px;
+  }
+
+  .cat-item .title {
+    font-size: .9rem;
   }
 
   .cat-item:hover {
@@ -175,26 +178,24 @@
   }
 </style>
 <div class="container">
-  <h1>Biao Todo</h1>
+  <h1>Todo List</h1>
   <div class="row">
     <div class="col sidebar">
       <div class="sidebar-title">分组</div>
       <hr>
       <div id="cat-list" class="cat-list">
-        <!--<div class="cat-item">-->
-        <!--<input type="text" value="默认" disabled>-->
-        <!--</div>-->
+
       </div>
 
       <form id="cat-form" hidden>
         <input type="hidden" name="id">
-        <input type="text" class="block" name="title" autocomplete="off">
+        <input type="text" value="yo" class="block" name="title" autocomplete="off">
         <button type="submit">完成</button>
         <button type="button" data-action="cancel">取消</button>
       </form>
 
       <div>
-        <button id="add-cat" class="block">添加新的分组</button>
+        <button id="add-cat" class="block">+</button>
       </div>
     </div>
     <div class="col main">
@@ -202,7 +203,7 @@
         <input type="hidden" name="id">
         <input id="todo-input" type="text" name="title" class="col" autocomplete="off">
         <button class="col">添加</button>
-        <select id="cat-select" name="cat_id"></select>
+        <select id="cat-select" name="cat_id" hidden></select>
       </form>
       <div id="todo-list">
         <div class="incomplete"></div>
@@ -213,12 +214,4 @@
   </div>
 </div>
 
-<script src="Util/helper.js"></script>
-<script src="Util/store.js"></script>
-<script src="Api/BaseApi.js"></script>
-<script src="Api/TaskApi.js"></script>
-<script src="Api/CatApi.js"></script>
-<script src="Ui/TaskUi.js"></script>
-<script src="Ui/CatUi.js"></script>
-
-<script src="index.js"></script>
+<script src="dist/bundle.js"></script>

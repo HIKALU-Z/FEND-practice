@@ -1,0 +1,58 @@
+.b-history-container {
+    border: 1px solid rgba(0, 0, 0, .2);
+    font-family: sans-serif;
+    color: #333;
+    border-top: 0;
+}
+
+#b-history-list {
+    z-index: 1;
+    position: absolute;
+    max-height: 300px;
+    overflow: auto;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-top: 0;
+    font-size: 14px;
+    -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+    -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+    cursor: default;
+}
+
+.b-history {
+    padding: 5px 10px;
+    font-size: 0;
+}
+
+.b-history:hover {
+    background: rgba(0, 0, 200, .1);
+}
+
+.b-history .text,
+.b-history .tool {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.b-history .text {
+    width: 70%;
+    font-size: .9rem;
+}
+
+.b-history .tool {
+    display: none;
+    width: 30%;
+    font-size: .6rem;
+    text-align: right;
+    color: #aaa;
+}
+
+.b-history:hover .tool {
+    display: inline-block;
+}
+
+.b-history .tool > * {
+    cursor: pointer;
+}
+

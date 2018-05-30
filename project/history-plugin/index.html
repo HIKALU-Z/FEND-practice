@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Biao推荐 - 插件Demo</title>
+  <link rel="stylesheet" href="dist/history.css">
+  <style>
+    html {
+      font-family: -apple-system, sans-serif;
+      color: #333;
+      background: #f5f5f5;
+    }
+
+    pre {
+      background: #444;
+      color: #fff;
+      padding: 10px;
+      margin: 5px 0;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+    }
+
+    input, button {
+      outline: 0;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+
+    input {
+      width: 100%;
+    }
+
+    .comment {
+      opacity: .4;
+      display: inline-block;
+    }
+
+    .container {
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .search-group input,
+    .search-group button {
+      display: inline-block;
+      font-size: 15px;
+    }
+
+    .search-group {
+      font-size: 0;
+    }
+
+    .search-group input {
+      width: 80%;
+    }
+
+    .search-group button {
+      width: 20%;
+      border-left: 0;
+    }
+
+    [id*='demo'] {
+      position: relative;
+    }
+
+    .history {
+      position: absolute;
+      left: 0;
+      right: 0;
+      background: #fff;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Biao-History</h1>
+  <div id="demo-main">
+    <div class="search-group">
+      <input type="search"
+             placeholder="这是个静好的Demo"
+             autocomplete="off"
+             autofocus>
+      <button>搜索</button>
+    </div>
+    <div class="history"></div>
+  </div>
+  <section>
+    <h2>安装</h2>
+    <h3>依赖安装</h3>
+    <pre>&lt;link rel="stylesheet" href="history.css"> <div class="comment">&lt;!--引入history.css--></div>
+&lt;script src="history.min.js">&lt;/script> <div class="comment">&lt;!--引入history.js--></div></pre>
+    <h3>设置根元素</h3>
+    <pre>&lt;div id="history-container">&lt;/div></pre>
+    <h3>基础用法</h3>
+    <pre>bh.init({
+  el: '#history-container',
+});
+
+bh.add('Yo');
+bh.add('Yoo');</pre>
+  </section>
+  <section>
+    <h2>配置</h2>
+    <pre>bh.init({
+  el: '#selector', <div class="comment">// 选择器</div>
+  on_click: function() {} <div class="comment">// 点击回调</div>
+  on_delete: function() {} <div class="comment">// 删除回调</div>
+});
+
+bh.add('Yo');
+bh.add('Yoo');</pre>
+
+  </section>
+  <section>
+    <h2>API</h2>
+    <h3>数据操作</h3>
+    <pre>
+bh.add('Yo') <div class="comment">// 添加一条历史记录</div>
+bh.remove('Yo') <div class="comment">// 搜索并删除一条历史记录</div>
+bh.clear() <div class="comment">// 清空所有历史记录</div></pre>
+    <h3>视图操作</h3>
+    <pre>
+bh.show() <div class="comment">// 显示</div>
+bh.hide() <div class="comment">// 隐藏</div>
+bh.is_visible() <div class="comment">// 是否可见</div>
+  </pre>
+  </section>
+</div>
+<script src="dist/history.min.js"></script>
+<script>
+  bh.init({
+    el: '#demo-main .history',
+  });
+
+  bh.add('Yo');
+  bh.add('Yoo');
+
+  document.addEventListener('click', function (e) {
+    var in_list = e.target.closest('.b-history-container')
+      , in_delete = e.target.closest('.delete')
+      , in_input = e.target.closest('#demo-main input');
+
+    if (in_input || in_list || in_delete) {
+      bh.show();
+      return;
+    }
+
+    bh.hide();
+  })
+</script>
+</body>
+</html>

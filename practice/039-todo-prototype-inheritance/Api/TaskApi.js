@@ -1,10 +1,10 @@
 window.TaskApi = TaskApi;
 
-function TaskApi(list, max_id) {
+function TaskApi(list) {
+  this._model_name = 'task';
   list = list || [];
-  max_id = max_id || 1;
   /*继承显性属性（也就是原型prototype）*/
-  BaseApi.call(this, list, max_id);
+  BaseApi.call(this, list);
 }
 
 /*继承隐性属性（也就是原型prototype）*/
@@ -17,6 +17,7 @@ TaskApi.prototype.update = update;
 TaskApi.prototype.read = read;
 TaskApi.prototype.readByCat = readByCat;
 TaskApi.prototype.removeByCat = removeByCat;
+TaskApi.prototype.set_completed = set_completed;
 
 
 function add(row) {
@@ -38,6 +39,16 @@ function read() {
   return this.$read();
 }
 
+
+function set_completed (id, completed) {
+  var row = this.$find(id);
+  if (!row)
+    return false;
+
+  row.completed = completed;
+  this.sync_to();
+}
+
 function readByCat(id) {
   id = parseInt(id)
   // console.log(this.list);
@@ -53,4 +64,5 @@ function removeByCat(cat_id) {
   this.list = this.list.filter(function (row) {
     return row.cat_id != cat_id;
   });
+  this.sync_to();
 }

@@ -14,6 +14,7 @@ function CatUi(config) {
   this.cat_form = document.querySelector(c.cat_form_selector);
   this.updatingCatItem = null;
   this._api = new CatApi();
+  this._api.on_sync = c.on_sync;
 }
 
 CatUi.prototype.init = init;
@@ -46,8 +47,14 @@ function init() {
 function render() {
   var cat_list = this._api.read();
   var me = this;
+  var holder = `<div class="empty-holder">暂无分类</div>`
   this.resetCatForoLocation();
-  this.list.innerHTML = '';
+
+  if (cat_list.length)
+    this.list.innerHTML = '';
+  else
+    this.list.innerHTML = holder;
+
   cat_list.forEach(function (row) {
     var el = document.createElement('div');
     el.classList.add('cat-item');
