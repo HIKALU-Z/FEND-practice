@@ -50,10 +50,9 @@ class Router {
     });
   }
 
-  parseHash() {
-    let hash = window.location.hash;
-    hash = hash.split('/')
-    return hash[hash.length - 1]
+  parseHash(hash) {
+    let hashArr = hash.split('/')
+    return hashArr[hashArr.length - 1]
   }
 }
 
