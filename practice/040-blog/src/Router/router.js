@@ -12,7 +12,12 @@ class Router {
    * @method `detectClick` 监听点击事件，点击 Anchor 以后链接跳转
    * @method `detectHashChange` 监听 window.hash 如果 hash 发生变化链接跳转
    */
-  constructor() {
+  constructor(config) {
+    let def = {
+      hook: {}
+    };
+    this.config = Object.assign({}, def, config);
+
     this.currentHash = this.parseHash(window.location.hash) || 'home';
     this.pageList = document.querySelectorAll('.page');
     this.detectClick();
@@ -60,10 +65,21 @@ class Router {
    * @main
    * @param {String} hash 路由器通过 hash 控制页面的节点显示
    * @param {Object} config 链接跳转方法的可选参数对象，包含以下参数
-   * - `hook` 事件回调钩子函数
    * - `force` 是否强制跳转，以防第一次进入页面时 hash 值未变化不会触发跳转事件
+   *
+   * @event {
+   *    before: this.config.hook.before,
+   *    after: this.config.hook.after
+   * }
    */
   go(hash, config = null) {
+
+    // 每次执行前，判断是否有 before 的钩子函数，如果有且执行结果为 false，则退出
+    if (this.config.hook.before) {
+      if (!this.config.hook.before())
+        return;
+    }
+
     hash = hash || 'home'
     let defaultConfig = {
       force: false,
@@ -85,6 +101,10 @@ class Router {
 
     this.currentHash = newVlaue;
     this.render();
+
+    // 在每次执行结果的最后，判断是否有 after 的钩子函数，如果有则执行，且参数为 currenHash
+    if (this.config.hook.after)
+      this.config.hook.after(this.currentHash);
   }
 
   /**
@@ -120,10 +140,10 @@ class Router {
     content.hidden = false;
   }
 
-/**
- * 转化 hash 编码
- * @param {String} hash
- */
+  /**
+   * 转化 hash 编码
+   * @param {String} hash
+   */
   parseHash(hash) {
     let hashArr = hash.split('/');
     return hashArr[hashArr.length - 1];
@@ -133,9 +153,9 @@ class Router {
 // 单例模式实体类
 let instance;
 
-const init = () => {
+const init = (config) => {
   if (!instance) {
-    instance = new Router();
+    instance = new Router(config);
   }
   return instance;
 };
