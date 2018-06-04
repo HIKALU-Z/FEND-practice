@@ -4,6 +4,8 @@
  * @version 1.0
  */
 
+import helper from '../Util/helper';
+
 class Router {
   /**
    * @property `currentHash` 当前 hash 地址
@@ -11,14 +13,15 @@ class Router {
    * @property `pageList` 当前路由管理下的所有页面
    * @method `detectClick` 监听点击事件，点击 Anchor 以后链接跳转
    * @method `detectHashChange` 监听 window.hash 如果 hash 发生变化链接跳转
+   * @property `config`
+   * - `config.routes` 记录所有路由状态和设置
+   * - `config.before` 切换前执行的回调函数（ 使用者的自定义代码）
+   * - `config.after`切换后执行的回调函数
    */
   constructor(config) {
-    let def = {
-      hook: {}
-    };
-    this.config = Object.assign({}, def, config);
-
-    this.currentHash = this.parseHash(window.location.hash) || 'home';
+    this.param = {};
+    this.load_config(config)
+    // this.currentHash = this.parseHash(window.location.hash) || 'home';
     this.pageList = document.querySelectorAll('.page');
     this.detectClick();
     this.detectHashChange();
@@ -26,6 +29,48 @@ class Router {
       force: true
     });
   }
+
+  /**
+   * 加载所有配置
+   */
+  load_config(config) {
+    this.def = {
+      hook: {}
+    };
+    this.config = Object.assign({}, this.def, config);
+    this.load_route_config();
+  }
+
+  /**
+   * 加载路由配置
+   */
+  load_route_config() {
+    let route_list = this.config.routes;
+
+    for (let name in route_list) {
+      let route = route_list[name];
+      let path = this.trim_hash(route.path);
+      let path_arr = path.split('/');
+      route.param = {};
+      route.name = name;
+
+      path_arr.forEach((segment, index) => {
+        let is_param = segment.startsWith(':');
+        let key = is_param ? segment.substring(1, segment.length) : segment;
+
+        route.$segment = route.$segment || {};
+        route.$segment[index] = {
+          name: key,
+          position: index,
+          is_param: is_param,
+        };
+      });
+    }
+
+    console.log('this.config:', this.config);
+  }
+
+
 
   /**
    * 监听点击事件
@@ -67,13 +112,13 @@ class Router {
    * @param {Object} config 链接跳转方法的可选参数对象，包含以下参数
    * - `force` 是否强制跳转，以防第一次进入页面时 hash 值未变化不会触发跳转事件
    *
-   * @event {
-   *    before: this.config.hook.before,
-   *    after: this.config.hook.after
-   * }
+   * @event
+   *  - before: this.config.hook.before
+   *  - after: this.config.hook.after
+   *
    */
   go(hash, config = null) {
-
+    this.hide('#not-found');
     // 每次执行前，判断是否有 before 的钩子函数，如果有且执行结果为 false，则退出
     if (this.config.hook.before) {
       if (!this.config.hook.before())
@@ -85,26 +130,47 @@ class Router {
       force: false,
     };
     config = Object.assign({}, defaultConfig, config);
+
     let oldValue = this.currentHash;
     let newVlaue = this.parseHash(hash);
-    this.currentHash = newVlaue;
 
-    if (!config.force && oldValue == newVlaue) {
+    this.previous = oldValue;
+
+    if (!newVlaue) {
+      if (this.config.hook.notFount) {
+        this.config.hook.notFount();
+      }
+      this.render('#not-found');
       return;
     }
 
-    let hasThisPage = this.checkPageExist(this.currentHash);
-    if (!hasThisPage) {
-      this.go('#/not-fount')
-      return;
-    }
-
     this.currentHash = newVlaue;
+
+    if (!this.currentHash.el)
+      throw new ReferenceError(`Please config route ${this.currentHash.name} el`);
+
     this.render();
 
     // 在每次执行结果的最后，判断是否有 after 的钩子函数，如果有则执行，且参数为 currenHash
     if (this.config.hook.after)
       this.config.hook.after(this.currentHash);
+  }
+
+  /**
+   * 暂时不知道干嘛的函数
+   * @param {object} route
+   */
+  compile(route) {
+    route = route || this.currentHash;
+
+    if (!route)
+      return;
+
+    let el = document.querySelector(route.el);
+    if (!el || !route.param) return;
+    let old = document.querySelectorAll('.compiled');
+    old.forEach(item => item.remove());
+    el.insertAdjacentHTML('afterbegin', `<p class="compiled">我的ID是${route.param.id}</p>`);
   }
 
   /**
@@ -121,32 +187,102 @@ class Router {
    */
   render(selector) {
     let content;
-    selector = selector || this.currentHash;
-    this.clearPage();
-    content = document.getElementById(selector);
+    selector = selector || this.currentHash.el;
+
+    /*先隐藏所有页面*/
+    this.hide_previous();
+
+    this.hidePage();
+    content = document.querySelector(selector);
     if (!content) {
       return;
     }
+
+    this.compile(this.currentHash);
     this.showPage(content);
   }
 
-  clearPage() {
+  /**
+   * 隐藏页面
+   */
+  hidePage() {
     this.pageList.forEach(element => {
       element.hidden = true;
     });
   }
+
+  hide(el) {
+    var el = document.querySelector(el);
+    if (!el)
+      return;
+    el.hidden = true;
+  }
+
   // 显示页面
   showPage(content) {
     content.hidden = false;
   }
 
   /**
-   * 转化 hash 编码
+   * 隐藏先前存在的页面
+   */
+  hide_previous() {
+    if (!this.previous)
+      return;
+    document.querySelector(this.previous.el).hidden = true;
+  }
+
+  /**
+   * 裁剪 hash
    * @param {String} hash
    */
+  trim_hash(hash) {
+    return helper.trim(hash, '#/');
+  }
+
+  /**
+   * 转化 hash 编码
+   * @param {String} hash
+   * @returns {Object} {path: '/article', param: {id: 1}}
+   */
   parseHash(hash) {
-    let hashArr = hash.split('/');
-    return hashArr[hashArr.length - 1];
+    hash = this.trim_hash(hash);
+    let hash_arr = hash.split('/');
+    let routes = this.config.routes;
+
+    for (var name in routes) {
+      let route = routes[name];
+      let $segment = route.$segment;
+      let matched = true;
+
+      if (Object.keys($segment).length != hash_arr.length) {
+        matched = false;
+        continue;
+      }
+
+      hash_arr.forEach(function (segment, index) {
+        let $segment = route.$segment[index];
+        let $name = $segment.name;
+
+        if (!$segment) {
+          matched = false;
+          return;
+        }
+
+        if ($segment.is_param) {
+          route.param[$name] = segment;
+        } else {
+          if ($name != segment) {
+            matched = false;
+            return;
+          }
+        }
+      });
+
+      if (matched)
+        return route;
+    }
+    // return hashArr[hashArr.length - 1];
   }
 }
 

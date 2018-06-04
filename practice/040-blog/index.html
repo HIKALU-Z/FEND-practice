@@ -21,21 +21,62 @@
 
 <body>
   <div class="container">
-    <a href="#/home">首页</a>
-    <a href="#/about">关于</a>
-    <a href="#/yo">yo</a>
-    <div id="home" class="page" hidden>
-      <h1>HOME</h1>
-      <p>this is home page</p>
+
+    <nav>
+      <a href="#/home">首页</a>
+      <a href="#/article-list">我的文章</a>
+      <a href="#/about">关于</a>
+      <a href="#/yo">yo</a>
+    </nav>
+
+    <div id="root">
+      <div id="home" class="page" hidden>
+        <h1>HOME</h1>
+        <p>this is home page</p>
+      </div>
+      <div id="about" class="page" hidden>
+        <h1>ABOUT</h1>
+        <p>this is about page</p>
+      </div>
+      <div id="tag" hidden>Tag</div>
+      <div id="article-list" class="page" hidden>
+        <h1>文章列表</h1>
+        <div>
+          <a href="#/article/whh/1">
+            <strong>标题1</strong>
+          </a>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda corporis hic illum ipsum, minima temporibus
+            voluptas! Accusamus cupiditate debitis, deleniti doloribus est labore possimus provident quibusdam quisquam,
+            quo quos, tempore!</p>
+        </div>
+        <div>
+          <a href="#/article/whh/2">
+            <strong>标题2</strong>
+          </a>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda corporis hic illum ipsum, minima temporibus
+            voluptas! Accusamus cupiditate debitis, deleniti doloribus est labore possimus provident quibusdam quisquam,
+            quo quos, tempore!</p>
+        </div>
+        <div>
+          <a href="#/article/whh/3">
+            <strong>标题3</strong>
+          </a>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda corporis hic illum ipsum, minima temporibus
+            voluptas! Accusamus cupiditate debitis, deleniti doloribus est labore possimus provident quibusdam quisquam,
+            quo quos, tempore!</p>
+        </div>
+      </div>
+      <div id="article" class="page" hidden>
+        <h1>标题</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium architecto corporis dolor enim expedita id
+          iusto magnam minus nemo obcaecati odit quaerat quas rem tempora ullam vitae voluptas voluptate, voluptatibus!</p>
+      </div>
+      <div id="not-found" class="page" hidden>
+        <h1>404</h1>
+        <p>找不到鸟</p>
+      </div>
     </div>
-    <div id="about" class="page" hidden>
-      <h1>ABOUT</h1>
-      <p>this is about page</p>
-    </div>
-    <div id="not-fount" class="page" hidden>
-      <h1>NOT-FOUNT</h1>
-      <p>this is 404 page</p>
-    </div>
+
   </div>
 
   <script src="dist/bundle.js"></script>
