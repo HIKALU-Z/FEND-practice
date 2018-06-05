@@ -1,4 +1,5 @@
-import article from './src/Api/article'
+import article_api from './src/Api/article'
+import article_ui from './src/Ui/article'
 import router from './src/Router/router';
 
 // router.hello();
@@ -35,9 +36,12 @@ let config = {
       return true;
     },
     after: function (route) {
-      // console.log('后');
-      // console.log('route:', route);
-    },
+      /*先通过接口拿到数据*/
+      article_api.read(data => {
+        /*有了数据就可以渲染动态的内容了*/
+        article_ui.render(data);
+      });
+    }
   }
 };
 

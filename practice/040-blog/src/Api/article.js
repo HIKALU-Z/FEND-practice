@@ -1,16 +1,12 @@
 import send from './../Util/send'
 
-const read = () => {
+const read = (success_hook,fail_hook) => {
   let url = '/api/article/read'
-  send.get(url, data=>{
-    console.log(data);
-  }, ()=>{
-    throw "error"
-  })
+  send.get(url,success_hook,fail_hook)
 }
 
 const output = {
   read
 }
 
-export default read
+export default output
