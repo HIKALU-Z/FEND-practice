@@ -20,6 +20,7 @@ class Router {
    */
   constructor(config) {
     this.param = {};
+    this.current = {};
     this.load_config(config)
     // this.currentHash = this.parseHash(window.location.hash) || 'home';
     this.pageList = document.querySelectorAll('.page');
@@ -137,10 +138,11 @@ class Router {
     this.previous = oldValue;
 
     if (!newVlaue) {
-      if (this.config.hook.notFount) {
-        this.config.hook.notFount();
-      }
-      this.render('#not-found');
+      // if (this.config.hook.notFount) {
+      //   this.config.hook.notFount();
+      // }
+      // this.render('#not-found');
+      this.on_404();
       return;
     }
 
@@ -173,6 +175,15 @@ class Router {
     el.insertAdjacentHTML('afterbegin', `<p class="compiled">我的ID是${route.param.id}</p>`);
   }
 
+  on_404() {
+    /*如果外部使用者想处理这个事情就调用它给我们传的函数*/
+    if (this.config.hook.notFount)
+      this.config.hook.notFount();
+
+    this.hide_previous();
+    this.show('#not-found');
+  }
+
   /**
    * 判断页面是否存在
    * @param {String} page
@@ -186,7 +197,7 @@ class Router {
    * @param {String} selector 被选中的容器
    */
   render(selector) {
-    let content;
+    let content, tpl_url, cache;
     selector = selector || this.currentHash.el;
 
     /*先隐藏所有页面*/
@@ -198,7 +209,21 @@ class Router {
       return;
     }
 
-    this.compile(this.currentHash);
+    let http = new XMLHttpRequest();
+
+    if (cache = this.current.template_cache)
+      content.innerHTML = cache;
+    else if (tpl_url = this.current.template_url) {
+      http.open('get', tpl_url);
+      http.send();
+      http.onload = () => {
+        content.innerHTML =
+          this.current.template_cache =
+          http.responseText;
+      };
+    }
+
+    // this.compile(this.currentHash);
     this.showPage(content);
   }
 
@@ -230,6 +255,8 @@ class Router {
     if (!this.previous)
       return;
     document.querySelector(this.previous.el).hidden = true;
+    let prev_el = document.querySelector(this.previous.el);
+    prev_el && (prev_el.hidden = true);
   }
 
   /**

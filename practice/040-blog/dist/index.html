@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+  <meta charset=UTF-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <meta http-equiv=X-UA-Compatible content="ie=edge">
+  <title>Blog</title>
+  <style>
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding-top: 20px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class=container>
+
+    <div class=nav>
+      <a href=#/home>首页</a>
+      <a href=#/article-list>我的文章</a>
+      <a href=#/about>关于我</a>
+      <a href=#/contact>谋</a>
+      <a href=http://baidu.com target=_blank>百度</a>
+    </div>
+    <div id=root>
+      <div id=home class=page hidden></div>
+      <div id=about class=page hidden></div>
+      <div id=contact class=page hidden></div>
+      <div id=article-list class=page hidden></div>
+      <div id=article class=page hidden></div>
+      <div id=not-found class=page hidden>
+        <h1>404</h1>
+        <p>找不到鸟</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script src=dist/bundle.js></script>
+<script type=text/javascript src=bundle.js?fd69b8a0250507bf50ff></script></body>
+
+</html>

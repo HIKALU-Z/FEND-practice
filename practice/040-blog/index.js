@@ -10,18 +10,22 @@ let config = {
     home: {
       path: '/home',
       el: '#home',
+      template_url: './src/template/home.html'
     },
-    about: {
+    article: {
       path: '/about',
       el: '#about',
+      template_url: './src/template/about.html'
     },
     article: {
       path: '/article/:author/:id', // ['article', ':author', ':id']
       el: '#article',
+      template_url: './src/template/article.html'
     },
     article_list: {
       path: '/article-list',
       el: '#article-list',
+      template_url: './src/template/article-list.html'
     },
     tag: {
       path: '/tag',
@@ -29,20 +33,8 @@ let config = {
     }
   },
   hook: {
-    before: function () {
-      // let he_is_admin = true;
-      // if (!he_is_admin)
-      //   return false;
-      return true;
-    },
-    after: function (route) {
-      /*先通过接口拿到数据*/
-      article_api.read(data => {
-        /*有了数据就可以渲染动态的内容了*/
-        article_ui.render(data);
-      });
-    }
+
   }
 };
 
-router.init(config);
+// router.init(config);
