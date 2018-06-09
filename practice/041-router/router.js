@@ -161,6 +161,7 @@ class Route {
       return;
     }
 
+    // 如果没有缓存则执行以下步骤
     // 因为路由对象中配置了模板地址，所以可以根据地址取到真实的模板代码（HTML代码）
     this.get_template(route.template_url, function (tpl) {
       // 取到模板后将其插到模板床中，同时将其缓存至路由对象中
@@ -183,9 +184,8 @@ class Route {
    */
   parse_hash(hash) {
     hash = trim(hash, '#/');
-    // let re = '^#?\/?home\/?$';
+    // 正则中 ^ 代表以某个字符串开头 $ 代表以某个字符串结尾。 ？ 代表匹配前方字符串一次或 0 次
     let re = new RegExp('^#?\/?' + hash + '\/?$');
-
     for (let key in this.state.route) {
       let item = this.state.route[key];
       if (re.test(item.path))
@@ -248,7 +248,7 @@ let userConfig = {
       template_url: './tpl/home.html',
     },
     about: {
-      path: '/about',
+      path: '#/about',
       el: '#about',
       template_url: './tpl/about.html',
     },
