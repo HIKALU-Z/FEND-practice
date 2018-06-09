@@ -55,6 +55,40 @@ class Route {
     el.innerHTML = '';
   }
 
+  /**
+   *
+   * @param {string} keys 如：'user.child.name'
+   * @param {*} value 如：'whh'
+   */
+  set_data(route_name, keys, value) {
+    let layers = keys.split('.'); // ['user', 'child', 'name']
+    let layer_count = layers.length;
+
+    // 1. 更新数据
+
+    // 获取当前路由的数据
+    let data = this.state.route[route_name].data;
+    if (!data)
+      data = this.state.route[route_name].data = {};
+
+    for (let i = 0; i < layer_count; i++) {
+      let key = layers[i];
+      let is_last = i + 1 == layer_count;
+      let nest = data;
+
+      if (is_last) {
+        nest[key] = value;
+      } else {
+        if (!nest[key])
+          nest[key] = {};
+        nest = nest[key];
+      }
+    }
+
+    // 2. 更新视图
+    this.compile(this.state.route[route_name]);
+  }
+
   renderCurrent() {
     this.render(this.current)
   }
@@ -67,7 +101,8 @@ class Route {
       return;
     }
     this.getTemplate(route.template_url, tpl => {
-      route.$template = element.innerHTML = tpl
+      route.$template = tpl;
+      this.compile(route);
     })
   }
 
@@ -79,7 +114,18 @@ class Route {
       successHook(http.responseText)
     })
   }
+
+  /**
+   * 通过路由对象的$template和data生成最后的视图
+   * @param route 路由对象
+   */
+  compile(route) {
+    let element = document.querySelector(route.el);
+    element.innerHTML = parse(route.$template, route.data);
+  }
 }
+
+
 
 const trim = (str, capList) => {
   let arr = capList.split('')
@@ -96,6 +142,10 @@ const trim = (str, capList) => {
   return str;
 }
 
+let about_data = {
+  name: 'whh'
+}
+
 let userConfig = {
   default: 'home',
   route: {
@@ -103,13 +153,27 @@ let userConfig = {
       path: '#/home/',
       el: '#home',
       template_url: './tpl/home.html',
+      data: {
+        login: {
+          name: 'whh',
+          password: 'goodluck',
+        }
+      }
     },
     about: {
       path: '#/about',
       el: '#about',
       template_url: './tpl/about.html',
-    },
+      data: about_data
+    }
   },
 };
 
+
 let route = new Route(userConfig);
+let count = 1;
+setInterval(function () {
+  // about_data.name = '李拴蛋';
+  route.set_data('about', 'name', count);
+  count++;
+}, 1000);
