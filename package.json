@@ -7,6 +7,7 @@
     "webpack": "^4.6.0"
   },
   "devDependencies": {
+    "http-server": "^0.11.1",
     "webpack-cli": "^2.1.2"
   },
   "scripts": {

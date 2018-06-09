@@ -39,12 +39,12 @@ const parse = (tpl, data) => {
  */
 const getValueByKey = (data, key) => {
   let arr = key.split('.');
-  let result = Object.assign({},data);
+  let result = Object.assign({}, data);
   arr.forEach(element => {
     result = result[element]
   });
   return result;
 }
 
-let result =  parse(tpl, data)
+let result = parse(tpl, data)
 console.log(result);
