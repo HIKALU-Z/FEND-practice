@@ -47,5 +47,5 @@ const getValueByKey = (data, key) => {
 }
 
 let result = parse(tpl, data)
-console.log(result);
+// console.log(result);
 window.templater = parse
