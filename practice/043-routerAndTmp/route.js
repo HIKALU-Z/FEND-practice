@@ -26,12 +26,52 @@ class Route {
   }
 
   parseCurrentHash() {
-    return this.parseHash(this.current.hash);
+    // console.log(this.current.hash);
+    if (this.current.hash.includes('?')) {
+      return this.parseHashHasParam(this.current.hash)
+    } else {
+      return this.parseHash(this.current.hash);
+      // return console.log('false');
+    }
   }
 
+  parseHashHasParam(hash) {
+
+    let hashArr = hash.split('?')
+    let key = this.parseHash(hashArr[0])
+    // console.log(this.state.route[key].data);
+    // return ;
+    this.execHashParam(hashArr[1],key)
+    return key
+  }
+
+  /**
+   * to exec the param from hash
+   * @param {string} arr the arr need to be exec
+   * @param {string} key router name
+   */
+  execHashParam(arr,key) {
+    let result = {};
+    arr = arr.split('&')
+    arr.forEach(ele => {
+      let arr = ele.split('=');
+      result[arr[0]] = arr[1];
+    })
+    // console.log(result);
+    let route = this.state.route[key];
+    route.$param = result;
+    // console.log(route);
+  }
+
+  /**
+   * 匹配 config 中相符的 path
+   * 返回 route 的键值
+   * @param {String} hash 当前 hash 路径
+   * @returns {String} key 符合正则验证的 path
+   */
   parseHash(hash) {
     hash = trim(hash, '#/');
-    let re = new RegExp('^#\/?' + hash + '\/?$')
+    let re = new RegExp('^#\/?' + hash + '\/?$');
     for (let key in this.state.route) {
       let item = this.state.route[key].path;
       if (re.test(item)) {
@@ -51,11 +91,19 @@ class Route {
     this.previous = this.current
     this.current = route
     this.removePrevious()
+
+    route.hook && route.hook.renderBefore && route.hook.renderBefore(this.current)
+
     this.renderCurrent(() => {
       // 如果当前路由有后置钩子，那么在切换本路由后就应该叫一下这个钩子
-      route.hook && route.hook.after && route.hook.after();
+      if (route.hook && route.hook.after) {
+        return route.hook.after();
+      }
+      // 上述函数等价于 route.hook && route.hook.after && route.hook.after();
     });
     // 如果想要传入一个外部函数，那么在调用这个外部函数时，需要用 bind 方法
+    // 类似
+    // this.renderCurrent(this.useOutFun.bind(this))
   }
 
   removePrevious() {
@@ -180,8 +228,3 @@ const trim = (str, capList) => {
 
 
 // let route = new Route(userConfig);
-
-function test() {
-  console.log(2);
-}
-test&&true

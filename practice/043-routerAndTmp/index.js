@@ -31,7 +31,7 @@ let o = {
           list.forEach(row => {
             let el_item = document.createElement('div');
             el_item.innerHTML = `
-            <a href="#">${row.title}</a>
+              <a href="#/article?id=${row.id}">${row.title}</a>
             `;
 
             el_list.appendChild(el_item);
@@ -65,13 +65,25 @@ let o = {
             row.content = form.querySelector('[name=content]').value; // 获取内容的值
 
             // 插入数据（新增一条,类似于api.add()）
-            app_data.article.list.push(row);
+            app_data.article.list.unshift(row);
 
             // 重置表单
             form.reset();
           });
         },
       },
+    },
+    article: {
+      path: '#/article',
+      template_url: './tpl/article.html',
+      data: {},
+      hook: {
+        renderBefore: (current) => {
+          current.data = current.$param;
+          router.render(current);
+          // console.log(current);
+        }
+      }
     }
   },
   hook: {
@@ -80,4 +92,4 @@ let o = {
   },
 };
 
-let route = new Route(o);
+let router = new Route(o);
