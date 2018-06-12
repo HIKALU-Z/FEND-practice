@@ -3,8 +3,19 @@ class Route {
     this.current = {}
     this.state = Object.assign({}, config)
     this.root = document.querySelector('#root')
+    this.loadConfig()
     this.initPage()
     this.detectHashChange()
+  }
+
+  loadConfig(){
+    let routes = this.state.route;
+    for(let name in routes){
+      let item = routes[name];
+      item.render = ()=>{
+        this.render(item);
+      }
+    }
   }
 
   initPage() {
@@ -86,18 +97,18 @@ class Route {
       return;
     // 如果当前路由有前置钩子，那么在切换本路由前就应该叫一下这个钩子，
     // 如果钩子返回false就停止执行（也就是不切换页面）
-    if (route.hook && route.hook.before && route.hook.before() === false)
+    if (route.hook && route.hook.before && route.hook.before(route) === false)
       return;
     this.previous = this.current
     this.current = route
     this.removePrevious()
 
-    route.hook && route.hook.renderBefore && route.hook.renderBefore(this.current)
+    route.hook && route.hook.beforeRender && route.hook.beforeRender(this.current)
 
     this.renderCurrent(() => {
       // 如果当前路由有后置钩子，那么在切换本路由后就应该叫一下这个钩子
       if (route.hook && route.hook.after) {
-        return route.hook.after();
+        return route.hook.after(route);
       }
       // 上述函数等价于 route.hook && route.hook.after && route.hook.after();
     });

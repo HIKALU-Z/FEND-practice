@@ -24,6 +24,12 @@ let o = {
         name: "HIKALU",
       },
       hook: {
+        before: (route) => {
+          send('/api/article/read', 'get', (res) => {
+            route.data.article_list = res.data;
+            route.render();
+          });
+        },
         after: function () {
           let list = app_data.article.list;
           let el_list = document.getElementById('article-list');
@@ -78,7 +84,30 @@ let o = {
       template_url: './tpl/article.html',
       data: {},
       hook: {
-        renderBefore: (current) => {
+        before: (current) => {
+          send('/api/article/find', 'get', (res) => {
+            current.data.article = res.data;
+            current.render();
+          });
+        },
+        after: (current) => {
+          send('/api/comment/read', 'get', (res) => {
+            current.data.comment_list = res.data;
+
+            let el_list = document.getElementById('comment-list');
+
+            el_list.innerHTML = '';
+
+            res.data.forEach(row => {
+              let el = document.createElement('div');
+              el.innerHTML = `<hr>${row.content}`;
+              el_list.appendChild(el);
+            });
+
+            console.log('el_list:', el_list);
+          });
+        },
+        beforeRender: (current) => {
           current.data = current.$param;
           router.render(current);
           // console.log(current);
