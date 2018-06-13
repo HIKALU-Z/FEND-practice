@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue-memo</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+  <div id="root">
+
+    <div class="row container">
+      <div class="col sidebar">
+        <div class="sidebar-item" @click="current = memo" v-for="memo in memoList">{{memo.title}}</div>
+        <button @click="create()">新增</button>
+      </div>
+      <div class="col main">
+        <div class="editor">
+          <input  v-model="current.title" type="text" placeholder="标题">
+          <textarea  v-model="current.content" placeholder="内容"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="./node_modules/vue/dist/vue.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>
