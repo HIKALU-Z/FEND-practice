@@ -18,9 +18,13 @@
         <button @click="create()">新增</button>
       </div>
       <div class="col main">
-        <div class="editor">
-          <input  v-model="current.title" type="text" placeholder="标题">
-          <textarea  v-model="current.content" placeholder="内容"></textarea>
+        <div v-if="current" class="editor">
+          <input v-model="current.title" type="text" placeholder="标题">
+          <textarea v-model="current.content" placeholder="内容"></textarea>
+          <button @click="current = null">关闭</button>
+        </div>
+        <div v-else>
+          请添加一条
         </div>
       </div>
     </div>

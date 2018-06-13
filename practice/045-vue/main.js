@@ -15,7 +15,7 @@ new Vue({
         content: 'CCCCCC'
       }
     ],
-    current: {}
+    current: null
   },
   methods: {
     create() {
