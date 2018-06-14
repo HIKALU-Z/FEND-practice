@@ -14,8 +14,11 @@
 
     <div class="row container">
       <div class="col sidebar">
-        <div class="sidebar-item" @click="current = memo" v-for="memo in memoList">{{memo.title}}</div>
-        <button @click="create()">新增</button>
+        <div class="sidebar-item row" @click="current = memo" v-for="(memo,index) in memoList">
+          <span class="memo">{{memo.title}}</span>
+          <span class="tool-set" @click.stop="remove(index)">删除</span>
+        </div>
+        <button @click="create()" class="block">新增</button>
       </div>
       <div class="col main">
         <div v-if="current" class="editor">
@@ -23,8 +26,8 @@
           <textarea v-model="current.content" placeholder="内容"></textarea>
           <button @click="current = null">关闭</button>
         </div>
-        <div v-else>
-          请添加一条
+        <div v-else class="holder">
+          请点击新增按钮添加一条，或者点击已有备忘进行编辑
         </div>
       </div>
     </div>

@@ -36,9 +36,9 @@ body {
   width: 70%;
 }
 
+button,
 .editor input,
 .editor textarea {
-  width: 100%;
   border: 0;
   -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, .2);
   -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, .2);
@@ -46,6 +46,12 @@ body {
   margin-bottom: 10px;
   padding: 10px;
   outline: none;
+}
+
+.block,
+.editor input,
+.editor textarea{
+  width: 100%;
 }
 
 .editor textarea {
@@ -72,4 +78,29 @@ body {
 .sidebar-item:hover {
   background: #ccc;
   color: #000;
+}
+
+.sidebar .memo{
+  display: inline-block;
+  width: 60%;
+  font-size: 1rem;
+}
+
+.sidebar-item .tool-set{
+  display: none;
+}
+
+.sidebar-item:hover .tool-set {
+  display: inline-block;
+  width: 40%;
+  font-size: .7rem;
+  color: #444;
+  text-align: right;
+}
+
+
+.holder{
+  text-align: center;
+  margin-top: 30px;
+  opacity: .7;
 }
