@@ -16,7 +16,11 @@
       <div class="col sidebar">
         <div class="sidebar-item row" @click="current = memo" v-for="(memo,index) in memoList">
           <span class="memo">{{memo.title}}</span>
-          <span class="tool-set" @click.stop="remove(index)">删除</span>
+          <div class="tool-set">
+            <span @click.stop="remove(index)">
+              删除
+            </span>
+          </div>
         </div>
         <button @click="create()" class="block">新增</button>
       </div>
@@ -24,6 +28,7 @@
         <div v-if="current" class="editor">
           <input v-model="current.title" type="text" placeholder="标题">
           <textarea v-model="current.content" placeholder="内容"></textarea>
+          <button @click="submit(current)">提交</button>
           <button @click="current = null">关闭</button>
         </div>
         <div v-else class="holder">
@@ -35,6 +40,7 @@
 
 
   <script src="./node_modules/vue/dist/vue.js"></script>
+  <script src="ajax.js"></script>
   <script src="main.js"></script>
 </body>
 
