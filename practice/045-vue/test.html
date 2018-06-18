@@ -1,6 +1,22 @@
 <div id="root">
-<input type="text" v-model="name">
+  <!-- <input type="text" v-model="name"> -->
+  <!-- 123123 -->
+  <div v-for="(value,key) in person">
+    {{key}}:{{value}}
+  </div>
 </div>
 
 <script src="./node_modules/vue/dist/vue.js"></script>
-<script src="main.js"></script>
+<!-- <script src="main.js"></script> -->
+
+<script>
+  let root = new Vue({
+    el: '#root',
+    data: {
+      person: {
+        name:'123',
+        age:12
+      }
+    }
+  })
+</script>

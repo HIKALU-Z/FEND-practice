@@ -1,8 +1,21 @@
 <div id="root">
   <router-link to="/home">home</router-link>
-  <router-link to="/about">about</router-link>
+  <!-- <router-link to="/zgl">zgl</router-link> -->
+  <router-link to="/article/create">createNewArticle</router-link>
   <router-view></router-view>
 </div>
+
+
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script src="./node_modules/axios/dist/axios.js"></script>
+<script src="http.js"></script>
 <script src="main.js"></script>
+
+<!-- <template>
+  <div>
+    <div v-for="row in articleList" :key="row.id">
+      {{row.title}}
+    </div>
+  </div>
+</template> -->
