@@ -130,12 +130,13 @@ const Home = Vue.component('home', {
         <div class="description">{{dish.description}}</div>
       </div>
       <div class="col-lg-3 tool-set">
-        <button>-</button>
-        <input type="number">
-        <button>+</button>
+        <button @click="dish.$count--">-</button>
+        <input type="number" v-model="dish.$count">
+        <button @click="dish.$count++">+</button>
       </div>
     </div>
   </div>
+  <button @click="submitOrder()">提交订单</button>
 </div>
   `,
   data: function () {
@@ -151,9 +152,79 @@ const Home = Vue.component('home', {
           cover_url: 'http://biaoyansu.com/img/biaoyansu_logo.svg'
         }
       ],
-      dafault_cover_ul: 'http://biaoyansu.com/img/biaoyansu_logo.svg'
+      default_cover_url: 'http://biaoyansu.com/img/biaoyansu_logo.svg',
+      order: {
+
+      }
     };
-  }
+  },
+  methods: {
+    submitOrder: function () {
+      this.prepare_order_info();
+      console.log(this.order);
+      this.main_order_id().then(id => {
+        if (id)
+          this.order.parent_id = id;
+
+        let param = Object.assign({}, this.order);
+        param.dish_info = JSON.stringify(param.dish_info);
+
+        http.post('order/create', param);
+      });
+    },
+
+    main_order_id() {
+      return http.post('order/first', {
+        where: {
+          and: {
+            table_id: this.order.table_id,
+            status: 'created',
+            parent_id: null,
+          },
+        },
+      }).then(function (r) {
+        if (!r.data.data)
+          return false;
+        return r.data.data.id;
+      });
+    },
+
+    reset_order() {
+      this.order = {};
+      this.dish_list.forEach(dish => {
+        dish.$count = 0;
+      });
+    },
+
+    prepare_order_info: function () {
+      this.order.dish_info = []
+      this.dish_list.forEach((dish) => {
+        if (!dish.$count) {
+          return;
+        }
+        this.order.dish_info.push(dish)
+      })
+    },
+
+    read_dish() {
+      http
+        .post('dish/read')
+        .then(r => {
+          this.dish_list = r.data.data;
+        });
+    },
+
+  },
+  mounted() {
+    this.read_dish();
+
+    if (!this.$route.query.table_id) {
+      this.order.table_id = 1
+    } else {
+      this.order.table_id = this.$route.query.table_id
+    }
+  },
+
 
 });
 
@@ -164,6 +235,7 @@ const Admin = Vue.component('admin', {
   <div class="col-lg-3 nav">
     <router-link to="/admin/table">桌号管理</router-link>
     <router-link to="/admin/dish">菜品管理</router-link>
+    <router-link to="/admin/order">菜品管理</router-link>
   </div>
   <div class="col-lg-9 main">
     <router-view></router-view>
@@ -254,20 +326,6 @@ const AdminDish = Vue.component('admin-dish', {
 
   methods: {
 
-    validate_name(value) {
-
-      value = value || this.current.name;
-
-      const MAX_LENGTH = 255;
-
-      if (!value)
-        return '菜名为必填项';
-
-      if (value.length >= MAX_LENGTH)
-        return `此项最大长度为${MAX_LENGTH}`;
-
-      return true;
-    },
 
     validate_price(value) {
       value = value || this.current.price;
@@ -422,6 +480,192 @@ const AdminTable = Vue.component('admin-table', {
   mixins: [AdminPage],
 });
 
+const AdminOrder = Vue.component('admin-order', {
+  template: `
+<div>
+  <h2>订单管理</h2>
+
+  <div class="tool-set">
+    <div class="sub-set">
+      <button @click="show_form = !show_form">
+        <span v-if="show_form">取消</span>创建菜品
+      </button>
+    </div>
+    <div class="sub-set row">
+      <form @submit="search($event)" class="col-lg-4 col-sm-12">
+        <input type="search" v-model="keyword" placeholder="关键词">
+        <button type="submit" hidden>搜索</button>
+      </form>
+    </div>
+  </div>
+  <form v-if="show_form" @submit="create($event)" novalidate>
+    <div v-if="error.length" class="error">
+      <div v-for="e in error">{{e}}</div>
+    </div>
+    <div class="input-wrap">
+      <label>菜名</label>
+      <input type="text" v-model="current.name">
+    </div>
+    <div class="input-wrap">
+      <label>价格</label>
+      <input type="number" v-model="current.price">
+    </div>
+    <div class="input-wrap">
+      <label>描述</label>
+      <textarea v-model="current.description"></textarea>
+    </div>
+    <div class="input-wrap">
+      <label>封面地址</label>
+      <input type="url" v-model="current.cover_url">
+    </div>
+    <div class="input-wrap">
+      <button>提交</button>
+    </div>
+  </form>
+  <table v-if="list.length" class="list">
+    <thead>
+    <tr>
+    <th>id</th>
+    <th>桌子</th>
+    <th>菜品详情</th>
+    <th>主单</th>
+    <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr v-for="row in list">
+        <td>{{row.id}}</td>
+        <td>{{row.table_id}}</td>
+        <td>
+          {{row.dish_info}}
+          <!--<span v-for="dish in row.dish_info">-->
+            <!--<span>菜品：{{dish.id}}</span>-->
+            <!--<span>数量：{{dish.count}}</span>-->
+          <!--</span>-->
+        </td>
+        <td>{{ row.parent_id || '-' }}</td>
+        <td>
+          <select @change="change_status(row.id, row.status)" v-model="row.status">
+            <option v-for="status in status_list" :value="status.value">{{status.name}}</option>
+          </select>
+          <!--<button @click="current = row; show_form = true">更新</button>-->
+          <button @click="remove(row.id)">删除</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div v-else class="empty-holder">暂无内容</div>
+</div>
+  `,
+
+  data() {
+    return {
+      model: 'order',
+      validate_props: ['cover_url', 'description', 'name', 'price'], // 需要验证的属性
+      status_list: [{
+          name: '进行中',
+          value: 'created',
+        },
+        {
+          name: '已支付',
+          value: 'paid',
+        },
+        {
+          name: '已关闭',
+          value: 'closed',
+        },
+        {
+          name: '已取消',
+          value: 'canceled',
+        },
+      ],
+    };
+  },
+
+  methods: {
+    change_status(id, status) {
+      http.post('order/update', {
+        id,
+        status
+      });
+    },
+
+    validate_name(value) {
+
+      value = value || this.current.name;
+
+      const MAX_LENGTH = 255;
+
+      if (!value)
+        return '菜名为必填项';
+
+      if (value.length >= MAX_LENGTH)
+        return `此项最大长度为${MAX_LENGTH}`;
+
+      return true;
+    },
+
+    validate_price(value) {
+      value = value || this.current.price;
+
+      if (
+        value === '' ||
+        value === undefined ||
+        value < 0 ||
+        value > 1000000
+      ) return '不合法的价格';
+
+      return true;
+    },
+
+    validate_cover_url(value) {
+      value = value || this.current.cover_url;
+
+      let re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
+
+      if (!value)
+        return true;
+
+      if (!re.test(value))
+        return '不合法的地址';
+
+      return true;
+    },
+
+    validate_description(value) {
+      value = value || this.current.description;
+
+      if (!value)
+        return true;
+
+      const MAX_LENGTH = 10000;
+      if (value.length > MAX_LENGTH)
+        return `此项最大长度为${MAX_LENGTH}`;
+
+      return true;
+    },
+
+    read() {
+      http.post('order/read', {
+        where: {
+          and: {
+            // parent_id : null,
+          },
+        },
+      }).then(r => {
+        this.list = r.data.data;
+      });
+    },
+  },
+
+  // mounted () {
+  //
+  // },
+
+  mixins: [AdminPage],
+});
+
+
 const pager = Vue.component("pager", {
   template: `
     <div>123</div>
@@ -446,6 +690,10 @@ new Vue({
             path: 'table',
             component: AdminTable,
           },
+          {
+            path: 'order',
+            component: AdminOrder,
+          },
         ],
       },
     ],
@@ -468,4 +716,4 @@ new Vue({
 //   ],
 // });
 
-http.post('MODEL/READ', {});
+// http.post('MODEL/READ', {});
