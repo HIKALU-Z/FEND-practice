@@ -28,7 +28,6 @@
       "node": true
     },
     "extends": [
-      "plugin:html",
       "plugin:vue/essential",
       "plugin:prettier/recommended",
       "eslint:recommended"

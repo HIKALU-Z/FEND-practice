@@ -3,7 +3,7 @@
     <!-- <img src="./assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <router-view></router-view>
-    <Home></Home>
+    <!-- <Home></Home> -->
   </div>
 </template>
 
@@ -25,8 +25,8 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* text-align: center; */
-  color: #2c3e50;
-  background-color: #f2f2f2;
+  /* color: #2c3e50; */
+  /* background-color: #f2f2f2; */
   /* margin-top: 60px; */
 }
 </style>
