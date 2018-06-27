@@ -160,3 +160,7 @@ img {
 .bold {
   font-weight: bold;
 }
+
+.muted {
+  opacity: 0.7;
+}
