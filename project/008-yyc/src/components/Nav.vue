@@ -1,5 +1,5 @@
 <template>
-  <div class="main-nav">
+  <div class="main-nav" :style="{marginBottom: this.pushDown ? '10px': 0,}">
     <div class="row container">
       <div class="col left">
         <a class="logo"></a>
@@ -18,6 +18,13 @@
 </template>
 
 <script>
+export default {
+  props: {
+    pushDown: {
+      default: false
+    }
+  }
+};
 </script>
 
 <style scoped>
@@ -31,7 +38,7 @@
 .logo {
   display: inline-block;
   width: 130px;
-  height: 42px;
+  height: 45px;
   background: #fd521d;
   vertical-align: top;
 }
@@ -47,7 +54,7 @@
 
 .nav-item {
   display: inline-block;
-  padding: 12px;
+  padding: 10px;
 }
 
 .nav-item {

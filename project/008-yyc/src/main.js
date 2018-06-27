@@ -11,6 +11,7 @@ import Detail from './views/Detail.vue';
 import Home from './views/Home.vue';
 import Login from './views/Login.vue';
 import Signup from './views/Signup.vue';
+import AccountManage from './views/user/AccountManage.vue';
 
 Vue.config.productionTip = true;
 Vue.use(Router);
@@ -39,7 +40,10 @@ const routes = [
   {
     path: '/signup',
     component: Signup
-    // component: require('./views/Signup.vue')
+  },
+  {
+    path: '/account',
+    component: AccountManage
   }
 ];
 
