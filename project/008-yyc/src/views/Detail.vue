@@ -223,10 +223,6 @@ export default {
   background-color: #fd521d;
 }
 
-.vehicle {
-  padding-top: 20px;
-}
-
 .vehicle .vehicle-album {
   margin-top: 10px;
 }

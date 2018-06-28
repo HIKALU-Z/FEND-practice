@@ -109,8 +109,9 @@
           <div class="item">更多</div>
         </div>
       </div>
-      <div class="vehicle-list">
-        <div class="container">
+
+      <div class="container">
+        <div class="vehicle-list row">
           <div class="col-lg-3">
             <div class="card">
               <div class="thumbnail">
@@ -240,7 +241,9 @@
             </div>
           </div>
         </div>
+
       </div>
+
     </div>
     <div class="footer">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aspernatur beatae debitis deleniti doloribus, earum esse excepturi fugit impedit ipsum maxime, nulla optio porro quam quibusdam, sint tempora unde vel?
@@ -249,6 +252,7 @@
 </template>
 
 <script>
+import '../assets/css/vehicle-list.css';
 import Nav from '../components/Nav';
 export default {
   components: {
@@ -311,49 +315,5 @@ export default {
 
 .vehicle-nav .item:first-child {
   border-left-width: 1px;
-}
-
-.vehicle-list .col-lg-3 {
-  padding: 10px;
-}
-
-.vehicle-list .card {
-  background: #fff;
-}
-
-.vehicle-list .card .detail {
-  padding: 10px;
-}
-
-.vehicle-list .detail > * {
-  margin-bottom: 5px;
-}
-
-.vehicle-list .card .title {
-  font-size: 0.8rem;
-}
-
-.vehicle-list .card .desc,
-.vehicle-list .card .others {
-  font-size: 0.6rem;
-  color: #888;
-}
-
-.vehicle-list .card .price {
-  color: #fd521d;
-  font-size: 1.3rem;
-}
-
-.vehicle-list .card {
-  position: relative;
-}
-
-.vehicle-list .card .buy {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  font-size: 0.8rem;
-  padding-left: 25px;
-  padding-right: 25px;
 }
 </style>

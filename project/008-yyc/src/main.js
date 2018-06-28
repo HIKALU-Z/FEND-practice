@@ -5,26 +5,18 @@ import './main.css';
 import Vue from 'vue';
 import App from './App.vue';
 import Router from 'vue-router';
-import A from './components/A.vue';
-import B from './components/B.vue';
 import Detail from './views/Detail.vue';
 import Home from './views/Home.vue';
 import Login from './views/Login.vue';
 import Signup from './views/Signup.vue';
 import AccountManage from './views/user/AccountManage.vue';
+import Test from './views/Test.vue';
+import Search from './views/Search.vue';
 
 Vue.config.productionTip = true;
 Vue.use(Router);
 
 const routes = [
-  {
-    path: '/a',
-    component: A
-  },
-  {
-    path: '/b',
-    component: B
-  },
   {
     path: '/detail',
     component: Detail
@@ -44,6 +36,14 @@ const routes = [
   {
     path: '/account',
     component: AccountManage
+  },
+  {
+    path: '/search',
+    component: Search
+  },
+  {
+    path: '/test',
+    component: Test
   }
 ];
 
