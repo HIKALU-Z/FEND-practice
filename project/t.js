@@ -9,3 +9,10 @@ s.forEach((element, index) => {
 });
 
 JSON.parse(jsondata)
+
+document.cookie
+
+
+ids = '1,2,3,4,5'
+
+

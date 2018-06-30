@@ -12,6 +12,8 @@ import Signup from './views/Signup.vue';
 import AccountManage from './views/user/AccountManage.vue';
 import Test from './views/Test.vue';
 import Search from './views/Search.vue';
+import Admin from './views/Admin.vue';
+import Vehicle from './views/admin/Vehicle.vue';
 
 Vue.config.productionTip = true;
 Vue.use(Router);
@@ -44,6 +46,14 @@ const routes = [
   {
     path: '/test',
     component: Test
+  },
+  {
+    path: '/admin',
+    component: Admin
+  },
+  {
+    path: '/admin-vehicle',
+    component: Vehicle
   }
 ];
 

@@ -1,0 +1,20 @@
+<!-- <script src="../../node_modules/axios/dist/axios.js"></script> -->
+<script src="../../../node_modules/axios/dist/axios.js"></script>
+<script src="../lib/api.js"></script>
+<script>
+  let model = {
+    name: 'design',
+    structure: {
+      name: { // 名称，如：SUV，SPV，轿车，吉普
+        type: 'string',
+        nullable: false,
+      },
+    },
+  };
+
+  api('MODEL/CREATE', model);
+
+  // api('MODEL/READ', model);
+
+  // api('MODEL/DELETE', { name : 'model' });
+</script>

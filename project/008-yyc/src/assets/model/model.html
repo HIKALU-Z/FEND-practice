@@ -1,0 +1,25 @@
+<!-- <script src="../../node_modules/axios/dist/axios.js"></script> -->
+<script src="../../../node_modules/axios/dist/axios.js"></script>
+<script src="../lib/api.js"></script>
+<script>
+  let model = {
+    name: 'model',
+    structure: {
+      name: { // 型号
+        type: 'string',
+        nullable: false,
+      },
+      brand_id: { // 品牌id
+        type: 'integer',
+        positive: true,
+        nullable: false,
+      },
+    },
+  };
+
+  api('MODEL/CREATE', model);
+
+  // api('MODEL/READ', model);
+
+  // api('MODEL/DELETE', { name : 'model' });
+</script>
