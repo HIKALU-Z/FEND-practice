@@ -1,10 +1,10 @@
 <template>
   <div>
-    <aside class="side-nav" :style="{width:width}">
-      <a class="is-active" href="#">用户管理</a>
-      <a href="#">车辆管理</a>
-      <a href="#">车辆品牌</a>
-      <a href="#">质检管理</a>
+    <aside class="side-nav card" :style="{width:width}">
+      <router-link class="nav-item" to="/admin/duplicate">用户管理</router-link>
+      <router-link class="nav-item" to="/admin/vehicle">车辆管理</router-link>
+      <router-link class="nav-item" to="/admin/other">车辆品牌</router-link>
+      <router-link class="nav-item" to="/admin/other">质检管理</router-link>
     </aside>
   </div>
 </template>
@@ -33,7 +33,13 @@ export default {
   /* background-color: */
   color: #fd521d;
 }
-.side-nav a:hover {
-  background-color: rgba(0, 0, 0, 0.3);
+
+.side-nav .router-link-active {
+  /* background-color: */
+  color: #fd521d;
+  border-left: 2px solid #0680f185;
+}
+.side-nav .nav-item:hover {
+  background-color: rgba(37, 153, 231, 0.2);
 }
 </style>

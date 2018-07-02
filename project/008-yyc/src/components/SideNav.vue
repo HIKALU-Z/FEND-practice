@@ -1,6 +1,6 @@
 <template>
   <div>
-    <aside class="side-nav" :style="{width:width}">
+    <aside class="side-nav card" :style="{width:width}">
       <a class="is-active" href="#">基础信息</a>
       <a href="#">修改密码</a>
       <a href="#">车辆买卖</a>

@@ -36,7 +36,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="vehicle in vehicles" :key="vehicle.id">
+                  <tr v-for="vehicle in list" :key="vehicle.id">
                     <td>{{vehicle.title}}</td>
                     <td>{{vehicle.price}}</td>
                     <td>{{vehicle.consumed_distance || '-'}}</td>
@@ -45,8 +45,8 @@
                     <td>{{vehicle.exchange_times || '-'}}</td>
                     <td>{{vehicle.on_sale || '-'}}</td>
                     <td>
-                      <button>remove</button>
                       <button>update</button>
+                      <button @click="remove(vehicle.id)">remove</button>
                     </td>
                     <!-- <td>{{vehicle.birthday}}</td>
                     <td>{{vehicle.deadline}}</td>
@@ -58,11 +58,15 @@
                 </tbody>
               </table>
             </div>
+
+            <!-- add pagination component -->
+            <Pagination :totalItem="100" :itemPerpage="5" :onPageClick="onPageClick"></Pagination>
+
             <div class="tool-bar">
               <button class="btn" @click="showForm = true">创建二手车</button>
             </div>
 
-            <form v-if="showForm" @submit.prevent="save()">
+            <form class="data-form" v-if="showForm" @submit.prevent="save">
               <h2>vehicle-form</h2>
               <div class="input-control">
                 <label>标题</label>
@@ -125,54 +129,77 @@
 // TODO:finish pagination
 
 <script>
-import '../../assets/css/admin.css';
-import Nav from '../../components/Nav';
-import AdminNav from '../../components/AdminNav';
+// import Nav from '../../components/Nav';
+// import AdminNav from '../../components/AdminNav';
+// import Pagnation from '../../components/Pagnation';
 import api from '../../assets/js/api.js';
+// export default {
+//   components: { Nav, AdminNav, Pagnation },
+//   data() {
+//     return {
+//       current: {},
+//       vehicles: [],
+//       keyword: '',
+//       showForm: false,
+//       page: 1
+//     };
+//   },
+//   methods: {
+//     read() {
+//       api('vehicle/read', { limit: 5, page: this.page }).then(r => {
+//         // console.log(r.data);
+//         this.vehicles = r.data;
+//       });
+//     },
+//     save() {
+//       let actions = this.current.id ? 'update' : 'create';
+//       api(`vehicle/${actions}`, this.current).then(r => {
+//         this.current = r;
+//         this.vehicles = r.data;
+//         // console.log(this.vehicles);
+//       });
+//     },
+//     search() {
+//       let kwd = this.keyword;
+
+//       let param = {
+//         or: {
+//           title: kwd,
+//           description: kwd
+//         }
+//       };
+
+//       api('vehicle/search', param).then(r => {
+//         this.vehicles = r.data;
+//       });
+//     }
+//   },
+//   created() {
+//     this.read();
+//   }
+// };
+// import '../../css/admin.css';
+import AdminPage from '../../mixins/admin/Admin';
+
 export default {
-  components: { Nav, AdminNav },
+  // created() {
+  //   this.model = 'vehicle';
+  // },
   data() {
     return {
-      current: {},
-      vehicles: [],
-      keyword: '',
-      showForm: false,
-      page: 1
+      searchable: ['title', 'price', 'description'],
+      model: 'vehicle'
     };
   },
   methods: {
-    read() {
-      api('vehicle/read', { limit: 5, page: this.page }).then(r => {
-        // console.log(r.data);
-        this.vehicles = r.data;
-      });
-    },
-    save() {
-      let actions = this.current.id ? 'update' : 'create';
-      api(`vehicle/${actions}`, this.current).then(r => {
-        this.current = r;
-        this.vehicles = r.data;
-        // console.log(this.vehicles);
-      });
-    },
-    search() {
-      let kwd = this.keyword;
-
-      let param = {
-        or: {
-          title: kwd,
-          description: kwd
-        }
-      };
-
-      api('vehicle/search', param).then(r => {
-        this.vehicles = r.data;
+    onPageClick(page) {
+      api(`${this.model}/read`, { page }).then(r => {
+        // console.log(r);
+        return r;
       });
     }
   },
-  created() {
-    this.read();
-  }
+  mixins: [AdminPage]
 };
 </script>
 

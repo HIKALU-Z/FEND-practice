@@ -2,6 +2,42 @@
   padding: 15px;
 }
 
-.tool-bar > * {
+.tool-bar>* {
   margin-bottom: 10px;
+}
+
+.table-container {
+  max-height: 300px;
+  overflow: auto;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.table-container th {
+  min-width: 60px;
+}
+
+.table-container tbody tr:hover {
+  background: rgba(0, 20, 125, 0.2);
+}
+
+.table-container button {
+  cursor: pointer;
+}
+
+.search-input input {
+  width: 100%;
+  padding-left: 5px;
+  height: 30px !important;
+  margin-bottom: 10px;
+}
+
+.data-form input[type=text],
+.data-form input[type=datetime-local],
+.data-form input[type=number] {
+  width: 60%;
+  height: 24px;
+}
+
+.data-form textarea {
+  width: 60%;
 }
