@@ -45,7 +45,7 @@
                     <td>{{vehicle.exchange_times || '-'}}</td>
                     <td>{{vehicle.on_sale || '-'}}</td>
                     <td>
-                      <button>update</button>
+                      <button @click="save">update</button>
                       <button @click="remove(vehicle.id)">remove</button>
                     </td>
                     <!-- <td>{{vehicle.birthday}}</td>

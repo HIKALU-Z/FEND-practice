@@ -4,9 +4,9 @@ import api from '../../assets/js/api.js';
 import AdminNav from '../../components/AdminNav.vue';
 import Nav from '../../components/Nav.vue';
 import Pagination from '../../components/Pagination';
-
+import Dropdown from '../../components/Dropdown';
 export default {
-  components: { AdminNav, Nav, Pagination },
+  components: { AdminNav, Nav, Pagination, Dropdown },
   mounted() {
     // 拿到管理页列表初始数据，相当于点击第一页
     this.read();
@@ -94,7 +94,7 @@ export default {
      * 通常用于当用户点击编辑按钮时填充表单数据
      * @param row
      */
-    set_current(row) {
+    setCurrent(row) {
       this.current = row;
       this.showForm = true;
     },

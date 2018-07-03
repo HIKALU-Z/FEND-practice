@@ -20,50 +20,32 @@
               <table>
                 <thead>
                   <tr>
-                    <th>用户名</th>
+                    <th>车系名</th>
                     <th>品牌名</th>
                     <th>操作</th>
                     <!-- <th>密码</th> -->
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(user, index) in list" :key="index">
+                  <tr v-for="(model, index) in list" :key="index">
                     <td>
-                      {{user.name}}
+                      {{model.name}}
                     </td>
                     <td>
-                      {{user.realname}}
+                      {{model.brand_id}}
                     </td>
                     <td>
-                      <button>update</button>
-                      <button>remove</button>
+                      {{model.design_id}}
+                    </td>
+                    <td>
+                      <button @click="save">update</button>
+                      <button @click="remove(model.id)">remove</button>
                     </td>
                     <!-- <td>123</td> -->
                   </tr>
                 </tbody>
               </table>
             </div>
-
-            <!-- add a button to switch the form -->
-            <div class="tool-bar">
-              <button type="button" @click="showForm = true">open</button>
-            </div>
-
-            <!-- add a form to push content totable -->
-            <form v-if="showForm" @submit.prevent="save">
-              <div class="input-control">
-                <label for="title">title</label>
-                <input name="title" autocomplete="off" type="text" v-model="current.title">
-              </div>
-              <div class="input-control">
-                <label for="price">price</label>
-                <input name="price" type="number" v-model="current.price">
-              </div>
-              <div class="input-control">
-                <button type="submit">submit</button>
-                <button type="button" @click="showForm = false">cancle</button>
-              </div>
-            </form>
 
             <!-- add pagnation tool -->
             <div class="pagnation">
@@ -81,6 +63,31 @@
                 </button>
               </div>
             </div>
+
+            <!-- add a button to switch the form -->
+            <div class="tool-bar">
+              <button type="button" @click="showForm = true">open</button>
+            </div>
+
+            <!-- add a form to push content totable -->
+            <form v-if="showForm" @submit.prevent="save">
+              <div class="input-control">
+                <label for="name">name</label>
+                <input name="name" autocomplete="off" type="text" v-model="current.name">
+              </div>
+              <div class="input-control">
+                <label type="submit">brandList</label>
+                <Dropdown :list="brandList" :onSelect="setBrandId"></Dropdown>
+              </div>
+              <div class="input-control">
+                <label type="submit">designList</label>
+                <Dropdown :list="designList" :onSelect="setDesignId"></Dropdown>
+              </div>
+              <div class="input-control">
+                <button type="submit">submit</button>
+                <button type="button" @click="showForm = false">cancle</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -90,12 +97,39 @@
 
 <script>
 import AdminPage from '../../mixins/admin/Admin';
+import api from '../../assets/js/api.js';
 export default {
   data() {
     return {
-      model: 'user',
-      searchable: ['username', 'realname']
+      model: 'model',
+      searchable: ['name', 'design_id', 'brand_id'],
+      brandList: [],
+      designList: []
     };
+  },
+  methods: {
+    readBrandList() {
+      api('brand/read').then(r => {
+        // console.log(r.data);
+        this.brandList = r.data;
+      });
+    },
+    readDesignList() {
+      api('design/read').then(r => {
+        // console.log(r.data);
+        this.designList = r.data;
+      });
+    },
+    setBrandId(row) {
+      this.$set(this.current, 'brand_id', row.id);
+    },
+    setDesignId(row) {
+      this.$set(this.current, 'design_id', row.id);
+    }
+  },
+  mounted() {
+    this.readBrandList();
+    this.readDesignList();
   },
   mixins: [AdminPage]
 };

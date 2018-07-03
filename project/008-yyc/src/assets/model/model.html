@@ -14,12 +14,19 @@
         positive: true,
         nullable: false,
       },
+      design_id: { // 品牌id
+        type: 'integer',
+        positive: true,
+        nullable: false,
+      },
     },
   };
 
-  api('MODEL/CREATE', model);
+  // api('MODEL/CREATE', model);
 
-  // api('MODEL/READ', model);
+  api('MODEL/READ', {
+    name: 'model'
+  });
 
   // api('MODEL/DELETE', { name : 'model' });
 </script>

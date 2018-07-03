@@ -11,11 +11,11 @@
           </div>
           <div class="input-control">
             <label for="username">username</label>
-            <input id="username" type="text">
+            <input v-validator="'username|minlength:4|maxlength:6'"  autocomplete="off" id="username" type="text">
           </div>
           <div class="input-control">
             <label for="password">password</label>
-            <input id="password" type="text">
+            <input id="password"  autocomplete="off" type="text">
           </div>
           <div class="input-control">
             <button type="submit" class=“btn-login”>登录</button>
@@ -32,8 +32,10 @@
 
 <script>
 import Nav from '../components/Nav';
+import validator from '../directive/validator.js';
 
 export default {
+  directives: { validator },
   components: {
     Nav
   }
@@ -66,7 +68,7 @@ export default {
 }
 
 .main-form .error-list {
-  background-color: rgba(200, 0, 15, 0.7);
+  background-color: rgba(180, 0, 15, 0.4);
   padding: 5px;
 }
 

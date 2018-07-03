@@ -35,8 +35,8 @@
                       {{user.realname}}
                     </td>
                     <td>
-                      <button>update</button>
-                      <button>remove</button>
+                      <button @click="save">update</button>
+                      <button @click="remove(location.id)">remove</button>
                     </td>
                     <!-- <td>123</td> -->
                   </tr>

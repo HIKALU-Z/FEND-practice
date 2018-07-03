@@ -21,6 +21,7 @@ import Brand from './views/admin/Brand.vue';
 import Design from './views/admin/Design.vue';
 import Location from './views/admin/Location.vue';
 import Model from './views/admin/Model.vue';
+import Qc from './views/admin/Qc.vue';
 
 Vue.config.productionTip = true;
 Vue.use(Router);
@@ -91,6 +92,10 @@ const routes = [
       {
         path: 'model',
         component: Model
+      },
+      {
+        path: 'qc',
+        component: Qc
       }
     ]
   }

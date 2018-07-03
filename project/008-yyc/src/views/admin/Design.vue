@@ -20,23 +20,19 @@
               <table>
                 <thead>
                   <tr>
-                    <th>用户名</th>
-                    <th>品牌名</th>
+                    <th>设计类型</th>
                     <th>操作</th>
                     <!-- <th>密码</th> -->
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(user, index) in list" :key="index">
+                  <tr v-for="(design, index) in list" :key="index">
                     <td>
-                      {{user.name}}
+                      {{ design.name || '-' }}
                     </td>
                     <td>
-                      {{user.realname}}
-                    </td>
-                    <td>
-                      <button>update</button>
-                      <button>remove</button>
+                      <button @click="setCurrent(design)">update</button>
+                      <button @click="remove(design.id)">remove</button>
                     </td>
                     <!-- <td>123</td> -->
                   </tr>
@@ -52,12 +48,8 @@
             <!-- add a form to push content totable -->
             <form v-if="showForm" @submit.prevent="save">
               <div class="input-control">
-                <label for="title">title</label>
-                <input name="title" autocomplete="off" type="text" v-model="current.title">
-              </div>
-              <div class="input-control">
-                <label for="price">price</label>
-                <input name="price" type="number" v-model="current.price">
+                <label for="name">name</label>
+                <input name="name" autocomplete="off" type="text" v-model="current.name">
               </div>
               <div class="input-control">
                 <button type="submit">submit</button>
@@ -93,8 +85,8 @@ import AdminPage from '../../mixins/admin/Admin';
 export default {
   data() {
     return {
-      model: 'user',
-      searchable: ['username', 'realname']
+      model: 'design',
+      searchable: ['name']
     };
   },
   mixins: [AdminPage]

@@ -29,14 +29,14 @@
                 <tbody>
                   <tr v-for="(user, index) in list" :key="index">
                     <td>
-                      {{user.name}}
+                      {{user.username}}
                     </td>
                     <td>
                       {{user.realname}}
                     </td>
                     <td>
-                      <button>update</button>
-                      <button>remove</button>
+                      <button @click="save">update</button>
+                      <button @click="remove(user.id)">remove</button>
                     </td>
                     <!-- <td>123</td> -->
                   </tr>
@@ -52,12 +52,16 @@
             <!-- add a form to push content totable -->
             <form v-if="showForm" @submit.prevent="save">
               <div class="input-control">
-                <label for="title">title</label>
-                <input name="title" autocomplete="off" type="text" v-model="current.title">
+                <label for="username">username</label>
+                <input name="username" autocomplete="off" type="text" v-model="current.username">
               </div>
               <div class="input-control">
-                <label for="price">price</label>
-                <input name="price" type="number" v-model="current.price">
+                <label for="realname">realname</label>
+                <input name="realname" type="text" v-model="current.realname">
+              </div>
+              <div class="input-control">
+                <label for="password">password</label>
+                <input name="password" type="password" v-model="current.password">
               </div>
               <div class="input-control">
                 <button type="submit">submit</button>
