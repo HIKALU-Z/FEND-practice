@@ -8,7 +8,7 @@
         </div>
         <div class="col-lg-9">
           <div class="content card">
-            <h2>用户管理</h2>
+            <h2>地址管理</h2>
             <!-- add a search form  -->
             <form class="search-input" @submit.prevent="search">
               <input type="text" placeholder="search" v-model="keyword">
@@ -87,9 +87,6 @@
     </div>
   </div>
 </template>
-
-// TODO:FINISH USER
-// FIXME:on my purpose
 
 <script>
 import AdminPage from '../../mixins/admin/Admin';

@@ -13,11 +13,14 @@ import SettingBase from './views/settings/Base.vue';
 import AccountManage from './views/settings/AccountManage.vue';
 import Test from './views/Test.vue';
 import Search from './views/Search.vue';
-// import Admin from './views/Admin.vue';
 import AdminBase from './views//admin/Base.vue';
 import Vehicle from './views/admin/Vehicle.vue';
 import Duplicate from './views/admin/Duplicate.vue';
-// import { settings } from 'cluster';
+import User from './views/admin/User.vue';
+import Brand from './views/admin/Brand.vue';
+import Design from './views/admin/Design.vue';
+import Location from './views/admin/Location.vue';
+import Model from './views/admin/Model.vue';
 
 Vue.config.productionTip = true;
 Vue.use(Router);
@@ -68,11 +71,27 @@ const routes = [
       {
         path: 'duplicate',
         component: Duplicate
-      }
-      /* {
+      },
+      {
         path: 'user',
         component: User
-      } */
+      },
+      {
+        path: 'brand',
+        component: Brand
+      },
+      {
+        path: 'design',
+        component: Design
+      },
+      {
+        path: 'location',
+        component: Location
+      },
+      {
+        path: 'model',
+        component: Model
+      }
     ]
   }
 ];

@@ -182,9 +182,6 @@ import api from '../../assets/js/api.js';
 import AdminPage from '../../mixins/admin/Admin';
 
 export default {
-  // created() {
-  //   this.model = 'vehicle';
-  // },
   data() {
     return {
       searchable: ['title', 'price', 'description'],

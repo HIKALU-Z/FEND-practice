@@ -1,0 +1,43 @@
+<!-- eslint-disabled -->
+<script src="../../../node_modules/axios/dist/axios.js"></script>
+<script src="../lib/api.js"></script>
+<script>
+  let model = {
+    name: 'location',
+    structure: {
+      name: {
+        type: 'string',
+        nullable: true,
+      },
+      type: {
+        type: 'string',
+        nullable: true,
+      },
+      parent_id: {
+        type: 'integer',
+        positive: true,
+        nullable: true,
+      },
+    },
+  };
+
+  // api('MODEL/CREATE', model);
+
+  // api('MODEL/READ');
+
+  // api('MODEL/DELETE', { name : 'model' });
+
+  // api('location/seed', {
+  //   force: true
+  // })
+  api('location/read', {
+    sort_by: ['id', 'up'],
+    where: {
+      or: {
+        // name:'青海'
+        parent_id:['3035']
+      }
+    }
+  })
+  // api('location/create_many', { data});
+</script>
