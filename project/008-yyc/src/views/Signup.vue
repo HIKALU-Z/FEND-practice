@@ -18,15 +18,24 @@
         </div>
         <div class="input-control">
           <label for="password">password</label>
-          <input id="password" type="password">
+          <input id="password" v-validator="'required|min_length:4|max_length:8'" error-el="#password-error" type="password">
+          <div class="error-list">
+            <div id="password-error"></div>
+          </div>
         </div>
         <div class="input-control">
           <label for="confirm-password">confirm-password</label>
-          <input id="confirm-password" type="password">
+          <input id="confirm-password" v-validator="'required|min_length:4|max_length:8'" error-el="#confrim-password-error" type="password">
+          <div class="error-list">
+            <div id="confrim-password-error"></div>
+          </div>
         </div>
         <div class="input-control">
           <label for="email">email</label>
-          <input id="email" type="email">
+          <input id="email" v-validator="'required|min_length:4|max_length:18|email'" autocomplete="off" error-el="#email-error" type="email">
+          <div class="error-list">
+            <div id="email-error"></div>
+          </div>
         </div>
 
         <div class="input-control">
@@ -44,7 +53,7 @@
 </template>
 
 <script>
-// import '../assets/css/login.css';
+import '../assets/css/login.css';
 import Nav from '../components/Nav';
 import validator from '../directive/validator.js';
 
@@ -72,43 +81,8 @@ export default {
   border-radius: 5px;
   /* border-bottom-right-radius: 8px; */
 }
-/*
-.main-form h1 {
-  font-size: 1.5rem;
-} */
-
-/* .main-form .error-list {
-  background-color: rgba(180, 0, 15, 0.3);
-  padding: 5px;
-} */
-
-/* .main-form .input-control {
-  margin-bottom: 12px;
-} */
-
-/* .main-form .input-control input,
-.main-form .input-control button {
-  width: 100%;
-  height: 30px;
-} */
-/* .main-form .input-control button {
-  background-color: teal;
-  color: aliceblue;
-  outline: none;
-  border: none;
-} */
 
 .main-form .login-links {
   text-align: left;
 }
-
-/* .main-form .login-links > * {
-  font-size: 10px;
-  margin-right: 10px;
-  cursor: pointer;
-} */
-
-/* .main-form .login-links > *:last-child {
-  margin-right: 0;
-} */
 </style>

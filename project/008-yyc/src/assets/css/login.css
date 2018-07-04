@@ -1,5 +1,3 @@
-
-
 .por {
   position: relative;
 }
@@ -18,9 +16,10 @@
   font-size: 1.5rem;
 }
 
-.main-form .error-list {
-  background-color: rgba(180, 0, 15, 0.4);
-  padding: 5px;
+
+.main-form .error {
+  background-color: rgba(200, 0, 15, 0.25);
+  padding: 5px 10px;
 }
 
 .main-form .input-control {
@@ -36,6 +35,11 @@
 .main-form .input-control button {
   background-color: teal;
   color: aliceblue;
+}
+
+.main-form .input-control button[disabled=disabled] {
+  background-color:rgba(128, 128, 128, 0.6);
+  cursor: not-allowed;
 }
 
 .main-form .login-links {
