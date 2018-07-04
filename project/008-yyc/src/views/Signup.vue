@@ -11,7 +11,10 @@
         </div>
         <div class="input-control">
           <label for="username">username</label>
-          <input id="username" type="text">
+          <input id="username" autocomplete="off" v-validator="'required|username|min_length:4|max_length:6'" error-el="#username-error" type="text">
+          <div class="error-list">
+            <div id="username-error"></div>
+          </div>
         </div>
         <div class="input-control">
           <label for="password">password</label>
@@ -41,9 +44,14 @@
 </template>
 
 <script>
+// import '../assets/css/login.css';
 import Nav from '../components/Nav';
+import validator from '../directive/validator.js';
 
 export default {
+  directives: {
+    validator
+  },
   components: {
     Nav
   }
@@ -51,10 +59,11 @@ export default {
 </script>
 
 <style scoped>
-#signup {
+/* #signup {
   overflow: auto;
-}
+} */
 .main-form {
+  position: relative;
   background-color: white;
   margin: 30px auto;
   width: 320px;
@@ -63,44 +72,43 @@ export default {
   border-radius: 5px;
   /* border-bottom-right-radius: 8px; */
 }
-
+/*
 .main-form h1 {
   font-size: 1.5rem;
-}
+} */
 
-.main-form .error-list {
-  background-color: rgba(200, 0, 15, 0.7);
+/* .main-form .error-list {
+  background-color: rgba(180, 0, 15, 0.3);
   padding: 5px;
-}
+} */
 
-.main-form .input-control {
+/* .main-form .input-control {
   margin-bottom: 12px;
-}
+} */
 
-.main-form .input-control input,
+/* .main-form .input-control input,
 .main-form .input-control button {
   width: 100%;
   height: 30px;
-}
-.main-form .input-control button {
+} */
+/* .main-form .input-control button {
   background-color: teal;
   color: aliceblue;
   outline: none;
   border: none;
-}
+} */
 
 .main-form .login-links {
   text-align: left;
 }
 
-.main-form .login-links > * {
+/* .main-form .login-links > * {
   font-size: 10px;
-  /* opacity: 0.7; */
   margin-right: 10px;
   cursor: pointer;
-}
+} */
 
-.main-form .login-links > *:last-child {
+/* .main-form .login-links > *:last-child {
   margin-right: 0;
-}
+} */
 </style>

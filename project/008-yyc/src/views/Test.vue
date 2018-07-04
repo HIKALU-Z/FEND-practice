@@ -1,6 +1,8 @@
 <template>
   <div>
-
+    <!-- <form action=""> -->
+      <!-- <input type="text" v-validator="required | maxlegth:4"> -->
+    <!-- </form> -->
   </div>
 </template>
 

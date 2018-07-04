@@ -1,6 +1,6 @@
 /*eslint no-console: 0*/
 import Vue from 'vue';
-
+let lang = 'zh';
 const parseRule = str => {
   let rule = {};
 
@@ -19,7 +19,19 @@ const parseRule = str => {
 };
 
 const valid = {
-  username() {},
+  username(val) {
+    const lang_conf = {
+      zh: '用户名不合法，只能包含字母和数字',
+      en: 'Invalid username'
+    };
+
+    const reg = /^[a-zA-Z0-9]*$/;
+    let r = reg.test(val);
+
+    if (!r) throw lang_conf[lang];
+
+    return r;
+  },
   required(val) {
     if (typeof val === 'number') return true;
 
@@ -34,27 +46,34 @@ const valid = {
 };
 
 export default Vue.directive('validator', {
-  bind: function(el, binding) {
+  inserted: function(el, binding) {
     let rule = binding.value;
+    let selector = el.getAttribute('error-el');
+    console.log(selector);
+    let error_el = document.querySelector(selector);
+    console.log(error_el);
+    let inner_msg = '';
+    lang = document.querySelector('error-lang') || 'zh';
+
     if (typeof binding.value == 'string') {
       rule = parseRule(binding.value);
     }
-
-    // console.log(rules);
     el.placeholder = binding.value;
+    // FIXME: why not using keypress here ?
     el.addEventListener('keyup', () => {
-      // console.log(el.value);
       let val = el.value;
-      for (let r in rule) {
-        let arg = rule[r];
-        let validator = valid[r];
-
-        if (validator && !validator(val, arg)) {
-          // eslint-disable-line
-          console.log(r + '不合法');
-        } else {
-          console.log(r + '合法');
+      for (let type in rule) {
+        if (!rule.hasOwnProperty(type)) {
+          continue;
         }
+        let arg = rule[type]; // e.g:rule[minlength] == 4
+        let validator = valid[type];
+        try {
+          validator(val, arg);
+        } catch (error) {
+          inner_msg += `<div class="error">${error}</div>`;
+        }
+        error_el.innerHTML = inner_msg;
       }
     });
   }
