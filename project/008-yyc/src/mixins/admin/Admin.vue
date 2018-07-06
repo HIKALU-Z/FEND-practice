@@ -30,7 +30,7 @@ export default {
       // 翻页相关
       current_page: 1, // 当前页码
       last_page: 0, // 最后一页，一开始不知道所以是零
-      total: 0, // 总共有多少条
+      totalItem: 0, // 总共有多少条
       limit: 3 // 每页显示几条
     };
   },
@@ -69,10 +69,10 @@ export default {
       if (page == this.current_page && page != 1) return;
 
       api(`${this.model}/read`, { limit: this.limit, page: page }).then(r => {
-        this.total = r.total;
+        this.totalItem = r.total;
         this.list = r.data;
-        this.last_page = r.last_page;
-        this.current_page = r.current_page;
+        this.lastPage = r.last_page;
+        this.currentPage = r.current_page;
       });
     },
 
@@ -85,7 +85,7 @@ export default {
       if (!confirm('确定删除？')) return;
 
       api(`${this.model}/delete`, { id }).then(() => {
-        this.read(this.current_page);
+        this.read(this.currentPage);
       });
     },
 
@@ -97,6 +97,9 @@ export default {
     setCurrent(row) {
       this.current = row;
       this.showForm = true;
+      if (this.after_set_current) {
+        this.after_set_current();
+      }
     },
 
     /**

@@ -48,7 +48,7 @@
             </div>
 
             <!-- add pagination component -->
-            <Pagination :totalItem="100" :itemPerpage="5" :onPageClick="onPageClick"></Pagination>
+            <Pagination :totalItem="totalItem" :itemPerpage="5" :onPageClick="onPageClick"></Pagination>
 
             <div class="tool-bar">
               <button class="btn" @click="showForm = true">创建二手车</button>
@@ -73,16 +73,27 @@
                 <input type="number" v-model="current.consumed_distance">
               </div>
               <div class="input-control">
+                <label>封面地址</label>
+                <div style="margin-bottom: 5px;">
+                  <div v-for="(p, i) in current.preview" :key="p.url" class="input-group-3">
+                    <input type="text" placeholder="部位" v-model="p.name">
+                    <input type="url" placeholder="图片地址" v-model="p.url">
+                    <button @click="current.preview.splice(i, 1)" type="button">-</button>
+                  </div>
+                </div>
+                <button @click="current.preview.push({})" type="button">+</button>
+              </div>
+              <div class="input-control">
                 <label>过户次数</label>
                 <input type="number" v-model="current.exchange_times">
               </div>
               <div class="input-control">
                 <label>第一次上牌时间</label>
-                <input type="datetime-local" v-model="current.birthday">
+                <input type="date" v-model="current.birthday">
               </div>
               <div class="input-control">
                 <label>预期出售时间</label>
-                <input type="datetime-local" v-model="current.deadline">
+                <input type="date" v-model="current.deadline">
               </div>
               <div class="input-control">
                 <label>车况</label>
@@ -91,6 +102,14 @@
               <div class="input-control">
                 <label>描述</label>
                 <textarea v-model="current.description"></textarea>
+              </div>
+              <div class="input-control">
+                <label>发布人</label>
+                <Dropdown :api="'user.username,realname'" displayKey="username" :onSelect="set_publisher_id" />
+              </div>
+              <div class="input-control">
+                <label>品牌名</label>
+                <Dropdown :list="brandList" displayKey="name" :onSelect="setBrandId" />
               </div>
               <div class="input-control">
                 <label class="dib">促销
@@ -121,18 +140,35 @@ import api from '../../assets/js/api.js';
 import AdminPage from '../../mixins/admin/Admin';
 
 export default {
+  mounted() {
+    this.getBrandList();
+  },
   data() {
     return {
       searchable: ['title', 'price', 'description'],
-      model: 'vehicle'
+      model: 'vehicle',
+      current: {
+        preview: []
+      }
     };
   },
   methods: {
     onPageClick(page) {
-      api(`${this.model}/read`, { page }).then(r => {
-        // console.log(r);
-        return r;
+      this.read(page);
+    },
+    getBrandList() {
+      api('brand/read').then(r => {
+        this.brandList = r.data;
       });
+    },
+    set_publisher_id(row) {
+      this.$set(this.current, 'publisher_id', row.id);
+    },
+    setBrandId(row) {
+      this.$set(this.current, 'brand_id', row.id);
+    },
+    after_set_current() {
+      this.current.preview = this.current.preview || [];
     }
   },
   mixins: [AdminPage]

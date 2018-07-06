@@ -112,7 +112,24 @@
 
       <div class="container">
         <div class="vehicle-list row">
-          <div class="col-lg-3">
+          <div v-for="row in mainList" :key="row.title" class="col-lg-3">
+            <div class="card">
+              <div class="thumbnail">
+                <img :src="row.preview ? row.preview[0].url :
+                'https://image1.guazistatic.com/qn180618155102242081e88c459a11926744030df0971b.jpg?imageView2/1/w/287/h/192/q/88'">
+              </div>
+              <div class="detail">
+                <div class="title">{{row.title}}</div>
+                <div class="desc">2015年02月 / 3.07万公里</div>
+                <div class="others">
+                  <span class="price">{{row.price}}</span>
+                  <span>首付3.5万</span>
+                  <a class="btn btn-primary buy">购买</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="col-lg-3">
             <div class="card">
               <div class="thumbnail">
                 <img src="../assets/home/vehicle-list-thumbnail1.webp">
@@ -127,119 +144,7 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="card">
-              <div class="thumbnail">
-                <img src="../assets/home/vehicle-list-thumbnail1.webp">
-              </div>
-              <div class="detail">
-                <div class="title">大众-高尔夫 2014款 1.6L 自动舒适型</div>
-                <div class="desc">2015年02月 / 3.07万公里</div>
-                <div class="others">
-                  <span class="price">11.5万</span>
-                  <span>首付3.5万</span>
-                  <a class="btn btn-primary buy">购买</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="card">
-              <div class="thumbnail">
-                <img src="../assets/home/vehicle-list-thumbnail1.webp">
-              </div>
-              <div class="detail">
-                <div class="title">大众-高尔夫 2014款 1.6L 自动舒适型</div>
-                <div class="desc">2015年02月 / 3.07万公里</div>
-                <div class="others">
-                  <span class="price">11.5万</span>
-                  <span>首付3.5万</span>
-                  <a class="btn btn-primary buy">购买</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="card">
-              <div class="thumbnail">
-                <img src="../assets/home/vehicle-list-thumbnail1.webp">
-              </div>
-              <div class="detail">
-                <div class="title">大众-高尔夫 2014款 1.6L 自动舒适型</div>
-                <div class="desc">2015年02月 / 3.07万公里</div>
-                <div class="others">
-                  <span class="price">11.5万</span>
-                  <span>首付3.5万</span>
-                  <a class="btn btn-primary buy">购买</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="card">
-              <div class="thumbnail">
-                <img src="../assets/home/vehicle-list-thumbnail1.webp">
-              </div>
-              <div class="detail">
-                <div class="title">大众-高尔夫 2014款 1.6L 自动舒适型</div>
-                <div class="desc">2015年02月 / 3.07万公里</div>
-                <div class="others">
-                  <span class="price">11.5万</span>
-                  <span>首付3.5万</span>
-                  <a class="btn btn-primary buy">购买</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="card">
-              <div class="thumbnail">
-                <img src="../assets/home/vehicle-list-thumbnail1.webp">
-              </div>
-              <div class="detail">
-                <div class="title">大众-高尔夫 2014款 1.6L 自动舒适型</div>
-                <div class="desc">2015年02月 / 3.07万公里</div>
-                <div class="others">
-                  <span class="price">11.5万</span>
-                  <span>首付3.5万</span>
-                  <a class="btn btn-primary buy">购买</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="card">
-              <div class="thumbnail">
-                <img src="../assets/home/vehicle-list-thumbnail1.webp">
-              </div>
-              <div class="detail">
-                <div class="title">大众-高尔夫 2014款 1.6L 自动舒适型</div>
-                <div class="desc">2015年02月 / 3.07万公里</div>
-                <div class="others">
-                  <span class="price">11.5万</span>
-                  <span>首付3.5万</span>
-                  <a class="btn btn-primary buy">购买</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="card">
-              <div class="thumbnail">
-                <img src="../assets/home/vehicle-list-thumbnail1.webp">
-              </div>
-              <div class="detail">
-                <div class="title">大众-高尔夫 2014款 1.6L 自动舒适型</div>
-                <div class="desc">2015年02月 / 3.07万公里</div>
-                <div class="others">
-                  <span class="price">11.5万</span>
-                  <span>首付3.5万</span>
-                  <a class="btn btn-primary buy">购买</a>
-                </div>
-              </div>
-            </div>
-          </div>
+          </div> -->
         </div>
 
       </div>
@@ -254,9 +159,25 @@
 <script>
 import '../assets/css/vehicle-list.css';
 import Nav from '../components/Nav';
+import api from '../assets/js/api.js';
 export default {
   components: {
     Nav
+  },
+  mounted() {
+    this.read('main');
+  },
+  data() {
+    return {
+      mainList: []
+    };
+  },
+  methods: {
+    read(type) {
+      api('vehicle/read').then(r => {
+        this[type + 'List'] = r.data;
+      });
+    }
   }
 };
 </script>

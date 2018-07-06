@@ -1,7 +1,10 @@
 <template>
   <div>
-    <Location :count='1'>
-    </Location>
+    <div class="container" style="padding-top:20px">
+      <Location :count='1'>
+      </Location>
+    </div>
+
   </div>
 </template>
 

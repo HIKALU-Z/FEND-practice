@@ -1,4 +1,4 @@
-<template>
+  <template>
   <div>
     <div class="pagnation">
       <div class="btn-group">
@@ -8,7 +8,7 @@
         &nbsp; -->
         <!-- {{ totalPage }} -->
 
-        <button @click="onBtnClick(page)" v-if="Math.abs(currentPage-page)<3" v-for="page in pages" :key="page">
+        <button @click="onBtnClick(page)" v-if="Math.abs(currentPage-page)<3" v-for="page in totalPage" :key="page">
           {{page}}
         </button>
         <!--  <button v-if="Math.abs(current_page-page) < 3" v-for="page in last_page" class="btn-page" @click="read(page)" :key="page">
@@ -47,7 +47,7 @@ export default {
   },
   data() {
     return {
-      pages: 10,
+      // totalPage: 10,
       currentPage: 1
     };
   },
@@ -65,6 +65,9 @@ export default {
   },
   computed: {
     totalPage() {
+      if (!this.totalItem || !this.itemPerPage) {
+        return 0;
+      }
       return Math.ceil(this.totalItem / this.itemPerPage);
     }
   }
