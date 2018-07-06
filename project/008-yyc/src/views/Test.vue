@@ -1,12 +1,12 @@
 <template>
   <div>
-    <!-- <form action=""> -->
-      <!-- <input type="text" v-validator="required | maxlegth:4"> -->
-    <!-- </form> -->
+    <Location :count='1'>
+    </Location>
   </div>
 </template>
 
 <script>
+import Location from '../components/Location';
 export default {
   data() {
     return {
@@ -102,6 +102,9 @@ export default {
         }
       }
     };
+  },
+  components: {
+    Location
   }
 };
 </script>

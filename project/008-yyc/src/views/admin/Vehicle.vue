@@ -27,18 +27,12 @@
                     <th>过户次数</th>
                     <th>特价</th>
                     <th>操作</th>
-                    <!-- <th>第一次上牌时间</th>
-                    <th>预期出售时间</th>
-                    <th>车况</th>
-                    <th>描述</th>
-                    <th>促销</th>
-                    <th>本地车牌</th> -->
                   </tr>
                 </thead>
                 <tbody>
                   <tr v-for="vehicle in list" :key="vehicle.id">
-                    <td>{{vehicle.title}}</td>
-                    <td>{{vehicle.price}}</td>
+                    <td>{{vehicle.title|| '-'}}</td>
+                    <td>{{vehicle.price|| '-'}}</td>
                     <td>{{vehicle.consumed_distance || '-'}}</td>
                     <td>{{vehicle.deadline || '-'}}</td>
                     <td>{{vehicle.condition ? vehicle.condition + '成新' : '-'}}</td>
@@ -48,12 +42,6 @@
                       <button @click="save">update</button>
                       <button @click="remove(vehicle.id)">remove</button>
                     </td>
-                    <!-- <td>{{vehicle.birthday}}</td>
-                    <td>{{vehicle.deadline}}</td>
-                    <td>{{vehicle.condition}}</td>
-                    <td>{{vehicle.description}}</td>
-                    <td>{{vehicle.on_sale}}</td>
-                    <td>{{vehicle.local}}</td> -->
                   </tr>
                 </tbody>
               </table>
@@ -129,56 +117,7 @@
 // TODO:finish pagination
 
 <script>
-// import Nav from '../../components/Nav';
-// import AdminNav from '../../components/AdminNav';
-// import Pagnation from '../../components/Pagnation';
 import api from '../../assets/js/api.js';
-// export default {
-//   components: { Nav, AdminNav, Pagnation },
-//   data() {
-//     return {
-//       current: {},
-//       vehicles: [],
-//       keyword: '',
-//       showForm: false,
-//       page: 1
-//     };
-//   },
-//   methods: {
-//     read() {
-//       api('vehicle/read', { limit: 5, page: this.page }).then(r => {
-//         // console.log(r.data);
-//         this.vehicles = r.data;
-//       });
-//     },
-//     save() {
-//       let actions = this.current.id ? 'update' : 'create';
-//       api(`vehicle/${actions}`, this.current).then(r => {
-//         this.current = r;
-//         this.vehicles = r.data;
-//         // console.log(this.vehicles);
-//       });
-//     },
-//     search() {
-//       let kwd = this.keyword;
-
-//       let param = {
-//         or: {
-//           title: kwd,
-//           description: kwd
-//         }
-//       };
-
-//       api('vehicle/search', param).then(r => {
-//         this.vehicles = r.data;
-//       });
-//     }
-//   },
-//   created() {
-//     this.read();
-//   }
-// };
-// import '../../css/admin.css';
 import AdminPage from '../../mixins/admin/Admin';
 
 export default {
