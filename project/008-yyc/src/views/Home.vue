@@ -3,16 +3,10 @@
     <Nav></Nav>
     <div class="slider">
       <img src="../assets/home/slider1.webp">
-      <!--<div class="short-cuts">-->
-      <!--<a href="#">Item</a>-->
-      <!--<a href="#">Item</a>-->
-      <!--<a href="#">Item</a>-->
-      <!--<a href="#">Item</a>-->
-      <!--</div>-->
     </div>
     <div class="query-area">
       <div class="container">
-        <div class="row col-lg-8">
+        <div class="col-lg-8">
           <div class="col-lg-3 huge-text">买</div>
           <div class="col-lg-9">
             <div>
@@ -42,12 +36,13 @@
             </div>
           </div>
         </div>
-        <div class="row col-lg-4">
+        <div class="col-lg-4">
           <div class="col-lg-3 huge-text">卖</div>
           <div class="col-lg-9 right">
             <a style="margin-top: 15px; display: inline-block;" class="btn btn-primary btn-fat">极速卖车</a>
           </div>
         </div>
+        <SearchInput></SearchInput>
       </div>
     </div>
     <div class="guarantee">
@@ -101,22 +96,21 @@
     <div>
       <div class="vehicle-nav">
         <div class="container">
-          <div class="item">特价好车</div>
-          <div class="item">5万以下</div>
-          <div class="item">5-10万</div>
-          <div class="item">超值SUV</div>
-          <div class="item">急售降价车</div>
-          <div class="item">更多</div>
+          <div @click="read_main('on_sale')" class="item">特价好车</div>
+          <div @click="read_main('under_5')" class="item">5万以下</div>
+          <div @click="read_main('between_5_10')" class="item">5-10万</div>
+          <div @click="read_main('suv')" class="item">超值SUV</div>
+          <div @click="read_main('urgent')" class="item">急售降价车</div>
+          <router-link to="/search_result" class="item">更多</router-link>
         </div>
       </div>
 
       <div class="container">
         <div class="vehicle-list row">
-          <div v-for="row in mainList" :key="row.title" class="col-lg-3">
+          <div v-for="row in mainList" :key="row.id" class="col-lg-3">
             <div class="card">
               <div class="thumbnail">
-                <img :src="row.preview ? row.preview[0].url :
-                'https://image1.guazistatic.com/qn180618155102242081e88c459a11926744030df0971b.jpg?imageView2/1/w/287/h/192/q/88'">
+                <img :src="get_main_cover_url(row)">
               </div>
               <div class="detail">
                 <div class="title">{{row.title}}</div>
@@ -129,22 +123,6 @@
               </div>
             </div>
           </div>
-          <!-- <div class="col-lg-3">
-            <div class="card">
-              <div class="thumbnail">
-                <img src="../assets/home/vehicle-list-thumbnail1.webp">
-              </div>
-              <div class="detail">
-                <div class="title">大众-高尔夫 2014款 1.6L 自动舒适型</div>
-                <div class="desc">2015年02月 / 3.07万公里</div>
-                <div class="others">
-                  <span class="price">11.5万</span>
-                  <span>首付3.5万</span>
-                  <a class="btn btn-primary buy">购买</a>
-                </div>
-              </div>
-            </div>
-          </div> -->
         </div>
 
       </div>
@@ -159,23 +137,86 @@
 <script>
 import '../assets/css/vehicle-list.css';
 import Nav from '../components/Nav';
+import SearchInput from '../components/SearchInput';
 import api from '../assets/js/api.js';
+import VehicleListVue from '../mixins/VehicleList.vue';
 export default {
   components: {
-    Nav
+    Nav,
+    SearchInput
   },
+  mixnins: [VehicleListVue],
   mounted() {
-    this.read('main');
+    this.read_main('on_sale');
+    this.find_design('suv');
+    this.read('brand');
+    this.read('design');
   },
   data() {
     return {
-      mainList: []
+      mainList: [],
+      designList: [],
+      brandList: [],
+      design: {}
     };
   },
   methods: {
-    read(type) {
-      api('vehicle/read').then(r => {
-        this[type + 'List'] = r.data;
+    read(model) {
+      api(model + '/read', { key_by: 'name' }).then(r => {
+        this[model + 'List'] = r.data;
+      });
+    },
+    read_main(type) {
+      let condition = {};
+
+      switch (type) {
+        case 'on_sale':
+          condition = {
+            where: {
+              and: {
+                on_sale: true
+              }
+            }
+          };
+          break;
+        case 'under_5':
+          condition = {
+            where: {
+              and: [['price', '<', 5]]
+            }
+          };
+          break;
+        case 'between_5_10':
+          condition = {
+            where: {
+              and: [['price', '>', 5], ['price', '<', 10]]
+            }
+          };
+          break;
+        case 'suv':
+          condition = {
+            where: {
+              and: {
+                design_id: this.design.suv.id
+              }
+            }
+          };
+          break;
+        case 'urgent':
+          var date = new Date();
+          date.setDate(date.getDate() + 3);
+          date = date.toISOString().split('T')[0];
+          condition = { query: `where("deadline" <= "${date}")` };
+          break;
+      }
+
+      api('vehicle/read', condition).then(r => {
+        this['mainList'] = r.data;
+      });
+    },
+    find_design(name) {
+      api('design/search', { or: { name: name } }).then(r => {
+        this.design[name] = r.data[0];
       });
     }
   }

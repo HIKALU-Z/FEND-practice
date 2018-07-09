@@ -20,6 +20,8 @@ import User from './views/admin/User.vue';
 import Brand from './views/admin/Brand.vue';
 import Design from './views/admin/Design.vue';
 import Location from './views/admin/Location.vue';
+import Location2 from './components/Location2';
+
 import Model from './views/admin/Model.vue';
 import Qc from './views/admin/Qc.vue';
 
@@ -30,6 +32,10 @@ const routes = [
   {
     path: '/',
     component: Home
+  },
+  {
+    path: '/location2',
+    component: Location2
   },
   {
     path: '/detail/:id',

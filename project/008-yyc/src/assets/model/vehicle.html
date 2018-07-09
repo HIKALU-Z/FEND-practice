@@ -29,11 +29,11 @@
         nullable: true,
       },
       birth_day: { // 初次上牌时间
-        type: 'dateTime',
+        type: 'date',
         nullable: true,
       },
       deadline: { // 预期出售时间
-        type: 'dateTime',
+        type: 'date',
         nullable: true,
       },
       condition: { // 车况
@@ -80,14 +80,14 @@
   // api('MODEL/CREATE', vehicle);
 
   api('MODEL/READ');
-// <!--
-//   api('MODEL/CREATE_PROPERTY', {
-//     model: 'vehicle',
-//     property: 'preview',
-//     structure: {
-//       type: 'json',
-//     },
-//   }); -->
+
+  api('MODEL/UPDATE_PROPERTY', {
+    model: 'vehicle',
+    property: 'deadline',
+    structure: {
+      type: 'date',
+    },
+  });
 
   // api('MODEL/DELETE', { name : 'vehicle' });
 </script>

@@ -1,15 +1,19 @@
 <template>
   <div>
     <div class="container" style="padding-top:20px">
-      <Location :count='1'>
-      </Location>
+      <!-- <Location :count='1'>
+      </Location> -->
+      <!-- <Location2 :onSelect="getId"></Location2> -->
+      <Location :onSelect='getId'></Location>
     </div>
 
   </div>
 </template>
 
 <script>
-import Location from '../components/Location';
+// import Location from '../components/Location';
+// import Location2 from '../components/Location2';
+import Location from '../components/Location3';
 export default {
   data() {
     return {
@@ -105,6 +109,12 @@ export default {
         }
       }
     };
+  },
+  methods: {
+    getId(r) {
+      // console.log(r.id);
+      return r.id;
+    }
   },
   components: {
     Location

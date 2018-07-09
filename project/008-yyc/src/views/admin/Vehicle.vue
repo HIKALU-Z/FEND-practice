@@ -39,7 +39,7 @@
                     <td>{{vehicle.exchange_times || '-'}}</td>
                     <td>{{vehicle.on_sale || '-'}}</td>
                     <td>
-                      <button @click="save">update</button>
+                      <button @click="setCurrent(vehicle)">update</button>
                       <button @click="remove(vehicle.id)">remove</button>
                     </td>
                   </tr>

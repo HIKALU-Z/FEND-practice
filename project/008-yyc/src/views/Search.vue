@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <SearchInput></SearchInput>
+          <SearchInput :onSubmit="search"></SearchInput>
           <!-- <h1>Search</h1> -->
           <!-- <Dropdown displayKey="type" :list="vehicleTypeList" :onSelect='dropDownSelect'></Dropdown> -->
         </div>
@@ -100,112 +100,16 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-3" v-for="(vehicle, index) in vehicleList" :key="index">
           <div class="card">
             <div class="thumbnail">
-              <img src="../assets/vehicle.jpg">
+              <img :src="get_main_cover_url(vehicle)">
             </div>
             <div class="detail">
-              <div class="title">大众-高尔夫 2014款 1.6L 自动舒适型</div>
+              <div class="title">{{vehicle.title || '-'}}</div>
               <div class="desc">2015年02月 / 3.07万公里</div>
               <div class="others">
-                <span class="price">11.5万</span>
-                <span>首付3.5万</span>
-                <a class="btn btn-primary buy">购买</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="card">
-            <div class="thumbnail">
-              <img src="../assets/vehicle.jpg">
-            </div>
-            <div class="detail">
-              <div class="title">大众-高尔夫 2014款 1.6L 自动舒适型</div>
-              <div class="desc">2015年02月 / 3.07万公里</div>
-              <div class="others">
-                <span class="price">11.5万</span>
-                <span>首付3.5万</span>
-                <a class="btn btn-primary buy">购买</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="card">
-            <div class="thumbnail">
-              <img src="../assets/vehicle.jpg">
-            </div>
-            <div class="detail">
-              <div class="title">大众-高尔夫 2014款 1.6L 自动舒适型</div>
-              <div class="desc">2015年02月 / 3.07万公里</div>
-              <div class="others">
-                <span class="price">11.5万</span>
-                <span>首付3.5万</span>
-                <a class="btn btn-primary buy">购买</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="card">
-            <div class="thumbnail">
-              <img src="../assets/vehicle.jpg">
-            </div>
-            <div class="detail">
-              <div class="title">大众-高尔夫 2014款 1.6L 自动舒适型</div>
-              <div class="desc">2015年02月 / 3.07万公里</div>
-              <div class="others">
-                <span class="price">11.5万</span>
-                <span>首付3.5万</span>
-                <a class="btn btn-primary buy">购买</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="card">
-            <div class="thumbnail">
-              <img src="../assets/vehicle.jpg">
-            </div>
-            <div class="detail">
-              <div class="title">大众-高尔夫 2014款 1.6L 自动舒适型</div>
-              <div class="desc">2015年02月 / 3.07万公里</div>
-              <div class="others">
-                <span class="price">11.5万</span>
-                <span>首付3.5万</span>
-                <a class="btn btn-primary buy">购买</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="card">
-            <div class="thumbnail">
-              <img src="../assets/vehicle.jpg">
-            </div>
-            <div class="detail">
-              <div class="title">大众-高尔夫 2014款 1.6L 自动舒适型</div>
-              <div class="desc">2015年02月 / 3.07万公里</div>
-              <div class="others">
-                <span class="price">11.5万</span>
-                <span>首付3.5万</span>
-                <a class="btn btn-primary buy">购买</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="card">
-            <div class="thumbnail">
-              <img src="../assets/vehicle.jpg">
-            </div>
-            <div class="detail">
-              <div class="title">大众-高尔夫 2014款 1.6L 自动舒适型</div>
-              <div class="desc">2015年02月 / 3.07万公里</div>
-              <div class="others">
-                <span class="price">11.5万</span>
+                <span class="price">{{vehicle.price || '-'}}万</span>
                 <span>首付3.5万</span>
                 <a class="btn btn-primary buy">购买</a>
               </div>
@@ -222,7 +126,10 @@ import '../assets/css/vehicle-list.css';
 import Nav from '../components/Nav';
 import SearchInput from '../components/SearchInput';
 import Dropdown from '../components/Dropdown';
+import VehicleListVue from '../mixins/VehicleList.vue';
+import api from './../assets/js/api.js';
 export default {
+  mixins: [VehicleListVue],
   components: {
     Dropdown,
     Nav,
@@ -230,13 +137,30 @@ export default {
   },
   data() {
     return {
-      vehicleTypeList: [{ type: 'SUV', id: '1' }, { type: 'MPV', id: '2' }]
+      vehicleTypeList: [{ type: 'SUV', id: '1' }, { type: 'MPV', id: '2' }],
+      vehicleList: [],
+      searchParam: {}
     };
   },
   methods: {
     dropDownSelect: function(row) {
       return row;
+    },
+    search() {
+      // console.log(this.searchParam.keyword);
+      api('vehicle/search', {
+        or: {
+          title: this.searchParam.keyword
+        }
+      }).then(r => {
+        // console.log(r.data);
+        this.vehicleList = r.data;
+      });
     }
+  },
+  mounted() {
+    this.searchParam = this.$route.query;
+    this.search();
   }
 };
 </script>

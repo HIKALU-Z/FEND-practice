@@ -1,7 +1,7 @@
 <template>
   <div @mouseleave='showMenu = false'>
     <div class="dropdown">
-      <input @keyup="showMenu=true" @focus="showMenu=true" v-model="keyword" placeholder="请选择" type="search">
+      <input @keyup="showMenu=true" @focus="showMenu=true" v-model="keyword" placeholder="请选择" type="text">
       <!-- <div class="dropdown-title" @mouseenter="showMenu = true">{{selected[displayKey] || '请选择'}}</div> -->
       <div v-if="showMenu" class="menu">
         <div class="menu-item" @click="select(row)" v-for="row in result" :key="row.name">
@@ -137,8 +137,14 @@ export default {
   position: relative;
   display: block;
   background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  /*
+  border: 1px solid rgba(0, 0, 0, 0.1); */
 }
+
+.dropdown input {
+  width: 100%;
+}
+
 .dropdown .dropdown-title {
   padding: 2px 5px;
 }
