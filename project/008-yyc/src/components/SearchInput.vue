@@ -8,7 +8,7 @@
 <script>
 import '../assets/css/search-input.css';
 export default {
-  props: ['onChange', 'onSubmit'],
+  props: ['onChange', 'onSubmit', 'keyvalue'],
   data() {
     return {
       keyword: ''
@@ -19,6 +19,7 @@ export default {
       if (this.onChange) this.onChange(this.keyword);
     },
     submit() {
+      // console.log(this.keyword);
       if (this.onSubmit) this.onSubmit(this.keyword);
       this.changeRouter();
     },
@@ -27,6 +28,15 @@ export default {
         path: '/search',
         query: { keyword: this.keyword }
       });
+    }
+  },
+  watch: {
+    /**
+     * @param newV
+     * @param oldV
+     */
+    keyvalue(newvalue) {
+      this.keyword = newvalue;
     }
   }
 };

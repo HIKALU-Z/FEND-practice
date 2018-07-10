@@ -3,9 +3,9 @@
     <div class="container">
       <div class="row">
         <div class="col left">
-          <a class="logo"></a>
-          <a href="#" class="nav-item">Item</a>
-          <a href="#" class="nav-item">Item</a>
+          <router-link to="/" class="logo"></router-link>
+          <router-link to="/admin/vehicle" href="#" class="nav-item">Admin</router-link>
+          <router-link to="/search">Search</router-link>
           <a href="#" class="nav-item">Item</a>
           <a href="#" class="nav-item">Item</a>
         </div>

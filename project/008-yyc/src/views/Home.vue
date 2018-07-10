@@ -10,16 +10,7 @@
           <div class="col-lg-3 huge-text">买</div>
           <div class="col-lg-9">
             <div>
-              <span class="tag">大众</span>
-              <span class="tag">别克</span>
-              <span class="tag">雪佛兰</span>
-              <span class="tag">福特</span>
-              <span class="tag">五菱</span>
-              <span class="tag">大众</span>
-              <span class="tag">别克</span>
-              <span class="tag">雪佛兰</span>
-              <span class="tag">福特</span>
-              <span class="tag">五菱</span>
+              <span class="tag" v-for="(row, index) in list.brand" :key="index">{{row.name}}</span>
             </div>
             <div>
               <span class="tag">3万以下</span>
@@ -28,11 +19,7 @@
               <span class="tag">20万以下</span>
             </div>
             <div>
-              <span class="tag">大众</span>
-              <span class="tag">别克</span>
-              <span class="tag">雪佛兰</span>
-              <span class="tag">福特</span>
-              <span class="tag">五菱</span>
+              <span class="tag" v-for="(row, index) in list.design" :key="index">{{row.name}}</span>
             </div>
           </div>
         </div>
@@ -140,12 +127,13 @@ import Nav from '../components/Nav';
 import SearchInput from '../components/SearchInput';
 import api from '../assets/js/api.js';
 import VehicleListVue from '../mixins/VehicleList.vue';
+import ReaderVue from '../mixins/Reader.vue';
 export default {
   components: {
     Nav,
     SearchInput
   },
-  mixnins: [VehicleListVue],
+  mixins: [VehicleListVue, ReaderVue],
   mounted() {
     this.read_main('on_sale');
     this.find_design('suv');
@@ -155,17 +143,10 @@ export default {
   data() {
     return {
       mainList: [],
-      designList: [],
-      brandList: [],
       design: {}
     };
   },
   methods: {
-    read(model) {
-      api(model + '/read', { key_by: 'name' }).then(r => {
-        this[model + 'List'] = r.data;
-      });
-    },
     read_main(type) {
       let condition = {};
 

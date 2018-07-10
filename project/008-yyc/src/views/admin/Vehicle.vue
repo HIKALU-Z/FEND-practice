@@ -21,10 +21,12 @@
                   <tr>
                     <th>标题</th>
                     <th>价格</th>
-                    <th>里程</th>
+                    <!-- <th>里程</th> -->
+                    <th>设计风格</th>
+                    <th>品牌</th>
                     <th>预期出售时间</th>
                     <th>车况</th>
-                    <th>过户次数</th>
+                    <!-- <th>过户次数</th> -->
                     <th>特价</th>
                     <th>操作</th>
                   </tr>
@@ -33,10 +35,12 @@
                   <tr v-for="vehicle in list" :key="vehicle.id">
                     <td>{{vehicle.title|| '-'}}</td>
                     <td>{{vehicle.price|| '-'}}</td>
-                    <td>{{vehicle.consumed_distance || '-'}}</td>
+                    <td>{{vehicle.brand_id|| '-'}}</td>
+                    <td>{{vehicle.design_id|| '-'}}</td>
+                    <!-- <td>{{vehicle.consumed_distance || '-'}}</td> -->
                     <td>{{vehicle.deadline || '-'}}</td>
                     <td>{{vehicle.condition ? vehicle.condition + '成新' : '-'}}</td>
-                    <td>{{vehicle.exchange_times || '-'}}</td>
+                    <!-- <td>{{vehicle.exchange_times || '-'}}</td> -->
                     <td>{{vehicle.on_sale || '-'}}</td>
                     <td>
                       <button @click="setCurrent(vehicle)">update</button>
@@ -108,6 +112,10 @@
                 <Dropdown :api="'user.username,realname'" displayKey="username" :onSelect="set_publisher_id" />
               </div>
               <div class="input-control">
+                <label>设计风格</label>
+                <Dropdown :list="designList" displayKey="name" :onSelect="setDesignId" />
+              </div>
+              <div class="input-control">
                 <label>品牌名</label>
                 <Dropdown :list="brandList" displayKey="name" :onSelect="setBrandId" />
               </div>
@@ -142,6 +150,7 @@ import AdminPage from '../../mixins/admin/Admin';
 export default {
   mounted() {
     this.getBrandList();
+    this.getDesignList();
   },
   data() {
     return {
@@ -161,11 +170,19 @@ export default {
         this.brandList = r.data;
       });
     },
+    getDesignList() {
+      api('design/read').then(r => {
+        this.designList = r.data;
+      });
+    },
     set_publisher_id(row) {
       this.$set(this.current, 'publisher_id', row.id);
     },
     setBrandId(row) {
       this.$set(this.current, 'brand_id', row.id);
+    },
+    setDesignId(row) {
+      this.$set(this.current, 'design_id', row.id);
     },
     after_set_current() {
       this.current.preview = this.current.preview || [];

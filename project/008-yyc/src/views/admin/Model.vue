@@ -22,6 +22,7 @@
                   <tr>
                     <th>车系名</th>
                     <th>品牌名</th>
+                    <th>设计风格</th>
                     <th>操作</th>
                     <!-- <th>密码</th> -->
                   </tr>
@@ -38,7 +39,7 @@
                       {{model.design_id}}
                     </td>
                     <td>
-                      <button @click="save">update</button>
+                      <button @click="setCurrent(model)">editor</button>
                       <button @click="remove(model.id)">remove</button>
                     </td>
                     <!-- <td>123</td> -->
