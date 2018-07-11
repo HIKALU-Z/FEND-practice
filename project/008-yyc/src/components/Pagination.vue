@@ -8,7 +8,7 @@
         &nbsp; -->
         <!-- {{ totalPage }} -->
 
-        <button @click="onBtnClick(page)" v-if="Math.abs(currentPage-page)<3" v-for="page in totalPage" :key="page">
+        <button @click="onBtnClick(page)" :class="{active: current_page == page}" v-if="Math.abs(current_page-page)<3" v-for="page in totalPage" :key="page">
           {{page}}
         </button>
         <!--  <button v-if="Math.abs(current_page-page) < 3" v-for="page in last_page" class="btn-page" @click="read(page)" :key="page">
@@ -43,12 +43,20 @@ export default {
           return 5;
         };
       }
+    },
+    currentPage: {
+      default: 1
     }
   },
+
+  mounted() {
+    this.current_page = this.currentPage;
+  },
+
   data() {
     return {
       // totalPage: 10,
-      currentPage: 1
+      current_page: 1
     };
   },
   methods: {
@@ -56,19 +64,24 @@ export default {
       if (this.onPageClick) {
         this.onPageClick(page);
       }
-      this.currentPage = page;
-      // this.read(page);
-    },
-    read() {
-      return 1;
+      this.current_page = page;
     }
+    // read() {
+    //   return 1;
+    // }
   },
   computed: {
     totalPage() {
       if (!this.totalItem || !this.itemPerPage) {
         return 0;
       }
+      // console.log(this.totalItem,this.itemPerPage)
       return Math.ceil(this.totalItem / this.itemPerPage);
+    }
+  },
+  watch: {
+    currentPage(n) {
+      this.current_page = n;
     }
   }
 };
@@ -77,5 +90,20 @@ export default {
 <style scoped>
 .pagnation {
   text-align: center;
+}
+
+.pagnation button {
+  outline: none;
+  padding: 5px 10px;
+  background: #ffffff;
+  border: none;
+  border-right: 1px solid rgba(56, 117, 197, 0.3);
+}
+.pagnation button:last-child {
+  border-right: 0;
+}
+
+.pagnation .active {
+  background: rgba(56, 117, 197, 0.3);
 }
 </style>

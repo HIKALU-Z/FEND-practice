@@ -147,6 +147,8 @@ export default {
       vehicleTypeList: [{ type: 'SUV', id: '1' }, { type: 'MPV', id: '2' }],
       vehicleList: [],
       searchParam: {},
+      limit: 3,
+      total: 0,
       priceRange: [
         {
           id: 0,
@@ -169,10 +171,20 @@ export default {
           name: '5-10 万元',
           min: 5,
           max: 10
+        },
+        {
+          id: 4,
+          name: '10-15 万元',
+          min: 10,
+          max: 15
+        },
+        {
+          id: 5,
+          name: '15-30 万元',
+          min: 15,
+          max: 30
         }
-      ],
-      limit: 3,
-      total: 0
+      ]
     };
   },
   methods: {
