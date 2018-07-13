@@ -1,3 +1,5 @@
+
+
 <template>
   <div @mouseleave='showMenu = false'>
     <div class="dropdown">
@@ -57,6 +59,7 @@ export default {
       }
     },
     /**
+     *
      * 过滤静态数据（同步）
      * 相当于静态数据的search
      */
@@ -106,13 +109,36 @@ export default {
         model,
         property
       };
+    },
+    /**
+     * 搜索（异步）
+     * 通过api获取动态数据
+     */
+    search() {
+      let condition = {};
+
+      let property = this.api_conf.property;
+
+      if (!property) return;
+
+      property.forEach(prop => {
+        condition[prop] = this.keyword;
+      });
+
+      clearTimeout(this.timer);
+
+      this.timer = setTimeout(() => {
+        api(`${this.api_conf.model}/search`, { or: condition }).then(r => {
+          this.result = r.data;
+        });
+      }, 300);
     }
   },
   mounted() {
     this.set_default(); // 如果传了props.default，就应该默认选中那一项
     this.api_conf = this.parse_api(); // 如果props.api是字符串，就应该将其解析为更好处理的对象类型
     let list = this.list;
-    list && (this.result = Object.assign([], this.list)); //
+    list && (this.result = Object.assign([], this.list)); // 如果传了静态数据，就应该将静态数据拷一份，否则就会导致越搜索越少
   },
   watch: {
     /**

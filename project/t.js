@@ -16,3 +16,9 @@ document.cookie
 ids = '1,2,3,4,5'
 
 
+
+
+import '../../assets/css/admin.css';
+import AdminPage from '../../mixins/admin/Admin';
+import Dropdown from '../../components/Dropdown';
+import api from '../../assets/js/api.js';

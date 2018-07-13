@@ -2,7 +2,7 @@
   <div>
     <Nav></Nav>
     <div class="slider">
-      <img src="../assets/home/slider1.webp">
+      <!-- <img src="../assets/home/slider1.webp"> -->
     </div>
     <div class="query-area">
       <div class="container">
@@ -33,51 +33,54 @@
       </div>
     </div>
     <div class="guarantee">
-      <div class="row container">
-        <div class="col-lg-3">
-          <div class="card">
-            <div>
-              <div class="title">分期购车</div>
-              <div class="desc">门槛低 审批快</div>
+      <div class="container">
+        <div class="row" style="margin-left:-20px;margin-right:-20px">
+          <div class="col-lg-3">
+            <div class="card">
+              <div>
+                <div class="title">分期购车</div>
+                <div class="desc">门槛低 审批快</div>
+              </div>
+              <div>
+                <img src="../assets/home/guarantee1.png" alt="">
+              </div>
             </div>
-            <div>
-              <img src="../assets/home/guarantee1.png" alt="">
+          </div>
+          <div class="col-lg-3">
+            <div class="card">
+              <div>
+                <div class="title">分期购车</div>
+                <div class="desc">门槛低 审批快</div>
+              </div>
+              <div>
+                <img src="../assets/home/guarantee1.png" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="card">
+              <div>
+                <div class="title">分期购车</div>
+                <div class="desc">门槛低 审批快</div>
+              </div>
+              <div>
+                <img src="../assets/home/guarantee1.png" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="card">
+              <div>
+                <div class="title">分期购车</div>
+                <div class="desc">门槛低 审批快</div>
+              </div>
+              <div>
+                <img src="../assets/home/guarantee1.png" alt="">
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-3">
-          <div class="card">
-            <div>
-              <div class="title">分期购车</div>
-              <div class="desc">门槛低 审批快</div>
-            </div>
-            <div>
-              <img src="../assets/home/guarantee1.png" alt="">
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="card">
-            <div>
-              <div class="title">分期购车</div>
-              <div class="desc">门槛低 审批快</div>
-            </div>
-            <div>
-              <img src="../assets/home/guarantee1.png" alt="">
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="card">
-            <div>
-              <div class="title">分期购车</div>
-              <div class="desc">门槛低 审批快</div>
-            </div>
-            <div>
-              <img src="../assets/home/guarantee1.png" alt="">
-            </div>
-          </div>
-        </div>
+
       </div>
     </div>
     <div>
@@ -105,7 +108,7 @@
                 <div class="others">
                   <span class="price">{{row.price}}</span>
                   <span>首付3.5万</span>
-                  <a class="btn btn-primary buy">购买</a>
+                  <router-link :to="'/detail/'+row.id" class="btn btn-primary buy">购买</router-link>
                 </div>
               </div>
             </div>
@@ -135,7 +138,7 @@ export default {
   },
   mixins: [VehicleListVue, ReaderVue],
   mounted() {
-    this.read_main('on_sale');
+    this.read_main();
     this.find_design('suv');
     this.read('brand');
     this.read('design');
@@ -189,6 +192,9 @@ export default {
           date = date.toISOString().split('T')[0];
           condition = { query: `where("deadline" <= "${date}")` };
           break;
+        default:
+          condition = {};
+          break;
       }
 
       api('vehicle/read', condition).then(r => {
@@ -207,6 +213,7 @@ export default {
 <style scoped>
 .slider {
   height: 350px;
+  background-image: url('../assets/home/slider1.webp');
 }
 
 .query-area {
@@ -246,6 +253,9 @@ export default {
   color: #999;
 }
 
+.vehicle-nav {
+  margin-bottom: 20px;
+}
 .vehicle-nav .item {
   display: inline-block;
   width: 16.66666666666%;

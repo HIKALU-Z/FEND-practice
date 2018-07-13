@@ -173,3 +173,17 @@ img {
   display: block;
   margin-bottom: 2px;
 }
+
+fieldset,
+fieldset[disabled] {
+  border: none;
+}
+
+fieldset[disabled] {
+  cursor: not-allowed;
+  background: rgba(0, 0, 0, 0.05)
+}
+
+fieldset[disabled] * {
+  cursor: not-allowed;
+}

@@ -18,7 +18,7 @@
         </div>
         <div class="col-lg-6 vehicle-info">
           <div class="row">
-            <div class="title col-lg-12">玛莎拉蒂-Ghibli 2014款 3.0T 标准版</div>
+            <div class="title col-lg-12">{{detail.title}}</div>
             <div class="tag">
               保卖车
             </div>
@@ -174,10 +174,33 @@
 </template>
 
 <script>
-import Nav from './../components/Nav';
+import Nav from '../components/Nav';
+import SearchInput from '../components/SearchInput';
+import api from '../assets/js/api.js';
+
 export default {
+  mounted() {
+    let id = this.get_id();
+    this.find(id);
+  },
+  data() {
+    return {
+      selected_preview: 0,
+      detail: {}
+    };
+  },
+  methods: {
+    find(id) {
+      api('vehicle/find', { id }).then(r => (this.detail = r.data));
+    },
+
+    get_id() {
+      return this.$route.params.id;
+    }
+  },
   components: {
-    Nav
+    Nav,
+    SearchInput
   }
 };
 </script>

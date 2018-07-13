@@ -41,14 +41,6 @@
             <span :class="{active:searchParam.price_max==price.max}" v-for="price in priceRange" :key="price.id" @click="set_query_price_range(price.min,price.max)">
               {{ price.name }}
             </span>
-            <!-- <span>3万以下</span> -->
-            <!--  <span>3-5万</span>
-            <span>5-8万</span>
-            <span>8-10万</span>
-            <span>10-15万</span>
-            <span>15-20万</span>
-            <span>20-30万</span>
-            <span>30万以上</span> -->
           </div>
         </div>
         <div class="filter">
@@ -112,7 +104,7 @@
               <div class="others">
                 <span class="price">{{vehicle.price || '-'}}万</span>
                 <span>首付3.5万</span>
-                <a class="btn btn-primary buy">购买</a>
+                <router-link :to="'/detail/'+vehicle.id" class="btn btn-primary buy">购买</router-link>
               </div>
             </div>
           </div>
@@ -383,12 +375,5 @@ export default {
   padding: 2px 5px;
 }
 
-.vehicle-list .thumbnail {
-  width: 100%;
-  height: 150px;
-}
 
-.vehicle-list img {
-  height: 100%;
-}
 </style>

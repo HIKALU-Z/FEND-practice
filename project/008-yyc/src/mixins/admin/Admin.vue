@@ -68,7 +68,7 @@ export default {
     read(page = 1) {
       if (page == this.current_page && page != 1) return;
 
-      api(`${this.model}/read`, { limit: this.limit, page: page }).then(r => {
+      api(`${this.model}/read`, { limit: this.limit, page: page, with: this.with }).then(r => {
         this.totalItem = r.total;
         this.list = r.data;
         this.lastPage = r.last_page;

@@ -4,6 +4,7 @@ import './main.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 // import 'bulma';
 import Vue from 'vue';
+import filters from './filters/filter';
 import App from './App.vue';
 import Router from 'vue-router';
 import Detail from './views/Detail.vue';
@@ -24,10 +25,14 @@ import Location from './views/admin/Location.vue';
 import Location2 from './components/Location2';
 
 import Model from './views/admin/Model.vue';
-import Qc from './views/admin/Qc.vue';
+import Report from './views/admin/Report.vue';
 
 Vue.config.productionTip = true;
+
+// 注册路由
 Vue.use(Router);
+// 注册所有过滤器
+Object.keys(filters).forEach(key => Vue.filter(key, filters[key]));
 
 const routes = [
   {
@@ -101,8 +106,8 @@ const routes = [
         component: Model
       },
       {
-        path: 'qc',
-        component: Qc
+        path: 'report',
+        component: Report
       }
     ]
   }
