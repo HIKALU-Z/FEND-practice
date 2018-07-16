@@ -14,6 +14,7 @@
             <img src="../assets/vehicle.jpg" alt="vehicale" class="col-lg-3">
             <img src="../assets/vehicle.jpg" alt="vehicale" class="col-lg-3">
             <img src="../assets/vehicle.jpg" alt="vehicale" class="col-lg-3">
+            <img src="../assets/vehicle.jpg" alt="vehicale" class="col-lg-3">
           </div>
         </div>
         <div class="col-lg-6 vehicle-info">
@@ -247,7 +248,10 @@ export default {
 }
 
 .vehicle .vehicle-album {
-  margin-top: 10px;
+  /* margin-top: 10px; */
+  margin: 10px -5px;
+  white-space: nowrap;
+  overflow: auto;
 }
 
 .vehicle .vehicle-info {

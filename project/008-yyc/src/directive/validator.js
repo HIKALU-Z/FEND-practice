@@ -37,6 +37,23 @@ const parseRule = str => {
 
 const validFunction = {
   /**
+   * 判断是否是电话号码
+   * @param {number} val
+   * @param {string} lang
+   */
+  isPhoneNumber(val, lang) {
+    let reg = /^((1[3-8][0-9])+\d{8})$/;
+
+    const lang_conf = {
+      zh: '不合法的手机号',
+      en: 'Invalid phone number'
+    };
+
+    if (!this.numeric(val, lang) || !reg.test(val)) throw lang_conf[lang];
+
+    return true;
+  },
+  /**
    * 是否为正数
    * @param val
    * @param lang
@@ -301,6 +318,10 @@ export default Vue.directive('validator', {
       debounceTimer = setTimeout(() => {
         executeValidator(elForm, el, error_el, rule);
       }, 300);
+    });
+
+    el.addEventListener('focus', () => {
+      el.setAttribute('dirty', 'true');
     });
   }
 });

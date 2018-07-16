@@ -4,14 +4,23 @@
       <div class="row">
         <div class="col left">
           <router-link class="nav-item logo" to="/"></router-link>
-          <router-link class="nav-item" to="/admin/vehicle" href="#" >Admin</router-link>
+          <router-link class="nav-item" to="/admin/vehicle" href="#">Admin</router-link>
           <router-link class="nav-item" to="/search">Search</router-link>
           <router-link class="nav-item" to="/detail">detail</router-link>
           <a href="#" class="nav-item">Item</a>
         </div>
         <div class="col right">
-          <a href="#" class="nav-item">Item</a>
-          <a href="#" class="nav-item">Item</a>
+          <span v-if="!uinfo">
+            <router-link class="nav-item" to="/login">Login</router-link>
+            <router-link class="nav-item" to="/signup">SignUp</router-link>
+          </span>
+          <span v-else>
+            <span class="nav-item">{{uinfo.username || uinfo.phone}}</span>
+            <span class="nav-item" @click="logout()">登出</span>
+          </span>
+          <!-- <router-link class="nav-item" to="/signup ">SignUp</router-link> -->
+          <!-- <a href="#" class="nav-item">SignUp</a> -->
+          <!-- <a href="#" class="nav-item">Item</a> -->
           <a href="#" class="nav-item tel">400-6666-666</a>
         </div>
       </div>
@@ -20,11 +29,20 @@
 </template>
 
 <script>
+import session from './../assets/js/session.js';
 export default {
   props: {
     pushDown: {
       default: false
     }
+  },
+  data() {
+    return {
+      uinfo: session.uinfo()
+    };
+  },
+  methods: {
+    logout: session.logout
   }
 };
 </script>
@@ -67,5 +85,9 @@ export default {
 .tel {
   font-weight: bold;
   color: #fd521d;
+}
+
+.col .right span {
+  cursor: pointer;
 }
 </style>

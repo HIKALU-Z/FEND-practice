@@ -26,7 +26,29 @@
 
   // api('MODEL/DELETE', { name : 'user' });
 
-  api('captcha/mail', {
-    email: '2361507603@qq.com'
+  // api('captcha/mail', {
+  //   email: '2361507603@qq.com'
+  // })
+
+  // api('MODEL/CREATE_PROPERTY', {
+  //   model: 'user',
+  //   property: 'mail',
+  //   structure: {
+  //     type: 'string',
+  //     nullable: true,
+  //   },
+  // });
+
+  // api('captcha/mail',{email:'play3a@126.com',phone:'18309717375'}).then((r) => {
+  //   console.log(r.data)
+  // }).catch((err) => {
+  //   console.log(err)
+  // });
+
+  api('user/update', {
+    id: 4,
+    username: 'hikalu',
+    realname: 'zzz',
+    mail:'play3a@126.com'
   })
 </script>
