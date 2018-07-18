@@ -87,6 +87,45 @@
         <h2>车辆详情</h2>
         <div class="container">
           <div class="row">
+            <div class="col-lg-6">
+              <ReportPanel title="排除重大事故检测" cat="major_accident" :reportStructure="report_structure" :report="report" />
+            </div>
+            <div class="col-lg-6">
+              <ReportPanel title="泡水火烧检测" cat="soaking_and_roasting" :reportStructure="report_structure" :report="report" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <ReportPanel title="轻微碰撞检测" cat="minor_crash" :reportStructure="report_structure" :report="report" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <ReportPanel title="易损耗部件检测" cat="consumable" :reportStructure="report_structure" :report="report" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-2">
+              <ReportPanel title="安全系统检测" cat="security_system" :reportStructure="report_structure" :report="report" />
+            </div>
+            <div class="col-lg-2">
+              <ReportPanel title="外部配置检测" cat="surface_peripheral" :reportStructure="report_structure" :report="report" />
+            </div>
+            <div class="col-lg-2">
+              <ReportPanel title="内部配置检测" cat="inner_peripheral" :reportStructure="report_structure" :report="report" />
+            </div>
+            <div class="col-lg-2">
+              <ReportPanel title="灯光系统检测" cat="lighting_system" :reportStructure="report_structure" :report="report" />
+            </div>
+            <div class="col-lg-2">
+              <ReportPanel title="高科技配置检测" cat="high_tech" :reportStructure="report_structure" :report="report" />
+            </div>
+            <div class="col-lg-2">
+              <ReportPanel title="随车工具检测" cat="tool" :reportStructure="report_structure" :report="report" />
+            </div>
+          </div>
+          <div class="row">
+
             <div class="col-lg-6 dashed">
               <div class="sub-title">合作认证车辆介绍</div>
               <div class="detail">
@@ -178,16 +217,21 @@
 import Nav from '../components/Nav';
 import SearchInput from '../components/SearchInput';
 import api from '../assets/js/api.js';
+import ReportPanel from './../components/ReportPanel';
 
 export default {
   mounted() {
     let id = this.get_id();
     this.find(id);
+    this.find_report_by_vehicle(id);
+    this.get_report_structure();
   },
   data() {
     return {
       selected_preview: 0,
-      detail: {}
+      detail: {},
+      report: {},
+      report_structure: {}
     };
   },
   methods: {
@@ -197,11 +241,25 @@ export default {
 
     get_id() {
       return this.$route.params.id;
+    },
+    find_report_by_vehicle(vid) {
+      api('report/first', {
+        where: { vehicle_id: vid }
+      }).then(r => {
+        this.report = r.data;
+      });
+    },
+
+    get_report_structure() {
+      api('MODEL/FIND', { name: 'report' }).then(r => {
+        this.report_structure = r.data.structure;
+      });
     }
   },
   components: {
     Nav,
-    SearchInput
+    SearchInput,
+    ReportPanel
   }
 };
 </script>

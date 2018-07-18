@@ -23,6 +23,9 @@ import Brand from './views/admin/Brand.vue';
 import Design from './views/admin/Design.vue';
 import Location from './views/admin/Location.vue';
 import Location2 from './components/Location2';
+import session from './assets/js/session';
+import Appo from './views/admin/Appo';
+import Focus from './directive/focus';
 
 import Model from './views/admin/Model.vue';
 import Report from './views/admin/Report.vue';
@@ -108,6 +111,10 @@ const routes = [
       {
         path: 'report',
         component: Report
+      },
+      {
+        path: 'appointment',
+        component: Appo
       }
     ]
   }
@@ -117,7 +124,19 @@ const router = new Router({
   routes
 });
 
+router.beforeEach((to, from, next) => {
+  let willGoToAdimin = to.fullPath.startsWith('/admin/');
+  let isAdmin = session.is_admin();
+  if (willGoToAdimin && !isAdmin) {
+    alert("you are not admin. please input the 'admin' as the name 'yoyoyo' as the password ");
+    next('/login');
+  } else {
+    next();
+  }
+});
+
 new Vue({
   render: h => h(App),
-  router
+  router,
+  directives: { Focus }
 }).$mount('#app');

@@ -7,7 +7,7 @@ const valid = {
   minlength: function(val, args) {
     return val.length > args;
   },
-  required: function(val){
+  required: function(val) {
     if (val != undefined) return true;
     return false;
   }
@@ -20,8 +20,8 @@ Vue.directive('validator', {
     rule.split('|').forEach(element => {
       let key = element.split(':')[0];
       let val = element.split(':')[1];
-      if(val == undefined){
-        val = true
+      if (val == undefined) {
+        val = true;
       }
       result[key] = val;
     });
@@ -33,7 +33,7 @@ Vue.directive('validator', {
         let validator = valid[r];
         if (validator) {
           let isPass = validator(val, args);
-          console.log(isPass)
+          // console.log(isPass);
         }
       }
     });

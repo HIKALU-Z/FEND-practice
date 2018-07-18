@@ -7,8 +7,8 @@
       <router-link class="nav-item" to="/admin/model">车系管理</router-link>
       <router-link class="nav-item" to="/admin/design">设计管理</router-link>
       <router-link class="nav-item" to="/admin/location">地址管理</router-link>
-      <!-- <router-link class="nav-item" to="/admin/duplicate">车辆品牌</router-link> -->
       <router-link class="nav-item" to="/admin/report">质检管理</router-link>
+      <router-link class="nav-item" to="/admin/appointment">预约管理</router-link>
     </aside>
   </div>
 </template>
