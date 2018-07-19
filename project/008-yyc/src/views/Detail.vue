@@ -77,8 +77,30 @@
           </div>
 
           <div class="row action">
-            <a class="btn btn-primary col">预约看车</a>
-            <span class="tel col-lg-3">400-080-5027</span>
+            <div v-if="!appointed_appo" class="action">
+              <div v-if="!show_appo">
+                <button @click="show_appo=true" class="btn btn-primary">预约看车</button>
+                &nbsp;
+                <span class="tel">400-080-5027</span>
+              </div>
+              <form v-if="show_appo" @submit="submit_appo">
+                <div class="input-control">
+                  <label for="appointed_at">预约时间</label>
+                  <input v-validator="'required'" id="appointed_at" type="date" v-model="appo.appointed_at">
+                </div>
+                <div class="input-control btn-group">
+                  <button type="submit" class="btn-primary">预约</button>
+                  <button @click="show_appo=false">取消</button>
+                </div>
+              </form>
+            </div>
+
+            <div v-else class="action">
+              <button class="btn btn-primary" disabled>已预约</button>
+              <p style="font-size:14px">
+                预约时间：{{appointed_appo.appointed_at | only_day}}
+              </p>
+            </div>
           </div>
 
         </div>
@@ -218,6 +240,7 @@ import Nav from '../components/Nav';
 import SearchInput from '../components/SearchInput';
 import api from '../assets/js/api.js';
 import ReportPanel from './../components/ReportPanel';
+import session from './../assets/js/session.js';
 
 export default {
   mounted() {
@@ -225,9 +248,14 @@ export default {
     this.find(id);
     this.find_report_by_vehicle(id);
     this.get_report_structure();
+    this.prepare_appo_row();
+    this.has_appointed();
   },
   data() {
     return {
+      show_appo: false,
+      appo: {},
+      appointed_appo: {},
       selected_preview: 0,
       detail: {},
       report: {},
@@ -253,6 +281,29 @@ export default {
     get_report_structure() {
       api('MODEL/FIND', { name: 'report' }).then(r => {
         this.report_structure = r.data.structure;
+      });
+    },
+    submit_appo(e) {
+      e.preventDefault();
+
+      let row = this.appo;
+
+      api('appo/create', row).then(r => {
+        this.has_appointed();
+      });
+    },
+
+    prepare_appo_row() {
+      this.appo.vehicle_id = this.get_id();
+      this.appo.user_id = session.uinfo().id;
+    },
+
+    has_appointed() {
+      let row = this.appo;
+      let query = `where("vehicle_id" = ${row.vehicle_id} and "user_id" = ${row.user_id})`;
+
+      api('appo/read', { query }).then(r => {
+        this.appointed_appo = r.data[0];
       });
     }
   },
@@ -303,6 +354,18 @@ export default {
 
 .search-area button:hover {
   background-color: #fd521d;
+}
+
+.action > * {
+  display: inline-block;
+  font-size: 1rem;
+  margin-right: 10px;
+}
+
+.action button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+  color: darkturquoise;
 }
 
 .vehicle .vehicle-album {

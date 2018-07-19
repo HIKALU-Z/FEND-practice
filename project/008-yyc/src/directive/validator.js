@@ -166,6 +166,9 @@ const validFunction = {
  */
 function initFormState(form, lang) {
   let elSubmit = form.querySelector('[type=submit]');
+
+  if (!elSubmit) throw 'Missing submit button.';
+
   form.$state = {
     lang: lang,
     elSubmit: elSubmit,
@@ -313,11 +316,20 @@ export default Vue.directive('validator', {
     }
     el.placeholder = binding.value;
     // : why not using keypress here ?
-    el.addEventListener('keyup', () => {
+
+    const onInputChange = () => {
       clearTimeout(debounceTimer);
       debounceTimer = setTimeout(() => {
         executeValidator(elForm, el, error_el, rule);
       }, 300);
+    };
+
+    el.addEventListener('keyup', () => {
+      onInputChange();
+    });
+
+    el.addEventListener('change', () => {
+      onInputChange();
     });
 
     el.addEventListener('focus', () => {

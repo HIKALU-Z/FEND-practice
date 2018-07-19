@@ -51,6 +51,7 @@
                   <th>预约人</th>
                   <th>预约时间</th>
                   <th>备注</th>
+                  <th>操作</th>
                 </thead>
                 <tbody>
                   <tr v-for="row in list" :key="row.id">
@@ -58,6 +59,12 @@
                     <td>{{row.$user ? row.$user.username : '-'}}</td>
                     <td>{{row.appointed_at}}</td>
                     <td>{{row.remark}}</td>
+                    <td>
+                      <div class="btn-group">
+                        <button class="btn-small" @click="set_current(row)">编辑</button>
+                        <button class="btn-small" @click="remove(row.id)">删除</button>
+                      </div>
+                    </td>
                   </tr>
                 </tbody>
               </table>
